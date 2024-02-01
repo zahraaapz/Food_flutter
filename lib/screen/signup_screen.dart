@@ -18,7 +18,7 @@ class SignUpScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         MyTextFiled(txt: 'Email address',),
-        MyTextFiled(txt: 'Password',)
+        MyTextFiled(txt: 'Password',obscureText: true,)
      
 
         ,Center(
