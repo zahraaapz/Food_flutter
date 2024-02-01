@@ -24,7 +24,7 @@ Size? size;
               gradient: LinearGradient(
                   end: Alignment.topCenter,
                   begin: Alignment.bottomCenter,
-                  colors:MyColor.gradientColor1
+                  colors:MyColor.gradientSplashColor1
                     ),
             ),
           ),
@@ -47,7 +47,7 @@ Size? size;
               gradient: LinearGradient(
                   end: Alignment.topCenter,
                   begin: Alignment.bottomCenter,
-                  colors:MyColor.gradientColor2),
+                  colors:MyColor.gradientSplashColor2),
             ),
           ),
         ),
