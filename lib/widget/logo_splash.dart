@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:food_flutter/style.dart';
+import 'package:food_flutter/component/style.dart';
 
 class LogoInSplash extends StatelessWidget {
-  const LogoInSplash({
+  LogoInSplash({
     super.key,
+    this.size
   });
-
+Size? size;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,8 +18,8 @@ class LogoInSplash extends StatelessWidget {
             
             children: [
               Container(
-                height: 73,
-                width: 73,
+                height:size!.height/11,
+                width: size!.width/5.8,
                 decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white,
@@ -26,7 +27,7 @@ class LogoInSplash extends StatelessWidget {
               ),
           Positioned(
            top: 5,
-           left: 10,
+           left: 7.5,
             child: Image.asset('assets/image/3.png',scale: 2.5,))
             ],
           ),

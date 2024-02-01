@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../color.dart';
+import '../component/color.dart';
 
 class StackInSplash extends StatelessWidget {
-  const StackInSplash({
+ StackInSplash({
     super.key,
+    this.size
   });
-
+Size? size;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -18,7 +19,7 @@ class StackInSplash extends StatelessWidget {
           right: 0,
           left: 0,
           child: Container(
-            height: 300,
+            height: size!.height/2.3,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                   end: Alignment.topCenter,
@@ -41,7 +42,7 @@ class StackInSplash extends StatelessWidget {
           right: 0,
           left: 0,
           child: Container(
-            height: 150,
+            height: size!.height/8,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                   end: Alignment.topCenter,

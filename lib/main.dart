@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'splash.dart';
+import 'package:food_flutter/screen/register_screen.dart';
+import 'screen/splash_screen.dart';
 
 
 
@@ -13,9 +14,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      home: RegisterScreen(),
+      theme: ThemeData(
+        fontFamily:'sf' 
+        
+      ),
     );
   }
 }

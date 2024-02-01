@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:food_flutter/color.dart';
-import 'package:food_flutter/style.dart';
+import 'package:food_flutter/component/color.dart';
+import 'package:food_flutter/component/style.dart';
 
 class MainButton extends StatelessWidget {
-  const MainButton({
+ MainButton({
     super.key,
+    this.size
   });
-
+Size? size;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 70,
-        width: 314,
+        height:size!.height/12,
+        width:size!.width/1.4,
         child: ElevatedButton(
             style: ButtonStyle(
               backgroundColor: const MaterialStatePropertyAll(Colors.white),
