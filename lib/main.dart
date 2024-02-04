@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_flutter/screen/main_screen.dart';
 import 'package:food_flutter/screen/register_screen.dart';
 import 'screen/splash_screen.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: RegisterScreen(),
+      home: MainScreen(),
       theme: ThemeData(
         fontFamily:'sf' 
         

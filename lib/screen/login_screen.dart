@@ -17,7 +17,7 @@ class LoginScreen extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        MyTextFiled(txt: 'Email address',),
+        MyTextFiled(txt: 'Email address',obscureText: false),
         MyTextFiled(txt: 'Password',obscureText: true,),
      
          Text('Do you forgot password?',style: MyStyle.textStyle.copyWith(color: MyColor.buttonTextColor),)

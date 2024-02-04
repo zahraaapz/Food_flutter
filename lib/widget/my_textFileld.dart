@@ -4,14 +4,14 @@ class MyTextFiled extends StatelessWidget {
  MyTextFiled({
     super.key,
     required this.txt,
- this.obscureText
+    required this.obscureText
   });
 String txt;
-bool ?obscureText=false;
+bool obscureText;
   @override
   Widget build(BuildContext context) {
     return  TextField(
-      obscureText:obscureText! ,
+      obscureText:obscureText ,
       cursorColor: Colors.black38,
       decoration: InputDecoration(
           labelStyle: const TextStyle(color: Colors.black38),
