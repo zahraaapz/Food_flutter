@@ -95,8 +95,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             IndexedStack(
                           index:select,
                          children :[
-                         LoginScreen(),
-                         SignUpScreen()
+                        
+                         SignUpScreen(),
+                          LoginScreen()
                           ]
                         ),
             ],

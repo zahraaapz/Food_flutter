@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/color.dart';
 import 'package:food_flutter/component/style.dart';
+import 'package:food_flutter/model/model.dart';
 import 'package:food_flutter/widget/main_button.dart';
 
 import '../widget/my_textFileld.dart';
@@ -23,6 +24,9 @@ class SignUpScreen extends StatelessWidget {
 
         ,Center(
           child: MainButton(
+            onTap: (){
+         
+            },
             size: const Size(400, 800),
             bgcolor: MyColor.buttonbgColor,
             txt: 'Sign up',

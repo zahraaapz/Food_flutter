@@ -9,9 +9,11 @@ class MainButton extends StatelessWidget {
     this.txt,
     this.bgcolor,
     this.txtcolor,
+    this.onTap,
 
   });
 Size? size;
+final onTap;
 String? txt;
 Color? bgcolor=Colors.white;
 Color? txtcolor= MyColor.buttonTextColor;
@@ -25,7 +27,7 @@ Color? txtcolor= MyColor.buttonTextColor;
               backgroundColor:  MaterialStatePropertyAll(bgcolor),
                 shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)))),
-            onPressed: () {},
+            onPressed: onTap,
             child: Text(txt!,style: MyStyle.textStyle.copyWith(color:txtcolor),)));
   }
 }
