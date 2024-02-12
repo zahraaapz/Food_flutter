@@ -16,7 +16,7 @@ Size? size;
 final onTap;
 String? txt;
 Color? bgcolor=Colors.white;
-Color? txtcolor= MyColor.buttonTextColor;
+Color? txtcolor= MyColor.TextColorOrange;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

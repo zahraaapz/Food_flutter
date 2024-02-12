@@ -20,12 +20,12 @@ class LoginScreen extends StatelessWidget {
         MyTextFiled(txt: 'Email address',obscureText: false),
         MyTextFiled(txt: 'Password',obscureText: true,),
      
-         Text('Do you forgot password?',style: MyStyle.textStyle.copyWith(color: MyColor.buttonTextColor),)
+         Text('Do you forgot password?',style: MyStyle.textStyle.copyWith(color: MyColor.TextColorOrange),)
 
         ,Center(
           child: MainButton(
             size: const Size(400, 800),
-            bgcolor: MyColor.buttonbgColor,
+            bgcolor: MyColor.bgButtonColor,
             txt: 'Login',
             txtcolor: Colors.white,
           ),

@@ -18,11 +18,11 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     var size=MediaQuery.sizeOf(context);
     return Scaffold(
-      backgroundColor:MyColor.bgSplashColor,
+      backgroundColor:MyColor.bgSplashScreenColor,
       appBar: AppBar(
-        backgroundColor:MyColor.bgSplashColor,
+        backgroundColor:MyColor.bgSplashScreenColor,
         systemOverlayStyle:
-            const SystemUiOverlayStyle(systemNavigationBarColor: MyColor.bgSplashColor,statusBarColor: Colors.transparent),
+            const SystemUiOverlayStyle(systemNavigationBarColor: MyColor.bgSplashScreenColor,statusBarColor: Colors.transparent),
       ),
       body: Column(
    
@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           
           MainButton(size:size,
-          txtcolor:MyColor.buttonbgColor ,
+          txtcolor:MyColor.bgButtonColor ,
           txt: 'Login',
           bgcolor:Colors.white ,)
         ],

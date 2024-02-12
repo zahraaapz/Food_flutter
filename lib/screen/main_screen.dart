@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/color.dart';
 import 'package:food_flutter/component/style.dart';
+import 'package:food_flutter/widget/suggestList.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen({super.key});
@@ -11,13 +12,13 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  double margin = 0;
+double margin = 0;
 int select=0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColor.bgRegisterScreenColor,
-      appBar: AppBar(backgroundColor: MyColor.bgRegisterScreenColor,
+      backgroundColor: MyColor.bgColor,
+      appBar: AppBar(backgroundColor: MyColor.bgColor,
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
           SizedBox(width: 280),
@@ -106,12 +107,12 @@ int select=0;
               margin: EdgeInsets.only(left: margin,top: 10),
               width: 100,
               height: 3,
-              decoration: BoxDecoration(color: MyColor.buttonTextColor),
+              decoration: BoxDecoration(color: MyColor.TextColorOrange),
               duration: Duration(milliseconds: 200))
            ,
            IndexedStack(
             index: select,
-            children: [SuggList(),Text('lk'),SuggList()]),
+            children: [SuggList(product: [],),Text('lk'),SuggList(product: [],)]),
 
         ],
       ),
@@ -121,51 +122,3 @@ int select=0;
   }
 }
 
-class SuggList extends StatelessWidget {
-  const SuggList({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 400,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        itemCount: 4,
-        itemBuilder: (context, index) {
-          return Stack(children: [
-            Container(
-              margin: EdgeInsets.only(top: 38,left: 18),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [Text('mnjh')],
-              ),
-              width: 220,
-              height: 270,
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 2,
-                        blurStyle: BlurStyle.normal,
-                        spreadRadius: 2)
-                  ],
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(30)),
-            ),
-            Positioned(
-                left: 60,
-                top: 15,
-                child: Container(
-                 width: 130,
-                 height: 110,
-                 decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.black38),
-                )),
-          ]);
-        },
-      ),
-    );
-  }
-}

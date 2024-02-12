@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_flutter/screen/main_screen.dart';
-import 'package:food_flutter/screen/register_screen.dart';
-import 'screen/splash_screen.dart';
+
 
 
 

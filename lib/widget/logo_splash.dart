@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:food_flutter/component/style.dart';
 
 class LogoInSplash extends StatelessWidget {
-  LogoInSplash({
+  const LogoInSplash({
     super.key,
     this.size
   });
-Size? size;
+final Size? size;
   @override
   Widget build(BuildContext context) {
     return Padding(

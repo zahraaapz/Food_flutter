@@ -19,7 +19,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     var size=MediaQuery.sizeOf(context);
     return SafeArea(
       child: Scaffold(
-        backgroundColor: MyColor.bgRegisterScreenColor,
+        backgroundColor: MyColor.bgColor,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -86,7 +86,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             duration: const Duration(milliseconds: 200),
                             width: 143,
                             height: 3,
-                            color: MyColor.buttonTextColor)
+                            color: MyColor.TextColorOrange)
                       ],
                     ),
                   )
@@ -94,7 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             IndexedStack(
                           index:select,
-                         children :[
+                         children :const [
                         
                          SignUpScreen(),
                           LoginScreen()
