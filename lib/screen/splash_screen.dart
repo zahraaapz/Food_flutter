@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:food_flutter/component/api.dart';
 import 'package:food_flutter/component/color.dart';
+import 'package:food_flutter/model/list.dart';
+import 'package:food_flutter/service/service.dart';
 import 'package:food_flutter/widget/logo_splash.dart';
 
 import '../widget/main_button.dart';
@@ -14,6 +17,23 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() async{
+    // TODO: implement initState
+    super.initState();
+    await Service().getMealList(ApiUrl().chicken, chickenList);
+    await Service().getMealList(ApiUrl().pasta, pastaList);
+    await Service().getMealList(ApiUrl().pork, porkList);
+    await Service().getMealList(ApiUrl().vegan, veganList);
+    await Service().getMealList(ApiUrl().starter, staterList);
+    await Service().getMealList(ApiUrl().side, sideList);
+    await Service().getMealList(ApiUrl().dessert, dessertList);
+
+    await Service().getDrinkList(ApiUrl().cocoa, cocoaList);
+    await Service().getDrinkList(ApiUrl().shake, shakeList);
+    await Service().getDrinkList(ApiUrl().cocktail, cocktailList);
+   
+  }
   @override
   Widget build(BuildContext context) {
     var size=MediaQuery.sizeOf(context);
