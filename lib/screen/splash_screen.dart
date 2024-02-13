@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Service().getMealList(ApiUrl().pasta, pastaList);
     await Service().getMealList(ApiUrl().pork, porkList);
     await Service().getMealList(ApiUrl().vegan, veganList);
-    await Service().getMealList(ApiUrl().starter, staterList);
+    await Service().getMealList(ApiUrl().starter, starterList);
     await Service().getMealList(ApiUrl().side, sideList);
     await Service().getMealList(ApiUrl().dessert, dessertList);
 

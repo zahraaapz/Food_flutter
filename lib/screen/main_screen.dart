@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/color.dart';
 import 'package:food_flutter/component/style.dart';
+import 'package:food_flutter/model/list.dart';
 import 'package:food_flutter/widget/suggestList.dart';
 
 class MainScreen extends StatefulWidget {
@@ -12,13 +13,14 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-double margin = 0;
-int select=0;
+  int select = 0;
+  int selectBtmNav = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColor.bgColor,
-      appBar: AppBar(backgroundColor: MyColor.bgColor,
+      appBar: AppBar(
+        backgroundColor: MyColor.bgColor,
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
           SizedBox(width: 280),
@@ -30,7 +32,6 @@ int select=0;
         ],
       ),
       body: Column(
-            
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
@@ -49,7 +50,7 @@ int select=0;
               height: 50,
               width: 314,
               decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 185, 173, 173),
+                  color: Colors.black12,
                   borderRadius: BorderRadius.circular(30)),
               child: const TextField(
                 decoration: InputDecoration(
@@ -61,64 +62,70 @@ int select=0;
               ),
             ),
           ),
-          SizedBox(height: 30,),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                GestureDetector(
-                  child: Text(
-                    'Drink',
-                    style: MyStyle.registerStyle,
-                  ),
+          SizedBox(
+            height: 30,
+          ),
+          SizedBox(
+            height: 30,
+            width: double.infinity,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemCount: cate.length,
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.only(right: 18.0, left: 8),
+                child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      margin = 20;
-                      select=0;
+                      select = index;
                     });
                   },
-                ),
-              GestureDetector(
                   child: Text(
-                    'Pizza',
-                    style: MyStyle.registerStyle,
+                    cate[index],
+                    style: MyStyle.registerStyle.copyWith(
+                        color: index == select
+                            ? MyColor.TextColorOrange
+                            : Colors.black),
                   ),
-                  onTap: () {
-                    setState(() {
-                      margin = 160;
-                      select=1;
-                    });
-                  },
                 ),
-               GestureDetector(
-                  child: Text(
-                    'Cake',
-                    style: MyStyle.registerStyle,
-                  ),
-                  onTap: () {
-                    setState(() {
-                       margin = 295; 
-                       select=2;
-                    });
+              ),
+            ),
+          ),
+           Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.only(top:18.0,right: 18),
+              child: Text('See more',style: MyStyle.textStyle.copyWith(color: MyColor.TextColorOrange),),
+            )),
                   
-                  },
-                ),
-              ]),
-          AnimatedContainer(
-              margin: EdgeInsets.only(left: margin,top: 10),
-              width: 100,
-              height: 3,
-              decoration: BoxDecoration(color: MyColor.TextColorOrange),
-              duration: Duration(milliseconds: 200))
-           ,
-           IndexedStack(
-            index: select,
-            children: [SuggList(product: [],),Text('lk'),SuggList(product: [],)]),
-
+          IndexedStack(index: select, children: [
+            SuggList(
+              product: [],
+            ),
+            Text('lk'),
+            SuggList(
+              product: [],
+            )
+          ]),
         ],
       ),
-   bottomNavigationBar: Container(
-    width: 400,height: 60,color: Colors.black12,
-   ), );
+      bottomNavigationBar: Container(
+        width: 400,
+        height: 60,
+        decoration: BoxDecoration(
+            color: Colors.black12,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+   child:ListView.builder(
+  
+    scrollDirection: Axis.horizontal,
+    itemCount: icons.length,
+    itemBuilder:(context, index) {
+     return Padding(
+       padding: const EdgeInsets.only(left:45.0),
+       child: IconButton(onPressed: (){}, icon: icons[index]),
+     );
+   },)   ),
+    );
   }
 }
-
