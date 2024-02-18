@@ -1,31 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:food_flutter/data/model/drink.dart';
-
-import 'meal.dart';
+import 'package:food_flutter/data/repo/home_repo.dart';
+import 'package:food_flutter/data/src/home_data_src.dart';
 
 
-List<Meal>pastaList=[];
-List<Meal>dessertList=[];
-List<Meal>veganList=[];
-List<Meal>porkList=[];
-List<Meal>sideList=[];
-List<Meal>starterList=[];
-List<Drink>cocoaList=[];
-List<Drink>cocktailList=[];
-List<Meal>chickenList=[];
-List<Drink>shakeList=[];
 
-
-List cate=['Pasta','Dessert','Vegan','Pork','Side','Starter','Chicken','Cocoa','Shake','Cocktail'];
-
-
-List<Icon> icons=[
-  
-    Icon(CupertinoIcons.house),
-    Icon(CupertinoIcons.heart),
-    Icon(CupertinoIcons.person),
-    Icon(CupertinoIcons.clock)
-];
-
+HomeRepository homeRepository=HomeRepository(HomeRemoteDataSrc(Dio()));
 

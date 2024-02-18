@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/color.dart';
+import 'package:food_flutter/component/const_list.dart';
 import 'package:food_flutter/component/style.dart';
-import 'package:food_flutter/data/model/home.dart';
 import 'package:food_flutter/widget/suggestList.dart';
 
 class MainScreen extends StatefulWidget {
-  MainScreen({super.key});
+  const MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();

@@ -5,6 +5,7 @@ class SuggList extends StatelessWidget {
   List product;
   @override
   Widget build(BuildContext context) {
+
     return SizedBox(
       height: 360,
       child: ListView.builder(
@@ -14,8 +15,8 @@ class SuggList extends StatelessWidget {
         itemBuilder: (context, index) {
           return Stack(children: [
             Container(
-              margin: EdgeInsets.only(top: 38, left: 18),
-              child: Column(
+              margin: const EdgeInsets.only(top: 38, left: 18),
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [Text('mnjh')],
               ),
