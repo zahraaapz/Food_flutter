@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_flutter/model/drink.dart';
+import 'package:food_flutter/data/model/drink.dart';
 
 import 'meal.dart';
+
 
 List<Meal>pastaList=[];
 List<Meal>dessertList=[];
@@ -17,6 +18,8 @@ List<Drink>shakeList=[];
 
 
 List cate=['Pasta','Dessert','Vegan','Pork','Side','Starter','Chicken','Cocoa','Shake','Cocktail'];
+
+
 List<Icon> icons=[
   
     Icon(CupertinoIcons.house),
@@ -24,3 +27,5 @@ List<Icon> icons=[
     Icon(CupertinoIcons.person),
     Icon(CupertinoIcons.clock)
 ];
+
+
