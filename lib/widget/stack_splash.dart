@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import '../component/color.dart';
 
 class StackInSplash extends StatelessWidget {
- StackInSplash({
+ const StackInSplash({
     super.key,
     this.size
   });
-Size? size;
+ final Size? size;
   @override
   Widget build(BuildContext context) {
     return Stack(

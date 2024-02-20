@@ -12,7 +12,7 @@ Future<List<Drink>> drinkList(String url);
 
 class HomeRemoteDataSrc implements IHomeDataSrc{
 
-Dio _dio;
+final Dio _dio;
 HomeRemoteDataSrc(this._dio);
 
   @override

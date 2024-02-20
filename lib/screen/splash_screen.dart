@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:food_flutter/component/api.dart';
 import 'package:food_flutter/component/color.dart';
-import 'package:food_flutter/data/model/home.dart';
-
 import 'package:food_flutter/widget/logo_splash.dart';
 
 import '../widget/main_button.dart';
@@ -17,11 +14,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() async{
-    // TODO: implement initState
-   
-  }
+
   @override
   Widget build(BuildContext context) {
     var size=MediaQuery.sizeOf(context);

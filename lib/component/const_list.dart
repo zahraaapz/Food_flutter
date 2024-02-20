@@ -14,9 +14,9 @@ List cate = [
   'Cocktail'
 ];
 
-List<Icon> icons = const[
-  Icon(CupertinoIcons.house),
-  Icon(CupertinoIcons.heart),
-  Icon(CupertinoIcons.person),
-  Icon(CupertinoIcons.clock)
+List<IconData> icons = const[
+  CupertinoIcons.house,
+ CupertinoIcons.heart,
+ CupertinoIcons.person,
+ CupertinoIcons.clock
 ];

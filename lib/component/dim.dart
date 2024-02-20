@@ -1,7 +1,7 @@
 class Dimens {
   
-  double small=10;
-  double medium=12;
-  double large=20;
+ static double small=10;
+ static double medium=12;
+ static double large=20;
 
 }

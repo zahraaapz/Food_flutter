@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class MyTextFiled extends StatelessWidget {
- MyTextFiled({
+ const MyTextFiled({
     super.key,
     required this.txt,
     required this.obscureText
   });
-String txt;
-bool obscureText;
+ final String txt;
+ final bool obscureText;
   @override
   Widget build(BuildContext context) {
     return  TextField(
