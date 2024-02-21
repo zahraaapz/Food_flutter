@@ -4,19 +4,20 @@ import 'package:food_flutter/widget/main_button.dart';
 import '../widget/my_textFileld.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
 
+const SignUpScreen({super.key,required this.size});
+final Size  size;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 350,
-      height: 390,
+      width: size.width/1.3,
+      height: size.height/1.9,
       child:
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        MyTextFiled(txt: 'Email address',obscureText: false),
-        MyTextFiled(txt: 'Password',obscureText: true,)
+        const MyTextFiled(txt: 'Email address',obscureText: false),
+        const MyTextFiled(txt: 'Password',obscureText: true,)
      
 
         ,Center(

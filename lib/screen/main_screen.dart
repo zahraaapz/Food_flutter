@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/color.dart';
-import 'package:food_flutter/component/const_list.dart';
 import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/style.dart';
@@ -26,14 +25,14 @@ class _MainScreenState extends State<MainScreen> {
       backgroundColor: MyColor.bgColor,
       appBar: AppBar(
         backgroundColor: MyColor.bgColor,
-        actions: [
+        title:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
-          SizedBox(width: 280),
+          (Dimens.large * 13).width,
           IconButton(
               onPressed: () {}, icon: const Icon(CupertinoIcons.shopping_cart)),
-                Dimens.medium.width,
-
-        ],
+          Dimens.medium.width,
+        ]),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,9 +62,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ),
           ),
-          SizedBox(
-            height: 30,
-          ),
+          (Dimens.large + 10).height,
           cateList(),
           Align(
               alignment: Alignment.bottomRight,
@@ -116,6 +113,18 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   SizedBox cateList() {
+    List cate = [
+      'Pasta',
+      'Dessert',
+      'Vegan',
+      'Pork',
+      'Side',
+      'Starter',
+      'Chicken',
+      'Cocoa',
+      'Shake',
+      'Cocktail'
+    ];
     return SizedBox(
       height: 30,
       width: double.infinity,
@@ -144,6 +153,13 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Container bottomNav() {
+    List<IconData> icons = const [
+      CupertinoIcons.house_fill,
+      CupertinoIcons.heart_fill,
+      CupertinoIcons.person_fill,
+      CupertinoIcons.clock_fill
+    ];
+
     return Container(
         width: 400,
         height: 60,

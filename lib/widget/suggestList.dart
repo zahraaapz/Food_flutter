@@ -65,7 +65,7 @@ class _SuggListState extends State<SuggList> {
                 )),
           ]);
         },
-      ):CircularProgressIndicator()
+      ):const Center(child: CircularProgressIndicator())
     )
    ;
   }

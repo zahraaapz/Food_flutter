@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/color.dart';
+import 'package:food_flutter/component/dim.dart';
+import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/style.dart';
 import 'package:food_flutter/screen/login_screen.dart';
 import 'package:food_flutter/screen/signup_screen.dart';
@@ -13,10 +15,10 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   double marginLeft = 10.0;
-  int select=0;
+  int select = 0;
   @override
   Widget build(BuildContext context) {
-    var size=MediaQuery.sizeOf(context);
+    var size = MediaQuery.sizeOf(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: MyColor.bgColor,
@@ -28,7 +30,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Container(
                     padding: const EdgeInsets.only(left: 8, right: 8),
                     width: double.infinity,
-                    height: size.height/2.09,
+                    height: size.height / 2.09,
                     decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
@@ -38,14 +40,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const SizedBox(
-                          height: 100,
-                        ),
+                        (Dimens.large * 5).height,
                         Center(child: Image.asset('assets/image/3.png')),
-                       const SizedBox(
-                          height: 40,
-                        ),
-          
+                        (Dimens.large * 2).height,
                         Expanded(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -54,11 +51,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   onTap: () {
                                     setState(() {
                                       marginLeft = 0;
-                                      select=0;
+                                      select = 0;
                                     });
                                   },
                                   child: SizedBox(
-                                    width: 60,
+                                    width: 65,
                                     child: Text('Login',
                                         style: MyStyle.registerStyle),
                                   )),
@@ -66,7 +63,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   onTap: () {
                                     setState(() {
                                       marginLeft = 160;
-                                      select=1;
+                                      select = 1;
                                     });
                                   },
                                   child: SizedBox(
@@ -92,14 +89,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   )
                 ],
               ),
-            IndexedStack(
-                          index:select,
-                         children :const [
-                        
-                         SignUpScreen(),
-                          LoginScreen()
-                          ]
-                        ),
+              IndexedStack(
+                  index: select,
+                  children: [
+                    LoginScreen(size: size),
+                  SignUpScreen(size: size,)]),
             ],
           ),
         ),
