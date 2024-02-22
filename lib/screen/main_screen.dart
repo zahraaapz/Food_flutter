@@ -5,6 +5,7 @@ import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/style.dart';
 import 'package:food_flutter/data/model/home.dart';
+import 'package:food_flutter/screen/main_list_screen.dart';
 import 'package:food_flutter/widget/suggestList.dart';
 
 class MainScreen extends StatefulWidget {
@@ -64,16 +65,24 @@ class _MainScreenState extends State<MainScreen> {
           ),
           (Dimens.large + 10).height,
           cateList(),
-          Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 18.0, right: 18),
-                child: Text(
-                  'See more',
-                  style: MyStyle.textStyle
-                      .copyWith(color: MyColor.TextColorOrange),
-                ),
-              )),
+          GestureDetector(
+            onTap: () =>  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            MainListScreen(product: home.chickenList),
+                      )),
+            child: Align(
+                alignment: Alignment.bottomRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 18.0, right: 18),
+                  child: Text(
+                    'See more',
+                    style: MyStyle.textStyle
+                        .copyWith(color: MyColor.TextColorOrange),
+                  ),
+                )),
+          ),
           IndexedStack(index: select, children: [
             SuggList(
               product: home.pastaList,
