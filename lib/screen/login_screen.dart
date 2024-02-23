@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_flutter/component/color.dart';
 import 'package:food_flutter/component/style.dart';
 import 'package:food_flutter/widget/main_button.dart';
+import '../component/api_key.dart';
 import '../widget/my_textFileld.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -23,6 +24,10 @@ final Size  size;
 
         ,Center(
           child: MainButton(
+            onTap: () async {
+              await Auth.verifyeCode().then((value) => print(value.data.toString()));
+              }
+            ,
             size: const Size(400, 800),
             bgcolor: MyColor.bgButtonColor,
             txt: 'Login',
