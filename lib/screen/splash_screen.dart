@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
           MainButton(size:size,
           txtcolor:MyColor.bgButtonColor ,
           txt: 'Login',
-          bgcolor:Colors.white ,)
+          bgcolor:Colors.white,)
         ],
       ),
     );

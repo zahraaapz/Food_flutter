@@ -66,12 +66,31 @@ class _MainScreenState extends State<MainScreen> {
           (Dimens.large + 10).height,
           cateList(),
           GestureDetector(
-            onTap: () =>  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            MainListScreen(product: home.chickenList),
-                      )),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => select == 0
+                        ? ProductsGrid(home.pastaList)
+                        : select == 1
+                            ? ProductsGrid(home.dessertList)
+                            : select == 2
+                                ? ProductsGrid(home.veganList)
+                                : select == 3
+                                    ? ProductsGrid(home.porkList)
+                                    : select == 4
+                                        ? ProductsGrid(home.sideList)
+                                        : select == 5
+                                            ? ProductsGrid(home.staterist)
+                                            : select == 6
+                                                ? ProductsGrid(home.chickenList)
+                                                : select == 7
+                                                    ? ProductsGrid(
+                                                        home.cocoaList)
+                                                    : select == 8
+                                                        ? ProductsGrid(
+                                                            home.shakeList)
+                                                        : ProductsGrid(home
+                                                            .cocktailList))),
             child: Align(
                 alignment: Alignment.bottomRight,
                 child: Padding(
