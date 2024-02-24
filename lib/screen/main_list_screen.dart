@@ -88,6 +88,8 @@ class VerticalProductCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Container(
+              width: 130,
+              height: 130,
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(

@@ -27,7 +27,8 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         backgroundColor: MyColor.bgColor,
         title:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, 
+            children: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
           (Dimens.large * 13).width,
           IconButton(
