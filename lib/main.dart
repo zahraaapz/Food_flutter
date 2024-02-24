@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:food_flutter/screen/main_screen.dart';
 import 'package:food_flutter/screen/register_screen.dart';
 
+import 'utils/sharedPre_mng.dart';
 
 
 
-void main() {
+
+void main() async{
   runApp(const MyApp());
+  await SharedPreferencesMannager().init();
 }
 
 class MyApp extends StatelessWidget {

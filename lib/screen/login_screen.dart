@@ -6,7 +6,9 @@ import '../component/api_key.dart';
 import '../widget/my_textFileld.dart';
 
 class LoginScreen extends StatelessWidget {
-const LoginScreen({super.key,required this.size});
+ LoginScreen({super.key,required this.size});
+final  TextEditingController email=TextEditingController();
+ final TextEditingController password=TextEditingController();
 final Size  size;
   @override
   Widget build(BuildContext context) {
@@ -17,15 +19,14 @@ final Size  size;
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        const MyTextFiled(txt: 'Email address',obscureText: false),
-        const MyTextFiled(txt: 'Password',obscureText: true,),
+         MyTextFiled(txt: 'Email address',obscureText: false,controller: email,),
+       MyTextFiled(txt: 'Password',obscureText: true,controller: password,),
      
          Text('Do you forgot password?',style: MyStyle.textStyle.copyWith(color: MyColor.TextColorOrange),)
 
         ,Center(
           child: MainButton(
             onTap: () async {
-              await Auth.verifyeCode().then((value) => print(value.data.toString()));
               }
             ,
             size: const Size(400, 800),

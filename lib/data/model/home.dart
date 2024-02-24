@@ -1,10 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:food_flutter/component/api.dart';
-
 import 'package:food_flutter/data/model/drink.dart';
 import 'package:food_flutter/data/repo/home_repo.dart';
 import 'package:food_flutter/data/src/home_data_src.dart';
-
 import 'meal.dart';
 
 HomeRepository homeRepository = HomeRepository(HomeRemoteDataSrc(Dio()));
@@ -42,6 +40,5 @@ Home() {
         cocktailList=
             iHomeRepo.drinkList(ApiUrl().baseDrink + RouteVersion().cocktail);
 
-            chickenList.then((value) => print(value));
-  }
+ }
 }
