@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/color.dart';
 import 'package:food_flutter/component/style.dart';
-import 'package:food_flutter/screen/main_screen.dart';
+import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/utils/sharedPre_mng.dart';
 import 'package:food_flutter/widget/main_button.dart';
 import '../widget/my_textFileld.dart';
@@ -42,7 +42,8 @@ class LoginScreen extends StatelessWidget {
                           email.text &&
                       SharedPreferencesMannager().getString('pass') ==
                           password.text) {
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder:(context) => MainScreen(),));
+                            Navigator.pushReplacementNamed(context,RouteName.mainScreen);
+                            
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error')));
                   }

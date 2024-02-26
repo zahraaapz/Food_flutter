@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/color.dart';
+import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/utils/sharedPre_mng.dart';
 import 'package:food_flutter/widget/main_button.dart';
 import '../component/api_key.dart';
 import '../widget/my_textFileld.dart';
-import 'main_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   final TextEditingController email = TextEditingController();
@@ -39,20 +39,16 @@ class SignUpScreen extends StatelessWidget {
                     'name': 'Hi',
                     'replyTo': 'your mail where users can send reply',
                     'title': 'Auth',
-                    'body': password.text + ' is your password.'
+                    'body': '${password.text} is your password.'
                   });
                   SharedPreferencesMannager().saveString('pass', password.text);
                   SharedPreferencesMannager().saveString('email', email.text);
                   if (SharedPreferencesMannager().getString('email')!.isEmpty &&
                       SharedPreferencesMannager().getString('email')!.isEmpty) {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text('Error')));
+                 ScaffoldMessenger.of(context)
+                        .showSnackBar(const SnackBar(content: Text('Error')));
                   } else {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MainScreen(),
-                        ));
+                    Navigator.pushReplacementNamed(context, RouteName.mainScreen);
                   }
                 },
                 size: const Size(400, 800),
