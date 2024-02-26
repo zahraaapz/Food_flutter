@@ -33,7 +33,8 @@ class _SplashScreenState extends State<SplashScreen> {
             child: StackInSplash(size:size),
           ),
           
-          MainButton(size:size,
+          MainButton(
+            size:size,
           txtcolor:MyColor.bgButtonColor ,
           txt: 'Login',
           bgcolor:Colors.white,)

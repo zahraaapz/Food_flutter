@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_flutter/screen/main_screen.dart';
+import 'package:food_flutter/screen/home_screen.dart';
 import 'utils/sharedPre_mng.dart';
 
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainScreen(),
+      home: HomeScreen(),
       theme: ThemeData(
         fontFamily:'sf' 
         

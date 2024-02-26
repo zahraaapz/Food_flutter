@@ -1,222 +1,124 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/color.dart';
-import 'package:food_flutter/component/dim.dart';
-import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/style.dart';
-import 'package:food_flutter/data/model/home.dart';
-import 'package:food_flutter/screen/main_list_screen.dart';
-import 'package:food_flutter/widget/suggestList.dart';
+import 'package:food_flutter/screen/detail_product.dart';
+
+import '../widget/frame_image.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  final Future<List> products;
+
+  MainScreen(this.products);
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int select = 0;
-  int selectBtmNav = 0;
-  Home home = Home();
+  List list = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    widget.products.then((value) => setState(() {
+          list = value;
+        }));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: MyColor.bgColor,
+          body: list.isNotEmpty
+              ? GridView.builder(
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.only(
+                      top: 10, bottom: 50, left: 15, right: 15),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: (screenWidth - 45) / (2 * 290),
+                    mainAxisSpacing: 15,
+                    crossAxisSpacing: 15,
+                    // Product Card has fixed height 290, screenWidth must substract the total horizontal padding of GridView
+                  ),
+                  itemCount: list.length,
+                  itemBuilder: (context, i) {
+                    if (i % 2 == 0) {
+                      return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      DetailProduct(product: list[i]),
+                                ));
+                          },
+                          child: VerticalProductCard(product: list[i]));
+                    }
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DetailProduct(product: list[i]),
+                            ));
+                      },
+                      child: OverflowBox(
+                        maxHeight: 290.0 + 70.0,
+                        child: Container(
+                          color: Colors.transparent,
+                          margin: const EdgeInsets.only(top: 70),
+                          child: VerticalProductCard(product: list[i]),
+                        ),
+                      ),
+                    );
+                  },
+                )
+              : CircularProgressIndicator()),
+    );
+  }
+}
+
+class VerticalProductCard extends StatelessWidget {
+  const VerticalProductCard({super.key, this.product});
+  final product;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColor.bgColor,
-      appBar: AppBar(
-        backgroundColor: MyColor.bgColor,
-        title:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, 
-            children: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
-          (Dimens.large * 13).width,
-          IconButton(
-              onPressed: () {}, icon: const Icon(CupertinoIcons.shopping_cart)),
-          Dimens.medium.width,
-        ]),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-            child: Text(
-              'Delicious\nfood for you',
-              style:
-                  MyStyle.textStyle.copyWith(color: Colors.black, fontSize: 40),
-            ),
-          ),
-          Dimens.medium.width,
-          Center(
-            child: Container(
-              height: 50,
-              width: 314,
-              decoration: BoxDecoration(
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(30)),
-              child: const TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  hintText: 'search',
-                  prefixIcon: Icon(CupertinoIcons.search),
-                ),
+      backgroundColor: Colors.transparent,
+      body: Container(
+        height: 290,
+        width: 200,
+        decoration: BoxDecoration(boxShadow: const [
+          BoxShadow(
+              color: Colors.black12,
+              blurRadius: 14,
+              blurStyle: BlurStyle.normal,
+              spreadRadius: 2)
+        ], color: Colors.white, borderRadius: BorderRadius.circular(20)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Hero(
+              tag:'$product',
+              child: FrameImage(
+                product: product,
               ),
             ),
-          ),
-          (Dimens.large + 10).height,
-          cateList(),
-          GestureDetector(
-            onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => select == 0
-                        ? ProductsGrid(home.pastaList)
-                        : select == 1
-                            ? ProductsGrid(home.dessertList)
-                            : select == 2
-                                ? ProductsGrid(home.veganList)
-                                : select == 3
-                                    ? ProductsGrid(home.porkList)
-                                    : select == 4
-                                        ? ProductsGrid(home.sideList)
-                                        : select == 5
-                                            ? ProductsGrid(home.staterist)
-                                            : select == 6
-                                                ? ProductsGrid(home.chickenList)
-                                                : select == 7
-                                                    ? ProductsGrid(
-                                                        home.cocoaList)
-                                                    : select == 8
-                                                        ? ProductsGrid(
-                                                            home.shakeList)
-                                                        : ProductsGrid(home
-                                                            .cocktailList))),
-            child: Align(
-                alignment: Alignment.bottomRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 18.0, right: 18),
-                  child: Text(
-                    'See more',
-                    style: MyStyle.textStyle
-                        .copyWith(color: MyColor.TextColorOrange),
-                  ),
-                )),
-          ),
-          IndexedStack(index: select, children: [
-            SuggList(
-              product: home.pastaList,
-            ),
-            SuggList(
-              product: home.dessertList,
-            ),
-            SuggList(
-              product: home.veganList,
-            ),
-            SuggList(
-              product: home.porkList,
-            ),
-            SuggList(
-              product: home.sideList,
-            ),
-            SuggList(
-              product: home.staterist,
-            ),
-            SuggList(
-              product: home.chickenList,
-            ),
-            SuggList(
-              product: home.cocoaList,
-            ),
-            SuggList(
-              product: home.shakeList,
-            ),
-            SuggList(
-              product: home.cocktailList,
-            ),
-          ]),
-        ],
-      ),
-      bottomNavigationBar: bottomNav(),
-    );
-  }
-
-  SizedBox cateList() {
-    List cate = [
-      'Pasta',
-      'Dessert',
-      'Vegan',
-      'Pork',
-      'Side',
-      'Starter',
-      'Chicken',
-      'Cocoa',
-      'Shake',
-      'Cocktail'
-    ];
-    return SizedBox(
-      height: 30,
-      width: double.infinity,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        itemCount: cate.length,
-        itemBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.only(right: 18.0, left: 8),
-          child: GestureDetector(
-            onTap: () {
-              setState(() {
-                select = index;
-              });
-            },
-            child: Text(
-              cate[index],
-              style: MyStyle.registerStyle.copyWith(
-                  color:
-                      index == select ? MyColor.TextColorOrange : Colors.black),
-            ),
-          ),
+            Text(
+              product.name,
+              style:
+                  MyStyle.textStyle.copyWith(color: Colors.black, fontSize: 15),
+              overflow: TextOverflow.ellipsis,
+            )
+          ],
         ),
       ),
     );
-  }
-
-  Container bottomNav() {
-    List<IconData> icons = const [
-      CupertinoIcons.house_fill,
-      CupertinoIcons.heart_fill,
-      CupertinoIcons.person_fill,
-      CupertinoIcons.clock_fill
-    ];
-
-    return Container(
-        width: 400,
-        height: 60,
-        decoration: const BoxDecoration(
-            color: Colors.black12,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30), topRight: Radius.circular(30))),
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: icons.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(left: 45.0),
-              child: IconButton(
-                  color: MyColor.bgButtonColor,
-                  onPressed: () {
-                    setState(() {
-                      selectBtmNav = index;
-                    });
-                  },
-                  icon: Icon(
-                    icons[index],
-                    color: selectBtmNav == index
-                        ? MyColor.bgButtonColor
-                        : MyColor.iconColor,
-                  )),
-            );
-          },
-        ));
   }
 }

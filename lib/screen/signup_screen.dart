@@ -48,7 +48,7 @@ class SignUpScreen extends StatelessWidget {
                  ScaffoldMessenger.of(context)
                         .showSnackBar(const SnackBar(content: Text('Error')));
                   } else {
-                    Navigator.pushReplacementNamed(context, RouteName.mainScreen);
+                    Navigator.pushReplacementNamed(context, RouteName.homeScreen);
                   }
                 },
                 size: const Size(400, 800),

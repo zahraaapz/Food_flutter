@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
+import 'package:food_flutter/widget/frame_image.dart';
 
 class SuggList extends StatefulWidget {
   const SuggList({super.key, required this.product});
@@ -75,17 +76,10 @@ class StackForLists extends StatelessWidget {
       Positioned(
           left: 65,
           top: 15,
-          child: Container(
-            width: 130,
-            height: 130,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                    fit: BoxFit.scaleDown,
-                    image: Image.network(
-                      list[index].imgUrl,
-                    ).image)),
-          )),
+          child: 
+          FrameImage(product:list[index]),)
     ]);
   }
 }
+
+

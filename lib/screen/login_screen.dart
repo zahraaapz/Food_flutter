@@ -42,7 +42,7 @@ class LoginScreen extends StatelessWidget {
                           email.text &&
                       SharedPreferencesMannager().getString('pass') ==
                           password.text) {
-                            Navigator.pushReplacementNamed(context,RouteName.mainScreen);
+                            Navigator.pushReplacementNamed(context,RouteName.homeScreen);
                             
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error')));
