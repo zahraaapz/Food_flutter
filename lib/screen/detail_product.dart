@@ -8,8 +8,9 @@ import '../component/color.dart';
 import '../widget/frame_image.dart';
 
 class DetailProduct extends StatelessWidget {
-  const DetailProduct({super.key, required this.product});
+  const DetailProduct({super.key, required this.product,required this.i});
   final product;
+  final i;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
@@ -32,13 +33,13 @@ class DetailProduct extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
-                  child: Hero(
-                    tag:'$product',
+              Hero(
+                tag:'$i',
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(30),
                     child: FrameImage(
-                        product: product, size: 350, shape: BoxShape.rectangle),
-                  )),
+                        product: product, size: 350, shape: BoxShape.rectangle)),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [

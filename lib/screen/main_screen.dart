@@ -53,10 +53,10 @@ class _MainScreenState extends State<MainScreen> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      DetailProduct(product: list[i]),
+                                      DetailProduct(product: list[i],i: i,),
                                 ));
                           },
-                          child: VerticalProductCard(product: list[i]));
+                          child: VerticalProductCard(product: list[i],i:i));
                     }
                     return GestureDetector(
                       onTap: () {
@@ -64,7 +64,7 @@ class _MainScreenState extends State<MainScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  DetailProduct(product: list[i]),
+                                  DetailProduct(product:list[i],i: i,),
                             ));
                       },
                       child: OverflowBox(
@@ -72,7 +72,7 @@ class _MainScreenState extends State<MainScreen> {
                         child: Container(
                           color: Colors.transparent,
                           margin: const EdgeInsets.only(top: 70),
-                          child: VerticalProductCard(product: list[i]),
+                          child: VerticalProductCard(product: list[i],i:i),
                         ),
                       ),
                     );
@@ -84,8 +84,9 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 class VerticalProductCard extends StatelessWidget {
-  const VerticalProductCard({super.key, this.product});
+  const VerticalProductCard({super.key, this.product,required this.i});
   final product;
+  final i;
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +106,7 @@ class VerticalProductCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Hero(
-              tag:'$product',
+              tag:'$i',
               child: FrameImage(
                 product: product,
               ),
