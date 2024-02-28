@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:food_flutter/screen/home_screen.dart';
 import 'utils/sharedPre_mng.dart';
 
@@ -8,6 +9,7 @@ import 'utils/sharedPre_mng.dart';
 void main() async{
   runApp(const MyApp());
   await SharedPreferencesMannager().init();
+
 }
 
 class MyApp extends StatelessWidget {
@@ -17,6 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
       theme: ThemeData(

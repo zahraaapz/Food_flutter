@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:food_flutter/component/color.dart';
+import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/widget/logo_splash.dart';
 
 import '../widget/main_button.dart';
@@ -34,7 +35,10 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           
           MainButton(
-            size:size,
+          onTap: () {
+            Navigator.pushReplacementNamed(context, RouteName.registerScreen);
+          },  
+          size:size,
           txtcolor:MyColor.bgButtonColor ,
           txt: 'Login',
           bgcolor:Colors.white,)

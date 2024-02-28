@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   MyStyle.textStyle.copyWith(color: Colors.black, fontSize: 40),
             ),
           ),
-          Dimens.medium.width,
+          Dimens.large.height,
           Center(
             child: Container(
               height: 50,
