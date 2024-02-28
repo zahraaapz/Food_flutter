@@ -12,12 +12,13 @@ class DetailProduct extends StatelessWidget {
   const DetailProduct({super.key, required this.product, required this.i});
   final product;
   final i;
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
     return Scaffold(
       backgroundColor: MyColor.bgColor,
-      appBar:const CustomAppBar(childs: Text('Details')),
+      appBar: const CustomAppBar(childs: Text('Details')),
       body: SizedBox(
         width: 420,
         child: Column(
@@ -49,8 +50,24 @@ class DetailProduct extends StatelessWidget {
                         .copyWith(color: Colors.black, fontSize: 20)),
               ],
             ),
-
-            
+            SizedBox(
+              width: 370,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Delivery info',
+                    style: MyStyle.textStyle
+                        .copyWith(color: Colors.black, fontSize: 20)),
+                  Text(
+                      "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm"),
+                  Text('Return policy',
+                    style: MyStyle.textStyle
+                        .copyWith(color: Colors.black, fontSize: 20)),
+                  Text(
+                      'All our foods are double checked before leaving our stores so by \n any case you found a broken food please contact \nour hotline immediately.'),
+                ],
+              ),
+            ),
             MainButton(
               onTap: () {},
               size: size,
@@ -58,6 +75,7 @@ class DetailProduct extends StatelessWidget {
               txt: 'Add to Cart',
               bgcolor: MyColor.bgButtonColor,
             ),
+            
           ],
         ),
       ),
