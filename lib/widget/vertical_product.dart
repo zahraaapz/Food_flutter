@@ -35,7 +35,7 @@ class VerticalProductCard extends StatelessWidget {
             Text(
               product.name,
               style:
-                  MyStyle.textStyle.copyWith(color: Colors.black, fontSize: 15),
+                  MyStyle.text,
               overflow: TextOverflow.ellipsis,
             )
           ],

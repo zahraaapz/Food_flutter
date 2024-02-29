@@ -29,7 +29,7 @@ class MainButton extends StatelessWidget {
             onPressed: onTap,
             child: Text(
               txt!,
-              style: MyStyle.textStyle.copyWith(color: txtcolor),
+              style: MyStyle.orangeBtnText.copyWith(color: txtcolor),
             )));
   }
 }

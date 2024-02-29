@@ -23,6 +23,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: Scaffold(
         backgroundColor: MyColor.bgColor,
         body: SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
           child: Column(
             children: [
               Stack(
@@ -57,7 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   child: SizedBox(
                                     width: 65,
                                     child: Text('Login',
-                                        style: MyStyle.registerStyle),
+                                        style: MyStyle.text),
                                   )),
                               GestureDetector(
                                   onTap: () {
@@ -70,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     width: 65,
                                     child: Text(
                                       'Sign-up',
-                                      style: MyStyle.registerStyle,
+                                      style: MyStyle.text,
                                     ),
                                   )),
                             ],

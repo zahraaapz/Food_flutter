@@ -33,7 +33,7 @@ final Size? size;
           ),
           Text(
                 'Food for\nEveryone',
-                style: MyStyle.textStyle.copyWith(fontSize:55,fontWeight: FontWeight.bold),
+                style: MyStyle.orangeBtnText.copyWith(fontSize:55,fontWeight: FontWeight.bold),
               ), ],
       ),
     );

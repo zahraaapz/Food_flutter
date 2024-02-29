@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:food_flutter/component/color.dart';
 import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
@@ -25,6 +26,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: MyColor.bgColor,
       appBar: AppBar(
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          systemNavigationBarColor: MyColor.bgColor,
+          statusBarColor: MyColor.bgColor
+        ),
         backgroundColor: MyColor.bgColor,
         title:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, 
@@ -43,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Text(
               'Delicious\nfood for you',
               style:
-                  MyStyle.textStyle.copyWith(color: Colors.black, fontSize: 40),
+                  MyStyle.text.copyWith( fontSize: 40),
             ),
           ),
           Dimens.large.height,
@@ -98,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.only(top: 18.0, right: 18),
                   child: Text(
                     'See more',
-                    style: MyStyle.textStyle
+                    style: MyStyle.orangeBtnText
                         .copyWith(color: MyColor.TextColorOrange),
                   ),
                 )),
@@ -171,9 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             child: Text(
               cate[index],
-              style: MyStyle.registerStyle.copyWith(
-                  color:
-                      index == select ? MyColor.TextColorOrange : Colors.black),
+              style:index != select ?  MyStyle.text:MyStyle.whiteBtnText,
             ),
           ),
         ),

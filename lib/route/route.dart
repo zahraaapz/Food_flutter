@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_flutter/route/name.dart';
-import 'package:food_flutter/screen/main_screen.dart';
 import 'package:food_flutter/screen/register_screen.dart';
 import 'package:food_flutter/screen/splash_screen.dart';
 

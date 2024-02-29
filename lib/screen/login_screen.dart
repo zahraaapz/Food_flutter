@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
             ),
             Text(
               'Do you forgot password?',
-              style: MyStyle.textStyle.copyWith(color: MyColor.TextColorOrange),
+              style: MyStyle.whiteBtnText,
             ),
             Center(
               child: MainButton(

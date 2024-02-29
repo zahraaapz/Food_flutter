@@ -40,14 +40,12 @@ class DetailProduct extends StatelessWidget {
                   width: 250,
                   child: Text(
                     product.name,
-                    style: MyStyle.textStyle
-                        .copyWith(color: Colors.black, fontSize: 20),
+                    style: MyStyle.text,
                   ),
                 ),
                 Dimens.small.width,
                 Text('700\$',
-                    style: MyStyle.textStyle
-                        .copyWith(color: Colors.black, fontSize: 20)),
+                    style: MyStyle.text),
               ],
             ),
             SizedBox(
@@ -56,15 +54,14 @@ class DetailProduct extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Delivery info',
-                    style: MyStyle.textStyle
-                        .copyWith(color: Colors.black, fontSize: 20)),
+                    style: MyStyle.text),
                   Text(
-                      "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm"),
+                      "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm",style: MyStyle.caption,),
                   Text('Return policy',
-                    style: MyStyle.textStyle
-                        .copyWith(color: Colors.black, fontSize: 20)),
+                    style: MyStyle.text),
                   Text(
-                      'All our foods are double checked before leaving our stores so by \n any case you found a broken food please contact \nour hotline immediately.'),
+                      'All our foods are double checked before leaving our stores so by \n any case you found a broken food please contact \nour hotline immediately.'
+                      ,style: MyStyle.caption,),
                 ],
               ),
             ),
