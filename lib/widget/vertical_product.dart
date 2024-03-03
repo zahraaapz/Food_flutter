@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_flutter/widget/frame_image.dart';
 
-import '../component/style.dart';
+import '../component/text_style.dart';
 
 class VerticalProductCard extends StatelessWidget {
   const VerticalProductCard({super.key, this.product, required this.i});

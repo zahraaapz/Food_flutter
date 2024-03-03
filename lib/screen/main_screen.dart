@@ -83,7 +83,7 @@ class _MainScreenState extends State<MainScreen> {
                   );
                 },
               )
-            : const CircularProgressIndicator());
+            : const Center(child:CircularProgressIndicator()));
   }
 }
 

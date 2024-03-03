@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/color.dart';
-import 'package:food_flutter/component/style.dart';
+import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/utils/sharedPre_mng.dart';
 import 'package:food_flutter/widget/main_button.dart';

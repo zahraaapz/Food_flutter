@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/color.dart';
-import 'package:food_flutter/component/style.dart';
+import 'package:food_flutter/component/text_style.dart';
 
 class MainButton extends StatelessWidget {
   MainButton({

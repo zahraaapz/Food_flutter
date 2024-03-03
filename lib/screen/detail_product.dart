@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
-import 'package:food_flutter/component/style.dart';
+import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/screen/cart.dart';
 import 'package:food_flutter/widget/main_button.dart';
 import '../component/color.dart';
