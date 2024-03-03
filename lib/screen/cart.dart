@@ -29,17 +29,22 @@ class Cart extends StatelessWidget {
                 return Slidable(
                   startActionPane: ActionPane(
                       extentRatio: 0.31,
-                      motion: Padding(
+                      motion: const ScrollMotion()
+                  ,
+                      children:  [    Padding(
                         padding: const EdgeInsets.only(left: 18.0),
-                        child: Row(children: [
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                           IconButton(
                               style: BtnStyle.cartSlide,
-                              onPressed: () {},
+                              onPressed: (){},
                               icon: const Icon(
                                 CupertinoIcons.plus,
                                 size: 12,
                                 color: Colors.white,
                               )),
+                              Dimens.small.width,
                           IconButton(
                               style: BtnStyle.cartSlide,
                               onPressed: () {},
@@ -49,8 +54,7 @@ class Cart extends StatelessWidget {
                                 color: Colors.white,
                               ))
                         ]),
-                      ),
-                      children: []),
+                      ),]),
                   child: Container(
                     height: 90,
                     width: 390,
