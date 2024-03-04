@@ -61,14 +61,14 @@ class DetailProduct extends StatelessWidget {
                   Text('Return policy',
                     style: MyStyle.text),
                   Text(
-                      'All our foods are double checked before leaving our stores so by \n any case you found a broken food please contact \nour hotline immediately.'
+                      'All our foods are double checked before leaving our stores so by any case you found a broken food please contact \nour hotline immediately.'
                       ,style: MyStyle.caption,),
                 ],
               ),
             ),
             MainButton(
               onTap: () {
-                Navigator.push(context,MaterialPageRoute(builder:(context) => Cart(product: product)));
+                Navigator.push(context,MaterialPageRoute(builder:(context) => Cart(product: product,size: size,)));
               },
               size: size,
               txtcolor: Colors.white,

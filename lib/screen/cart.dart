@@ -8,10 +8,12 @@ import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/widget/app_bar.dart';
 import 'package:food_flutter/widget/frame_image.dart';
+import 'package:food_flutter/widget/main_button.dart';
 
 class Cart extends StatelessWidget {
-  const Cart({super.key, required this.product});
+  const Cart({super.key, required this.product, required this.size});
   final product;
+  final size;
 
   @override
   Widget build(BuildContext context) {
@@ -21,48 +23,50 @@ class Cart extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            width: 370,
+            width: 390,
             child: ListView.builder(
               itemCount: 2,
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return Slidable(
                   startActionPane: ActionPane(
-                      extentRatio: 0.31,
-                      motion: const ScrollMotion()
-                  ,
-                      children:  [    Padding(
-                        padding: const EdgeInsets.only(left: 18.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                          IconButton(
-                              style: BtnStyle.cartSlide,
-                              onPressed: (){},
-                              icon: const Icon(
-                                CupertinoIcons.plus,
-                                size: 12,
-                                color: Colors.white,
-                              )),
-                              Dimens.small.width,
-                          IconButton(
-                              style: BtnStyle.cartSlide,
-                              onPressed: () {},
-                              icon: const Icon(
-                                CupertinoIcons.minus,
-                                size: 12,
-                                color: Colors.white,
-                              ))
-                        ]),
-                      ),]),
+                      extentRatio: 0.34,
+                      motion: const ScrollMotion(),
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 18.0),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                IconButton(
+                                    style: BtnStyle.cartSlide,
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      CupertinoIcons.heart,
+                                      size: 14,
+                                      color: Colors.white,
+                                    )),
+                                Dimens.small.width,
+                                IconButton(
+                                    style: BtnStyle.cartSlide,
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      CupertinoIcons.delete,
+                                      size: 14,
+                                      color: Colors.white,
+                                    ))
+                              ]),
+                        ),
+                      ]),
                   child: Container(
                     height: 90,
-                    width: 390,
+               
                     margin: const EdgeInsets.only(left: 25, top: 10),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(30)),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         FrameImage(
                           product: product,
@@ -114,6 +118,15 @@ class Cart extends StatelessWidget {
             ),
           )
         ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: MainButton(
+          size: size,
+          txtcolor: Colors.white,
+          txt: 'Complete order',
+          bgcolor: MyColor.bgButtonColor,
+        ),
       ),
     );
   }

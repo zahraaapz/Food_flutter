@@ -7,15 +7,15 @@ class MainButton extends StatelessWidget {
     super.key,
     this.size,
     this.txt,
-    this.bgcolor,
-    this.txtcolor,
+    this.bgcolor = Colors.white,
+    this.txtcolor = MyColor.TextColorOrange,
     this.onTap,
   });
  final Size? size;
  final Function()? onTap;
  final String? txt;
-  Color? bgcolor = Colors.white;
-  Color? txtcolor = MyColor.TextColorOrange;
+final  bgcolor ;
+final txtcolor;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

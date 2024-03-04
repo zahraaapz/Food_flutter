@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:food_flutter/component/color.dart';
-import 'package:food_flutter/component/dim.dart';
-import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/widget/logo_splash.dart';
 
