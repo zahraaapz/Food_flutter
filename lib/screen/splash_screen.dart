@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:food_flutter/component/color.dart';
+import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/widget/logo_splash.dart';
 
@@ -22,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: MyColor.bgSplashScreenColor,
       appBar: AppBar(
         backgroundColor: MyColor.bgSplashScreenColor,
-        systemOverlayStyle: SystemUiOverlayStyle(
+        systemOverlayStyle: const SystemUiOverlayStyle(
             statusBarColor: MyColor.bgSplashScreenColor,
             systemNavigationBarColor: MyColor.bgSplashScreenColor),
       ),
@@ -39,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
             },
             size: size,
             txtcolor: MyColor.bgButtonColor,
-            txt: 'Login',
+            txt:MyStrings.login,
             bgcolor: Colors.white,
           )
         ],

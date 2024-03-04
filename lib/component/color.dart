@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyColor {
+  MyColor._();
   static const TextColorOrange = Color(0xffff460A);
   static const bgButtonColor = Color(0xffFF470B);
   static const bgSearchBarColor = Color(0xffEFEEEE);

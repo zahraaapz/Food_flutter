@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/color.dart';
+import 'package:food_flutter/component/strings.dart';
+import 'package:food_flutter/component/txt_editor_conrl.dart';
 import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/utils/sharedPre_mng.dart';
 import 'package:food_flutter/widget/main_button.dart';
@@ -7,8 +9,7 @@ import '../component/api_key.dart';
 import '../widget/my_textFileld.dart';
 
 class SignUpScreen extends StatelessWidget {
-  final TextEditingController email = TextEditingController();
-  final TextEditingController password = TextEditingController();
+
   SignUpScreen({super.key, required this.size});
   final Size size;
   @override
@@ -21,28 +22,28 @@ class SignUpScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             MyTextFiled(
-              txt: 'Email address',
+              txt:MyStrings.emailAddress,
               obscureText: false,
-              controller: email,
+              controller: MyTextEditingController.email,
             ),
             MyTextFiled(
-              txt: 'Password',
+              txt:MyStrings.password,
               obscureText: true,
-              controller: password,
+              controller: MyTextEditingController.password,
             ),
             Center(
               child: MainButton(
                 onTap: () async {
                   await Auth.verifyeCode({
                     'ishtml': 'false',
-                    'sendto': email.text,
+                    'sendto': MyTextEditingController.email.text,
                     'name': 'Hi',
                     'replyTo': 'your mail where users can send reply',
                     'title': 'Auth',
-                    'body': '${password.text} is your password.'
+                    'body': '${MyTextEditingController.password.text} is your password.'
                   });
-                  SharedPreferencesMannager().saveString('pass', password.text);
-                  SharedPreferencesMannager().saveString('email', email.text);
+                  SharedPreferencesMannager().saveString('pass',MyTextEditingController.password.text);
+                  SharedPreferencesMannager().saveString('email', MyTextEditingController.email.text);
                   if (SharedPreferencesMannager().getString('email')!.isEmpty &&
                       SharedPreferencesMannager().getString('email')!.isEmpty) {
                  ScaffoldMessenger.of(context)
@@ -53,7 +54,7 @@ class SignUpScreen extends StatelessWidget {
                 },
                 size: const Size(400, 800),
                 bgcolor: MyColor.bgButtonColor,
-                txt: 'Sign up',
+                txt: MyStrings.signUp,
                 txtcolor: Colors.white,
               ),
             ),

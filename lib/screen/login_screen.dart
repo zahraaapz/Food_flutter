@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/color.dart';
+import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
+import 'package:food_flutter/component/txt_editor_conrl.dart';
 import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/utils/sharedPre_mng.dart';
 import 'package:food_flutter/widget/main_button.dart';
 import '../widget/my_textFileld.dart';
 
 class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key, required this.size});
-  final TextEditingController email = TextEditingController();
-  final TextEditingController password = TextEditingController();
+  const LoginScreen({super.key, required this.size});
+
   final Size size;
   @override
   Widget build(BuildContext context) {
@@ -21,17 +22,17 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             MyTextFiled(
-              txt: 'Email address',
+              txt: MyStrings.emailAddress,
               obscureText: false,
-              controller: email,
+              controller: MyTextEditingController.email,
             ),
             MyTextFiled(
-              txt: 'Password',
+              txt: MyStrings.password,
               obscureText: true,
-              controller: password,
+              controller: MyTextEditingController.password,
             ),
             Text(
-              'Do you forgot password?',
+              MyStrings.forgotPassword,
               style: MyStyle.whiteBtnText,
             ),
             Center(
@@ -39,18 +40,18 @@ class LoginScreen extends StatelessWidget {
                 onTap: () {
                   if (
                     SharedPreferencesMannager().getString('email') ==
-                          email.text &&
+                          MyTextEditingController.email.text &&
                       SharedPreferencesMannager().getString('pass') ==
-                          password.text) {
+                          MyTextEditingController.password.text) {
                             Navigator.pushReplacementNamed(context,RouteName.homeScreen);
                             
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error')));
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Error')));
                   }
                 },
                 size: const Size(400, 800),
                 bgcolor: MyColor.bgButtonColor,
-                txt: 'Login',
+                txt:MyStrings.login,
                 txtcolor: Colors.white,
               ),
             ),

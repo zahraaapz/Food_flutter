@@ -3,7 +3,7 @@ import 'package:food_flutter/component/color.dart';
 
 class MyStyle{
 
-
+MyStyle._();
 static TextStyle orangeBtnText=const TextStyle(
   fontSize: 16,
   color: Colors.white

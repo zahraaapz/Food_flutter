@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
+import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/screen/cart.dart';
 import 'package:food_flutter/widget/main_button.dart';
@@ -19,7 +20,7 @@ class DetailProduct extends StatelessWidget {
     var size = MediaQuery.sizeOf(context);
     return Scaffold(
       backgroundColor: MyColor.bgColor,
-      appBar: const CustomAppBar(childs: Text('Details')),
+      appBar:  CustomAppBar(childs: Text(MyStrings.detail)),
       body: SizedBox(
         width: 420,
         child: Column(
@@ -54,14 +55,13 @@ class DetailProduct extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Delivery info',
+                  Text(MyStrings.deliveryInfo,
                     style: MyStyle.text),
                   Text(
-                      "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm",style: MyStyle.caption,),
-                  Text('Return policy',
+                      MyStrings.deliveryInfoCaption,style: MyStyle.caption,),
+                  Text(MyStrings.returnPolicy,
                     style: MyStyle.text),
-                  Text(
-                      'All our foods are double checked before leaving our stores so by any case you found a broken food please contact \nour hotline immediately.'
+                  Text(MyStrings.returnPolicyCaption
                       ,style: MyStyle.caption,),
                 ],
               ),
@@ -72,7 +72,7 @@ class DetailProduct extends StatelessWidget {
               },
               size: size,
               txtcolor: Colors.white,
-              txt: 'Add to Cart',
+              txt:MyStrings.addtoCart,
               bgcolor: MyColor.bgButtonColor,
             ),
             

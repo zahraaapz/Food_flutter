@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/color.dart';
+import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/screen/detail_product.dart';
 import 'package:food_flutter/widget/vertical_product.dart';
 import '../widget/app_bar.dart';
@@ -29,8 +30,8 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: const CustomAppBar(
-          childs: Text('Items'),
+        appBar: CustomAppBar(
+          childs: Text(MyStrings.items),
         ),
         backgroundColor: MyColor.bgColor,
         body: list.isNotEmpty

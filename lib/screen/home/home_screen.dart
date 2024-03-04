@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_flutter/component/color.dart';
 import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
+import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/main.dart';
 import 'package:food_flutter/screen/home/bloc/home_bloc.dart';
@@ -59,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Center(
                 child: Text(
-                  'Delicious\nfood for you',
+                  MyStrings.homeTitle,
                   style: MyStyle.text.copyWith(fontSize: 40),
                 ),
               ),
@@ -71,12 +72,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                       color: Colors.black12,
                       borderRadius: BorderRadius.circular(30)),
-                  child: const TextField(
+                  child:  TextField(
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       focusedBorder: InputBorder.none,
-                      hintText: 'search',
-                      prefixIcon: Icon(CupertinoIcons.search),
+                      hintText: MyStrings.search,
+                      prefixIcon: const Icon(CupertinoIcons.search),
                     ),
                   ),
                 ),
@@ -115,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Padding(
                       padding: const EdgeInsets.only(top: 18.0, right: 18),
                       child: Text(
-                        'See more',
+                        MyStrings.seeMore,
                         style: MyStyle.orangeBtnText
                             .copyWith(color: MyColor.TextColorOrange),
                       ),

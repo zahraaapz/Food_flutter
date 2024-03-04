@@ -5,6 +5,7 @@ import 'package:food_flutter/component/btn_style.dart';
 import 'package:food_flutter/component/color.dart';
 import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
+import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/widget/app_bar.dart';
 import 'package:food_flutter/widget/frame_image.dart';
@@ -19,7 +20,7 @@ class Cart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColor.bgColor,
-      appBar: const CustomAppBar(childs: Text('Cart')),
+      appBar: CustomAppBar(childs: Text(MyStrings.cart)),
       body: Column(
         children: [
           SizedBox(
@@ -124,7 +125,7 @@ class Cart extends StatelessWidget {
         child: MainButton(
           size: size,
           txtcolor: Colors.white,
-          txt: 'Complete order',
+          txt:MyStrings.completeOrder,
           bgcolor: MyColor.bgButtonColor,
         ),
       ),
