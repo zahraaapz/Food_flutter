@@ -7,6 +7,7 @@ import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
+import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/widget/app_bar.dart';
 import 'package:food_flutter/widget/frame_image.dart';
 import 'package:food_flutter/widget/main_button.dart';
@@ -123,6 +124,9 @@ class Cart extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
         child: MainButton(
+          onTap: () {
+            Navigator.pushNamed(context, RouteName.destination);
+          },
           size: size,
           txtcolor: Colors.white,
           txt:MyStrings.completeOrder,

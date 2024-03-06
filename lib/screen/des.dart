@@ -8,14 +8,14 @@ import 'package:food_flutter/widget/main_button.dart';
 import '../component/strings.dart';
 import '../component/api_key.dart';
 
-class Deliver extends StatefulWidget {
-  Deliver({super.key});
+class DestinationScreen extends StatefulWidget {
+  const DestinationScreen({super.key});
 
   @override
-  State<Deliver> createState() => _DeliverState();
+  State<DestinationScreen> createState() => _DestinationScreenState();
 }
 
-class _DeliverState extends State<Deliver> {
+class _DestinationScreenState extends State<DestinationScreen> {
  List <GeoPoint> geoPoint=[];
   final controller =
       MapController(initPosition: GeoPoint(latitude: 35.7, longitude: 51.29));
