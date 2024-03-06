@@ -17,5 +17,8 @@ class MyStrings{
   static String  homeTitle= 'Delicious\nfood for you';
   static String  search= 'Search';
   static String  seeMore= 'See more';
+  static String  selectOrigin= 'Select origin';
+  static String  selectDes= 'Select Destination';
+  static String  execute= 'Executing';
   
 }

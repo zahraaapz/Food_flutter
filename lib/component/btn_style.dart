@@ -5,5 +5,10 @@ class BtnStyle{
   BtnStyle._();
   static  const cartSlide=ButtonStyle(
                                   backgroundColor: MaterialStatePropertyAll(
-                                      MyColor.bgButtonColor));
+                                      MyColor.bgButtonColor)); 
+                                      
+                                      
+                                       static  const btnDes=ButtonStyle(
+                                  backgroundColor: MaterialStatePropertyAll(
+                                      Colors.white));
 }
