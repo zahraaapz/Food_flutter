@@ -22,4 +22,12 @@ class MyStrings {
   static String selectOrigin = 'Select origin';
   static String selectDes = 'Select Destination';
   static String execute = 'Executing';
+  static String update= 'Update';
+  static String order= 'Order';
+  static String pendingReview= 'Pending reviews';
+  static String faq= 'Faq';
+  static String help= 'Help';
+  static String change=  'change';
+  static String myProfile= 'My profile';
+  static String personalDetails= 'Personal details';
 }

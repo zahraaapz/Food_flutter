@@ -91,6 +91,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                   ],
                 ),
                 MainButton(
+                    onTap:(){},
                     size: const Size(400, 800),
                     txtcolor: Colors.white,
                     txt: MyStrings.execute,

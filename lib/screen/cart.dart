@@ -9,8 +9,8 @@ import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/widget/app_bar.dart';
+import 'package:food_flutter/widget/btn_nav.dart';
 import 'package:food_flutter/widget/frame_image.dart';
-import 'package:food_flutter/widget/main_button.dart';
 
 class Cart extends StatelessWidget {
   const Cart({super.key, required this.product, required this.size});
@@ -62,7 +62,6 @@ class Cart extends StatelessWidget {
                       ]),
                   child: Container(
                     height: 90,
-               
                     margin: const EdgeInsets.only(left: 25, top: 10),
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -121,18 +120,10 @@ class Cart extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: MainButton(
-          onTap: () {
-            Navigator.pushNamed(context, RouteName.destination);
-          },
-          size: size,
-          txtcolor: Colors.white,
-          txt:MyStrings.completeOrder,
-          bgcolor: MyColor.bgButtonColor,
-        ),
-      ),
+      bottomNavigationBar:
+          btnNav(context, title: MyStrings.completeOrder, onTap: () {
+        Navigator.pushNamed(context, RouteName.destination);
+      }, size: size),
     );
   }
 }

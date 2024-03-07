@@ -4,8 +4,8 @@ import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
-import 'package:food_flutter/screen/login_screen.dart';
-import 'package:food_flutter/screen/signup_screen.dart';
+import 'package:food_flutter/screen/register/login_screen.dart';
+import 'package:food_flutter/screen/register/signup_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

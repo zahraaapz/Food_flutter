@@ -6,7 +6,7 @@ import 'package:food_flutter/component/txt_editor_conrl.dart';
 import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/utils/sharedPre_mng.dart';
 import 'package:food_flutter/widget/main_button.dart';
-import '../widget/my_textFileld.dart';
+import '../../widget/my_textFileld.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key, required this.size});
@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: size.width / 1.3,
-      height: size.height / 1.9,
+      height: size.height / 2,
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,

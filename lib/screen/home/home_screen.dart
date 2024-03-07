@@ -160,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
          else{
          return  const Center(child: Text('error'));
           }}),
-        bottomNavigationBar: bottomNav(),
+        bottomNavigationBar: bottomNavBar(),
       ),
     );
   }
@@ -203,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Container bottomNav() {
+  Container bottomNavBar() {
     List<IconData> icons = const [
       CupertinoIcons.house_fill,
       CupertinoIcons.heart_fill,
