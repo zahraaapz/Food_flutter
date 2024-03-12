@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 class FrameImage extends StatelessWidget {
   const FrameImage({
     super.key,
-    required this.product,
+    required this.image,
     this.size=130,
     this.shape=BoxShape.circle,
   });
 
-  final  product;
+  final  image;
   final double size;
- final BoxShape shape;
+  final BoxShape shape;
 
 
   @override
@@ -25,7 +25,7 @@ class FrameImage extends StatelessWidget {
           image: DecorationImage(
               fit: BoxFit.scaleDown,
               image: Image.network(
-                product.imgUrl,
+                image.imgUrl,
               ).image)),
     );
   }

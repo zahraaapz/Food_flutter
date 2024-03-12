@@ -29,7 +29,7 @@ class VerticalProductCard extends StatelessWidget {
             Hero(
               tag: '$i',
               child: FrameImage(
-                product: product,
+                image: product,
               ),
             ),
             Text(

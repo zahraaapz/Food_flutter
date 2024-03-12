@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../component/color.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSize {
-  const CustomAppBar({super.key, required this.childs});
+  const CustomAppBar(
+      {super.key,
+      required this.childs,
+      this.systemOverlayStyle = const SystemUiOverlayStyle(
+          systemNavigationBarColor: MyColor.bgColor,
+          statusBarColor: MyColor.bgColor)});
   final childs;
+  final systemOverlayStyle;
   @override
   Widget build(BuildContext context) {
-    return AppBar(title :childs,backgroundColor: MyColor.bgColor,);
+    return AppBar(
+      systemOverlayStyle: systemOverlayStyle,
+      title: childs,
+      backgroundColor: MyColor.bgColor,
+    );
   }
 
   @override

@@ -46,7 +46,7 @@ class StackForLists extends StatelessWidget {
         Positioned(
           left: 65,
           top: 15,
-          child: FrameImage(product: list[i]),
+          child: FrameImage(image: list[i]),
         )
       ]),
     );

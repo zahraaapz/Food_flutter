@@ -4,7 +4,7 @@ import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
-import 'package:food_flutter/screen/cart.dart';
+import 'package:food_flutter/screen/cart_screen.dart';
 import 'package:food_flutter/widget/main_button.dart';
 import '../component/color.dart';
 import '../widget/app_bar.dart';
@@ -32,7 +32,7 @@ class DetailProduct extends StatelessWidget {
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: FrameImage(
-                      product: product, size: 350, shape: BoxShape.rectangle)),
+                      image: product, size: 350, shape: BoxShape.rectangle)),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

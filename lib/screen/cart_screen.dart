@@ -70,7 +70,7 @@ class Cart extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         FrameImage(
-                          product: product,
+                          image: product,
                           size: 70,
                         ),
                         Dimens.large.width,
