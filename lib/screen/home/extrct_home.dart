@@ -13,6 +13,7 @@ import 'package:food_flutter/widget/suggestList.dart';
 import '../../component/color.dart';
 import '../../component/strings.dart';
 
+// ignore: must_be_immutable
 class ExtrctHome extends StatefulWidget {
   ExtrctHome({
     super.key,
@@ -88,11 +89,11 @@ class _ExtrctHomeState extends State<ExtrctHome> {
         ),
         backgroundColor: MyColor.bgColor,
         appBar:CustomAppBar(childs:  Row( children: [
-            (Dimens.large * 13.15).width,
+            (Dimens.large * 13.77).width,
             IconButton(
                 onPressed: () {},
                 icon: const Icon(CupertinoIcons.shopping_cart)),
-            Dimens.medium.width,
+           
           ])),
         body: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
           if (state is HomeLoading) {

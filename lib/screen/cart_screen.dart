@@ -9,7 +9,7 @@ import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/widget/app_bar.dart';
-import 'package:food_flutter/widget/btn_nav.dart';
+import 'package:food_flutter/widget/btn.dart';
 import 'package:food_flutter/widget/frame_image.dart';
 
 class Cart extends StatelessWidget {
@@ -121,7 +121,7 @@ class Cart extends StatelessWidget {
         ],
       ),
       bottomNavigationBar:
-          btnNav(context, title: MyStrings.completeOrder, onTap: () {
+          btn(context, title: MyStrings.completeOrder, onTap: () {
         Navigator.pushNamed(context, RouteName.destination);
       }, size: size),
     );

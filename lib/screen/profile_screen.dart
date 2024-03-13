@@ -6,9 +6,11 @@ import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
+import 'package:food_flutter/utils/sharedPre_mng.dart';
 import 'package:food_flutter/widget/app_bar.dart';
-import 'package:food_flutter/widget/btn_nav.dart';
+import 'package:food_flutter/widget/btn.dart';
 
+import '../component/txt_editor_conrl.dart';
 import '../widget/title_box.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -48,11 +50,11 @@ class ProfileScreen extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    'Zahra',
+                  SharedPreferencesMannager().getString('email')!,
                     style: MyStyle.text,
                   ),
                   Text(
-                    'data',
+                   SharedPreferencesMannager().getString('pass')!,
                     style: MyStyle.caption,
                   ),
                   Text(
@@ -68,13 +70,13 @@ class ProfileScreen extends StatelessWidget {
             ],
           ),
         ),
-        TiltleBox(title: MyStrings.order,),
-        TiltleBox(title: MyStrings.pendingReview,),
-        TiltleBox(title: MyStrings.faq,),
-        TiltleBox(title: MyStrings.help,),
+        TiltleBox(title: MyStrings.order),
+        TiltleBox(title: MyStrings.pendingReview),
+        TiltleBox(title: MyStrings.faq),
+        TiltleBox(title: MyStrings.help),
       ]),
       bottomNavigationBar:
-          btnNav(context, title: MyStrings.update, onTap: () {}, size: size),
+          btn(context, title: MyStrings.update, onTap: () {}, size: size),
     );
   }
 }

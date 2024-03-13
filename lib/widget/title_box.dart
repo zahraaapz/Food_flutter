@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/extention.dart';
+import 'package:food_flutter/component/text_style.dart';
 
 import '../component/dim.dart';
 
 class TiltleBox extends StatelessWidget {
-  String title;
+final  String title;
 
   TiltleBox({
     super.key,
@@ -23,7 +24,7 @@ class TiltleBox extends StatelessWidget {
       child: Row(
         children: [
           Dimens.medium.width,
-          Text(title),
+          Text(title,style: MyStyle.text,),
           const Spacer(),
           IconButton(onPressed: () {}, icon: const Icon(CupertinoIcons.forward))
         ],
