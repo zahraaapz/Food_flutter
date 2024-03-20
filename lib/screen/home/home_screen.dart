@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_flutter/screen/home/extrct_home.dart';
-import 'package:food_flutter/screen/profile_screen.dart';
+import 'package:food_flutter/screen/profile/profile_screen.dart';
 
 import '../../component/color.dart';
 
