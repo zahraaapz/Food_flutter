@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:food_flutter/data/repo/home_repo.dart';
 import 'package:food_flutter/data/src/home_data_src.dart';
 import 'package:food_flutter/route/route.dart';
+import 'package:food_flutter/screen/home/home_screen.dart';
 import 'utils/sharedPre_mng.dart';
 
 void main() async {
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'sf'),
-      routes: route,
+      home:HomeScreen()
+      // routes: route,
     );
   }
 }

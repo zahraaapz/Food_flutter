@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_flutter/component/color.dart';
-import 'package:food_flutter/component/dim.dart';
-import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/screen/profile/cubit/get_image_cubit.dart';
@@ -42,30 +40,37 @@ var file;
             ),
           ),
           Container(
-            padding: const EdgeInsets.all(4),
+            padding: const EdgeInsets.all(8),
             margin: const EdgeInsets.all(8),
             width: 390,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30), color: Colors.white),
-            child: BlocListener<GetImageCubit, GetImageState>(
-              listener: (context, state) {
+            child: BlocBuilder<GetImageCubit, GetImageState>(
+             builder: (contxt, state) {
                if (state is GetImageSuccess) {
                  file=state.image;
                }
-              },
-            child: Row(
+           return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     InkWell(
                         onTap: () {
-                          BlocProvider.of<GetImageCubit>(context).getImage();
+                          BlocProvider.of<GetImageCubit>(contxt).getImage();
+                          SharedPreferencesMannager().saveString('img', file.path);
                         },
                         child: 
-                         file==null?
-                         Image.asset('assets/image/1.png')
-                        :Image.file(file)
+                        
+                         CircleAvatar(
+                          radius: 40,
+                          backgroundImage:
+                          file==null?
+                           Image.asset('assets/image/1.png').image
+                        :Image.file(file,).image
+                         ,),
+                        
                         
                         ),
-                    Dimens.large.width,
+                    
                     Column(
                       children: [
                         Text(
@@ -87,8 +92,10 @@ var file;
                       ],
                     )
                   ],
-                )
-              
+                );
+
+               
+              },
             ),
           ),
           TiltleBox(title: MyStrings.order),
