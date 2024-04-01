@@ -8,7 +8,9 @@ import '../../../utils/sharedPre_mng.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit() : super(AuthInitial());
+  AuthCubit() : super(AuthInitial()){
+    emit(SentEmail());
+  }
 
   sendEmail() async {
     try {

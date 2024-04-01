@@ -9,7 +9,7 @@ import 'package:food_flutter/widget/main_button.dart';
 import '../../widget/my_textFileld.dart';
 
 class SignUpScreen extends StatelessWidget {
-  SignUpScreen({super.key, required this.size});
+const  SignUpScreen({super.key, required this.size});
   final Size size;
   @override
   Widget build(BuildContext context) {
