@@ -71,7 +71,7 @@ class DetailProduct extends StatelessWidget {
               onTap: () {
 
                cart.add(product);
-                Navigator.push(context,MaterialPageRoute(builder:(context) => Cart(size: size,)));
+                Navigator.push(context,MaterialPageRoute(builder:(context) => const Cart()));
               },
               size: size,
               txtcolor: Colors.white,
