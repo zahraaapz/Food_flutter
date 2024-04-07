@@ -5,6 +5,7 @@ import 'package:food_flutter/screen/home/extrct_home.dart';
 import 'package:food_flutter/screen/profile/profile_screen.dart';
 
 import '../../component/color.dart';
+import '../cart/cart_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -33,11 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
             child: IndexedStack(
               index: selectBtmNav,
               children: [
-                ExtrctHome(
-                  select: select,
-                 
-                ),
-                ProfileScreen()
+                ExtrctHome(select: select,),
+                ProfileScreen(),
+                const CartScreen(),
               ],
             ),
           ),
@@ -50,8 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
   bottomNavBar() {
     List<IconData> icons = const [
       CupertinoIcons.house_fill,
-      CupertinoIcons.heart_fill,
       CupertinoIcons.person_fill,
+      CupertinoIcons.shopping_cart,
       CupertinoIcons.clock_fill
     ];
 

@@ -4,6 +4,7 @@ import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:food_flutter/component/btn_style.dart';
 import 'package:food_flutter/component/color.dart';
 import 'package:food_flutter/component/text_style.dart';
+import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/widget/main_button.dart';
 import '../component/strings.dart';
 import '../component/api_key.dart';
@@ -91,7 +92,9 @@ class _DestinationScreenState extends State<DestinationScreen> {
                   ],
                 ),
                 MainButton(
-                    onTap:(){},
+                    onTap:(){
+                      Navigator.pushNamed(context,RouteName.homeScreen);
+                    },
                     size: const Size(400, 800),
                     txtcolor: Colors.white,
                     txt: MyStrings.execute,

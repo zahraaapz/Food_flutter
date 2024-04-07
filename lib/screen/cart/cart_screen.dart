@@ -15,8 +15,8 @@ import 'package:food_flutter/widget/app_bar.dart';
 import 'package:food_flutter/widget/btn.dart';
 import 'package:food_flutter/widget/frame_image.dart';
 
-class Cart extends StatelessWidget {
-  const Cart({super.key});
+class CartScreen extends StatelessWidget {
+  const CartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class Cart extends StatelessWidget {
               } else {
                 return Center(
                     child: Text(
-                  'j',
+                  'Error',
                   style: MyStyle.whiteBtnText,
                 ));
               }
@@ -53,7 +53,7 @@ class Cart extends StatelessWidget {
             } else {
               return Center(
                   child: Text(
-                'j',
+                'Error',
                 style: MyStyle.whiteBtnText,
               ));
             }
@@ -197,7 +197,7 @@ class _CartListState extends State<CartList> {
               )
             : Center(
                 child: Text(
-                'List is Empty',
+                'List is Empty :(',
                 style: MyStyle.whiteBtnText,
               )),
       ),

@@ -11,9 +11,10 @@ import 'package:food_flutter/widget/app_bar.dart';
 import 'package:food_flutter/widget/btn.dart';
 import '../../widget/title_box.dart';
 
+// ignore: must_be_immutable
 class ProfileScreen extends StatelessWidget {
  ProfileScreen({super.key});
-var file;
+ var  file;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
