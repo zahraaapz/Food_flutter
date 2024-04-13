@@ -4,7 +4,6 @@ import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
-import 'package:food_flutter/screen/cart/cart_screen.dart';
 import 'package:food_flutter/widget/main_button.dart';
 import '../component/api_key.dart';
 import '../component/color.dart';
@@ -69,9 +68,7 @@ class DetailProduct extends StatelessWidget {
             ),
             MainButton(
               onTap: () {
-
-               cart.add(product);
-                Navigator.push(context,MaterialPageRoute(builder:(context) => const CartScreen()));
+                 cart.add(product);
               },
               size: size,
               txtcolor: Colors.white,
