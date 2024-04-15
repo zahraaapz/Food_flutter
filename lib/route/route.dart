@@ -9,7 +9,6 @@ import '../screen/profile/profile_screen.dart';
 
 Map<String,Widget Function(BuildContext)>route=
   {
-    RouteName.root:(context) => const SplashScreen(),
     RouteName.profile:(context) => ProfileScreen(),
     RouteName.homeScreen:(context) =>  HomeScreen(),
     RouteName.registerScreen:(context) =>const RegisterScreen(),

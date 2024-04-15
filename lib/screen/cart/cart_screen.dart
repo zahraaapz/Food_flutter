@@ -20,35 +20,19 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) {
-        final b = CartBloc();
-        b.add(CartEventInit());
-        return b;
-      },
-      child: Scaffold(
-        appBar: CustomAppBar(childs: Text(MyStrings.cart)),
-        body: BlocBuilder<CartBloc, CartState>(
-          builder: (context, state) {
-            if (state is CartLoading) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            if (state is CartLoaded) {
-              return CartList(list: state.cart);
-            } else if (state is CartDeleteItem) {
-              return CartList(list: state.cart);
-            } else if (state is CartAddItem) {
-              if (state.cart.isNotEmpty) {
-                return CartList(list: state.cart);
-              } else {
-                return Center(
-                    child: Text(
-                  'Error',
-                  style: MyStyle.whiteBtnText,
-                ));
-              }
-            } else if (state is CartRemoveItem) {
+    return Scaffold(
+      appBar: CustomAppBar(childs: Text(MyStrings.cart)),
+      body: BlocBuilder<CartBloc, CartState>(
+        builder: (context, state) {
+          if (state is CartLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (state is CartLoaded) {
+            return CartList(list: state.cart);
+          } else if (state is CartDeleteItem) {
+            return CartList(list: state.cart);
+          } else if (state is CartAddItem) {
+            if (state.cart.isNotEmpty) {
               return CartList(list: state.cart);
             } else {
               return Center(
@@ -57,8 +41,16 @@ class CartScreen extends StatelessWidget {
                 style: MyStyle.whiteBtnText,
               ));
             }
-          },
-        ),
+          } else if (state is CartRemoveItem) {
+            return CartList(list: state.cart);
+          } else {
+            return Center(
+                child: Text(
+              'Error',
+              style: MyStyle.whiteBtnText,
+            ));
+          }
+        },
       ),
     );
   }
@@ -73,6 +65,16 @@ class CartList extends StatefulWidget {
 }
 
 class _CartListState extends State<CartList> {
+
+late List qnty;
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+   qnty=List.generate(widget.list.length, (index) => 1);
+
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);

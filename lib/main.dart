@@ -4,54 +4,58 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_flutter/data/repo/home_repo.dart';
 import 'package:food_flutter/data/src/home_data_src.dart';
+import 'package:food_flutter/screen/cart/bloc/cart_bloc.dart';
 import 'package:food_flutter/screen/home/home_screen.dart';
 import 'package:food_flutter/screen/register/cubit/auth_cubit.dart';
-import 'package:food_flutter/screen/register/register_screen.dart';
+import 'package:food_flutter/screen/splash_screen.dart';
 import 'component/api_key.dart';
 import 'utils/sharedPre_mng.dart';
 
 void main() async {
-WidgetsFlutterBinding.ensureInitialized();
- Client client=Client();
+  WidgetsFlutterBinding.ensureInitialized();
+  Client client = Client();
 
+  client
+      .setEndpoint('https://cloud.appwrite.io/v1')
+      .setProject(projectId)
+      .setSelfSigned();
 
-   client   
-         .setEndpoint('https://cloud.appwrite.io/v1')
-         .setProject(projectId)
-         .setSelfSigned();
-         
-  Account users=Account(client); 
-  runApp(MyApp(account:users));
+  Account users = Account(client);
+  runApp(MyApp(account: users));
   await SharedPreferencesMannager().init();
-
-         
-
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key, this.account});
-  final  account;
+  final account;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context)=>AuthCubit(account),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) {
+          final bloc = CartBloc();
+          bloc.add(CartEventInit());
+          return bloc;
+        }),
+       BlocProvider(
+        create: (context) => AuthCubit(account),
+       ) 
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(fontFamily:'sf'),
-        home:BlocConsumer<AuthCubit, AuthState>(
+        theme: ThemeData(fontFamily: 'sf'),
+        home: BlocBuilder<AuthCubit, AuthState>(
           builder: (context, state) {
-           
             if (state is SentEmail) {
-               return  HomeScreen();
+              return HomeScreen();
             } else {
-              return  RegisterScreen();
+              return SplashScreen();
             }
-           
           },
-           listener: (BuildContext context, AuthState state) {  },
         ),
-        //routes: route,
+        // routes: route,
+        // initialRoute: RouteName.root,
       ),
     );
   }

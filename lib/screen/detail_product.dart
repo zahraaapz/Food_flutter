@@ -1,20 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
+import 'package:food_flutter/screen/cart/bloc/cart_bloc.dart';
 import 'package:food_flutter/widget/main_button.dart';
 import '../component/api_key.dart';
 import '../component/color.dart';
 import '../widget/app_bar.dart';
 import '../widget/frame_image.dart';
 
-class DetailProduct extends StatelessWidget {
+class DetailProduct extends StatefulWidget {
   const DetailProduct({super.key, required this.product, required this.i});
   final product;
   final i;
 
+  @override
+  State<DetailProduct> createState() => _DetailProductState();
+}
+
+class _DetailProductState extends State<DetailProduct> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
@@ -28,11 +35,11 @@ class DetailProduct extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Hero(
-              tag: '$i',
+              tag: '${widget.i}',
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: FrameImage(
-                      image: product, size: 350, shape: BoxShape.rectangle)),
+                      image: widget.product, size: 350, shape: BoxShape.rectangle)),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -41,7 +48,7 @@ class DetailProduct extends StatelessWidget {
                   padding: const EdgeInsets.all(5),
                   width: 250,
                   child: Text(
-                    product.name,
+                    widget.product.name,
                     style: MyStyle.text,
                   ),
                 ),
@@ -68,7 +75,13 @@ class DetailProduct extends StatelessWidget {
             ),
             MainButton(
               onTap: () {
-                 cart.add(product);
+                setState(() {
+                    cart.add(widget.product);
+                   
+                 
+                    BlocProvider.of<CartBloc>(context).add(CartEventInit());
+                });
+               
               },
               size: size,
               txtcolor: Colors.white,
