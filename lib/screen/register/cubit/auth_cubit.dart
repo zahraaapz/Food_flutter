@@ -1,33 +1,34 @@
+import 'package:appwrite/appwrite.dart';
 import 'package:bloc/bloc.dart';
-import 'package:food_flutter/component/api_key.dart';
-import 'package:food_flutter/component/txt_editor_conrl.dart';
 import 'package:meta/meta.dart';
-
 import '../../../utils/sharedPre_mng.dart';
-
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit() : super(AuthInitial());
+  AuthCubit(this.account) : super(AuthInitial());
+  final Account account;
 
-  sendEmail() async {
+
+Future  register(String email,String pass) async {
     try {
 
-      await Auth.verifyeCode({
-        'ishtml': 'false',
-        'sendto': MyTextEditingController.email.text,
-        'name': 'Hi',
-        'replyTo': 'your mail where users can send reply',
-        'title': 'Auth',
-        'body': '${MyTextEditingController.password.text} is your password.'
-      });
+      await account.create(userId:ID.unique(), email: email, password: pass);
+      await login(email,pass);
+
       emit(SentEmail());
       SharedPreferencesMannager()
-          .saveString('pass', MyTextEditingController.password.text);
+          .saveString('pass',pass);
       SharedPreferencesMannager()
-          .saveString('email', MyTextEditingController.email.text);
+          .saveString('email',email);
     } catch (e) {
-      emit(NotSendEmail());
+      emit(NotSendEmail(e.toString()));
     }
+  }
+
+
+
+  Future login(email,pass)async{
+    await account.createEmailPasswordSession(email: email, password: pass);
+    await account.get();
   }
 }
