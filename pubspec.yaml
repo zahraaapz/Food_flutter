@@ -41,7 +41,7 @@ dependencies:
   flutter_slidable: ^3.0.1
   flutter_osm_plugin: ^0.70.4
   image_picker: ^1.0.7
-  appwrite: ^12.0.1
+  appwrite: ^11.0.1
   dart_appwrite: ^11.0.2
 
 dev_dependencies:

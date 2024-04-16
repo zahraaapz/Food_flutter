@@ -6,22 +6,21 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this.account) : super(AuthInitial()){
-
-  
-       emit(SentEmail());
-    
+     //  emit(SentEmail()); 
   }
   final Account account;
 
 
-Future  register(String email,String pass) async {
+register(String email,String pass,String userName) async {
     try {
       
          SharedPreferencesMannager()
           .saveString('pass',pass);
+         SharedPreferencesMannager()
+          .saveString('userName',userName);
       SharedPreferencesMannager()
           .saveString('email',email);
-    await  account.create(userId:ID.unique(), email: email, password: pass);
+   await  account.create(email:email, password:pass,userId:ID.unique(),name:userName);
    await  login(email,pass);
       emit(SentEmail());
       
@@ -32,9 +31,9 @@ Future  register(String email,String pass) async {
 
 
 
-  Future login(email,pass)async{
-    await account.createEmailPasswordSession(email: email, password: pass);
+login(email,pass)async{
+  await   account.createEmailSession(email: email, password: pass);
     
-    await account.get();
+  await   account.get();
   }
 }

@@ -88,13 +88,7 @@ class _ExtrctHomeState extends State<ExtrctHome> {
           ),
         ),
         backgroundColor: MyColor.bgColor,
-        appBar:CustomAppBar(childs:  Row( children: [
-            (Dimens.large * 13.77).width,
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(CupertinoIcons.shopping_cart)),
-           
-          ])),
+        appBar:const CustomAppBar(childs:SizedBox.shrink()),
         body: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
           if (state is HomeLoading) {
             return const Center(child: CircularProgressIndicator());

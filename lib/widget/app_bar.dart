@@ -8,6 +8,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
       {super.key,
       required this.childs,
       this.systemOverlayStyle = const SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.dark,
           systemNavigationBarColor: MyColor.bgColor,
           statusBarColor: MyColor.bgColor)});
   final childs;

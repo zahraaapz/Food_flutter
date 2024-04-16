@@ -1,6 +1,7 @@
 class MyStrings {
   MyStrings._();
   static String login = 'Login';
+  static String userName = 'Username';
   static String signUp = 'Sign up';
   static String emailAddress = 'Email address';
   static String password = 'Password';

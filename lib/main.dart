@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_flutter/data/repo/home_repo.dart';
 import 'package:food_flutter/data/src/home_data_src.dart';
+import 'package:food_flutter/route/name.dart';
+import 'package:food_flutter/route/route.dart';
 import 'package:food_flutter/screen/cart/bloc/cart_bloc.dart';
 import 'package:food_flutter/screen/home/home_screen.dart';
 import 'package:food_flutter/screen/register/cubit/auth_cubit.dart';
@@ -18,7 +20,7 @@ void main() async {
   client
       .setEndpoint('https://cloud.appwrite.io/v1')
       .setProject(projectId)
-      .setSelfSigned();
+      .setSelfSigned(status: true);
 
   Account users = Account(client);
   runApp(MyApp(account: users));
@@ -50,12 +52,12 @@ class MyApp extends StatelessWidget {
             if (state is SentEmail) {
               return HomeScreen();
             } else {
-              return SplashScreen();
+              return const SplashScreen();
             }
           },
         ),
-        // routes: route,
-        // initialRoute: RouteName.root,
+        routes: route,
+        initialRoute: RouteName.root,
       ),
     );
   }

@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:food_flutter/component/api_key.dart';
+import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/screen/home/extrct_home.dart';
 import 'package:food_flutter/screen/profile/profile_screen.dart';
-
 import '../../component/color.dart';
 import '../cart/cart_screen.dart';
 
@@ -56,34 +57,69 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Align(
       alignment: Alignment.bottomCenter,
+      child: Stack(
+        children: [
+          Container(
+              width: 410,
+              height: 60,
+              decoration: const BoxDecoration(
+                  color: Colors.black12,
+               ),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: icons.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 45.0),
+                    child: IconButton(
+                        color: MyColor.bgButtonColor,
+                        onPressed: () {
+                          setState(() {
+                            selectBtmNav = index;
+                          });
+                        },
+                        icon: Icon(
+                          icons[index],
+                          color: selectBtmNav == index
+                              ? MyColor.bgButtonColor
+                              : MyColor.iconColor,
+                        )),
+                  );
+                },
+              )),
+            Visibility(
+              visible:cart.isNotEmpty ,
+              child: ValueListenableBuilder(
+                 valueListenable:cartCount ,
+                builder: (BuildContext context, value, Widget? child) {
+                 return Badge();
+                  },
+                ))
+             ],
+      ),
+    );
+  }
+}
+
+class Badge extends StatelessWidget {
+  const Badge({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      right: 130,
+      top: 10,
       child: Container(
-          width: 410,
-          height: 60,
-          decoration: const BoxDecoration(
-              color: Colors.black12,
-           ),
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: icons.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 45.0),
-                child: IconButton(
-                    color: MyColor.bgButtonColor,
-                    onPressed: () {
-                      setState(() {
-                        selectBtmNav = index;
-                      });
-                    },
-                    icon: Icon(
-                      icons[index],
-                      color: selectBtmNav == index
-                          ? MyColor.bgButtonColor
-                          : MyColor.iconColor,
-                    )),
-              );
-            },
-          )),
+        height: 22,
+        width: 20,
+        decoration: const BoxDecoration(
+          color: MyColor.bgSplashScreenColor,
+          shape: BoxShape.circle
+        ),
+        child: Center(child: Text(cart.length.toString(),style: MyStyle.orangeBtnText.copyWith(fontSize: 12),)),
+      ),
     );
   }
 }

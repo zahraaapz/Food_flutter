@@ -83,13 +83,10 @@ class ProfileScreen extends StatelessWidget {
                           style: MyStyle.caption,
                         ),
                         Text(
-                          'data',
+                          SharedPreferencesMannager().getString('userName')!,
                           style: MyStyle.caption,
                         ),
-                        Text(
-                          'data',
-                          style: MyStyle.caption,
-                        ),
+                        
                       ],
                     )
                   ],

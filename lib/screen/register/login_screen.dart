@@ -21,16 +21,15 @@ class LoginScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            MyTextFiled(
-              txt: MyStrings.emailAddress,
-              obscureText: false,
-              controller: MyTextEditingController.email,
-            ),
-            MyTextFiled(
-              txt: MyStrings.password,
-              obscureText: true,
-              controller: MyTextEditingController.password,
-            ),
+            // MyTextFiled(
+            //   txt: MyStrings.emailAddress,
+            //   obscureText: false,
+            // ),
+            // MyTextFiled(
+            //   txt: MyStrings.password,
+            //   obscureText: true,
+            //   controller: MyTextEditingController.password,
+            // ),
             Text(
               MyStrings.forgotPassword,
               style: MyStyle.whiteBtnText,
