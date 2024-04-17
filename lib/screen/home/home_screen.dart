@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:food_flutter/component/api_key.dart';
 import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/screen/home/extrct_home.dart';
@@ -23,26 +22,27 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      resizeToAvoidBottomInset: false,
+
       backgroundColor: MyColor.bgColor,
-      body: Stack(
+      body:Stack(
         children: [
           Positioned(
-            bottom: 60,
-            right: 0,
-            left: 0,
-            top:0,
+             bottom: 60,
+                right: 0,
+                left: 0,
+                top: 0,
             child: IndexedStack(
               index: selectBtmNav,
               children: [
-                ExtrctHome(select: select,),
+                ExtrctHome(select: select),
                 ProfileScreen(),
                 const CartScreen(),
               ],
             ),
           ),
           bottomNavBar(),
-        ],
+  ],
       ),
     );
   }
@@ -87,14 +87,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
               )),
-            Visibility(
-              visible:cart.isNotEmpty ,
-              child: ValueListenableBuilder(
+           
+               ValueListenableBuilder(
                  valueListenable:cartCount ,
-                builder: (BuildContext context, value, Widget? child) {
-                 return Badge();
+                builder: (context,value,child) {
+                return Badge(count:value);
                   },
-                ))
+                )
              ],
       ),
     );
@@ -102,23 +101,29 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class Badge extends StatelessWidget {
+ final count;
+
   const Badge({
     super.key,
+    this.count
   });
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      right: 130,
-      top: 10,
-      child: Container(
-        height: 22,
-        width: 20,
-        decoration: const BoxDecoration(
-          color: MyColor.bgSplashScreenColor,
-          shape: BoxShape.circle
+    return Visibility(
+      visible: count>0,
+      child: Positioned(
+        right: 130,
+        top: 10,
+        child: Container(
+          height: 22,
+          width: 20,
+          decoration: const BoxDecoration(
+            color: MyColor.bgSplashScreenColor,
+            shape: BoxShape.circle
+          ),
+          child: Center(child: Text(count.toString(),style: MyStyle.orangeBtnText.copyWith(fontSize: 12),)),
         ),
-        child: Center(child: Text(cart.length.toString(),style: MyStyle.orangeBtnText.copyWith(fontSize: 12),)),
       ),
     );
   }

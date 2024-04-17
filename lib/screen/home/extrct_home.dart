@@ -74,9 +74,10 @@ class _ExtrctHomeState extends State<ExtrctHome> {
         return homeBloc;
       },
       child: Scaffold(
-        drawerScrimColor: Color.fromARGB(104, 0, 0, 0),
+        resizeToAvoidBottomInset: false,
+        drawerScrimColor: const Color.fromARGB(104, 0, 0, 0),
         drawer: Drawer(
-          shape: RoundedRectangleBorder(),
+          shape: const RoundedRectangleBorder(),
           backgroundColor: MyColor.bgSearchBarColor,
           child: Column(
             children: [

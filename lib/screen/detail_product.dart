@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
@@ -27,7 +28,7 @@ class _DetailProductState extends State<DetailProduct> {
     var size = MediaQuery.sizeOf(context);
     return Scaffold(
       backgroundColor: MyColor.bgColor,
-      appBar:  CustomAppBar(childs: Text(MyStrings.detail)),
+      appBar: CustomAppBar(childs: Text(MyStrings.detail)),
       body: SizedBox(
         width: 420,
         child: Column(
@@ -39,7 +40,9 @@ class _DetailProductState extends State<DetailProduct> {
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: FrameImage(
-                      image: widget.product, size: 350, shape: BoxShape.rectangle)),
+                      image: widget.product,
+                      size: 350,
+                      shape: BoxShape.rectangle)),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -53,8 +56,7 @@ class _DetailProductState extends State<DetailProduct> {
                   ),
                 ),
                 Dimens.small.width,
-                Text('700\$',
-                    style: MyStyle.text),
+                Text('700\$', style: MyStyle.text),
               ],
             ),
             SizedBox(
@@ -62,33 +64,42 @@ class _DetailProductState extends State<DetailProduct> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(MyStrings.deliveryInfo,
-                    style: MyStyle.text),
+                  Text(MyStrings.deliveryInfo, style: MyStyle.text),
                   Text(
-                      MyStrings.deliveryInfoCaption,style: MyStyle.caption,),
-                  Text(MyStrings.returnPolicy,
-                    style: MyStyle.text),
-                  Text(MyStrings.returnPolicyCaption
-                      ,style: MyStyle.caption,),
+                    MyStrings.deliveryInfoCaption,
+                    style: MyStyle.caption,
+                  ),
+                  Text(MyStrings.returnPolicy, style: MyStyle.text),
+                  Text(
+                    MyStrings.returnPolicyCaption,
+                    style: MyStyle.caption,
+                  ),
                 ],
               ),
             ),
             MainButton(
               onTap: () {
                 setState(() {
-                    cart.add(widget.product);
-                   
-                 
-                    BlocProvider.of<CartBloc>(context).add(CartEventInit());
+                  cart.add(widget.product);
+
+                  BlocProvider.of<CartBloc>(context).add(CartEventInit());
+
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      backgroundColor: Colors.grey[50],
+                      dismissDirection: DismissDirection.up,
+                      behavior: SnackBarBehavior.floating,
+                      margin: const EdgeInsets.only(bottom: 400),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      content: const SizedBox(
+                          height: 50, child: Center(child: Text('Added to Cart')))));
                 });
-               
               },
               size: size,
               txtcolor: Colors.white,
-              txt:MyStrings.addtoCart,
+              txt: MyStrings.addtoCart,
               bgcolor: MyColor.bgButtonColor,
             ),
-            
           ],
         ),
       ),

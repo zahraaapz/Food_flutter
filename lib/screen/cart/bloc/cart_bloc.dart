@@ -13,19 +13,24 @@ class CartBloc extends Bloc<CartEvent, CartState> {
      if (event is CartEventInit) {
        emit(CartLoading());
      await  Future.delayed(const Duration(milliseconds: 200)); emit(CartLoaded(cart));
+    cartCount.value=cart.length;
+    
      }
      if (event is CartEventAdd) {
       
      await  Future.delayed(const Duration(milliseconds: 200)).then((value) => emit(CartAddItem(cart)));
-     }
+        cartCount.value=cart.length;
+ }
      if (event is CartEventRemove) {
       
      await  Future.delayed(const Duration(milliseconds: 200)).then((value) => emit(CartRemoveItem(cart)));
-     }
+        cartCount.value=cart.length;
+ }
      if (event is CartEventDelete) {
       
     await   Future.delayed(const Duration(milliseconds: 200)).then((value) => emit(CartDeleteItem(cart)));
-     }
+     cartCount.value=cart.length;
+    }
     });
   }
 }
