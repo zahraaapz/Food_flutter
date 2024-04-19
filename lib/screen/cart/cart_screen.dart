@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:food_flutter/component/api_key.dart';
-import 'package:food_flutter/component/btn_style.dart';
 import 'package:food_flutter/component/color.dart';
 import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
@@ -65,14 +63,12 @@ class CartList extends StatefulWidget {
 }
 
 class _CartListState extends State<CartList> {
-
-late List qnty;
-@override
+  late List qnty;
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-   qnty=List.generate(widget.list.length, (index) => 1);
-
+    qnty = List.generate(widget.list.length, (index) => 1);
   }
 
   @override
@@ -89,42 +85,31 @@ late List qnty;
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return Slidable(
+                    key: Key('$index'),
                     startActionPane: ActionPane(
                         extentRatio: 0.34,
                         motion: const ScrollMotion(),
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 18.0),
-                            child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  IconButton(
-                                      style: BtnStyle.cartSlide,
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        CupertinoIcons.heart,
-                                        size: 14,
-                                        color: Colors.white,
-                                      )),
-                                  Dimens.small.width,
-                                  IconButton(
-                                      style: BtnStyle.cartSlide,
-                                      onPressed: () {
-                                        setState(() {
+                          SlidableAction(
+                           // padding: EdgeInsets.all(8),
+                            onPressed: (ctx) {},
+                            icon: CupertinoIcons.heart,
+                            backgroundColor: MyColor.bgSplashScreenColor,
+                          ),
+                           SlidableAction(
+                             onPressed: (ctx) {
+                            
+                                 setState(() {
                                           widget.list
                                               .remove(widget.list[index]);
                                         });
                                         BlocProvider.of<CartBloc>(context)
                                             .add(CartEventDelete());
-                                      },
-                                      icon: const Icon(
-                                        CupertinoIcons.delete,
-                                        size: 14,
-                                        color: Colors.white,
-                                      ))
-                                ]),
+                            },
+                            icon:  CupertinoIcons.delete,
+                            backgroundColor: MyColor.bgSplashScreenColor,
                           ),
+                       
                         ]),
                     child: Container(
                       height: 90,
