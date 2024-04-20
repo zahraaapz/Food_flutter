@@ -57,7 +57,6 @@ class ProfileScreen extends StatelessWidget {
                     InkWell(
                         onTap: () {
                           BlocProvider.of<GetImageCubit>(contxt).getImage();
-                          SharedPreferencesMannager().saveString('img', file.path);
                         },
                         child: 
                         
@@ -66,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
                           backgroundImage:
                           file==null?
                            Image.asset('assets/image/1.png').image
-                        :Image.file(file,).image
+                        :Image.file(file).image
                          ,),
                         
                         

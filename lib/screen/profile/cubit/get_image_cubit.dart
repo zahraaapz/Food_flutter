@@ -16,7 +16,7 @@ class GetImageCubit extends Cubit<GetImageState> {
     if (image == null) {
       emit(GetImageNotSuccess());
     }
-    
+
     File imageFile = File(image!.path);
     final duplicateFile = await getApplicationDocumentsDirectory();
     final duplicateFilePath = duplicateFile.path;
@@ -24,5 +24,8 @@ class GetImageCubit extends Cubit<GetImageState> {
     final localImage = await imageFile.copy('$duplicateFilePath/$fileName');
     SharedPreferencesMannager().saveString('ima',localImage.path);
     emit(GetImageSuccess(File(SharedPreferencesMannager().getString('ima')!)));
+
+
+    
   }
 }
