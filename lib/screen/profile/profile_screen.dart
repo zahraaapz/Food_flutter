@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_flutter/component/color.dart';
 import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
+import 'package:food_flutter/screen/profile/cubit/get_image_cubit.dart';
 import 'package:food_flutter/widget/app_bar.dart';
 import 'package:food_flutter/widget/btn.dart';
 import 'package:food_flutter/widget/prof_box.dart';
 import '../../widget/title_box.dart';
 
 class ProfileScreen extends StatelessWidget {
- const ProfileScreen({super.key});
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
-     return Scaffold(
+    return Scaffold(
       backgroundColor: MyColor.bgColor,
       appBar: CustomAppBar(childs: Text(MyStrings.myProfile)),
       body: Column(children: [
@@ -33,7 +35,11 @@ class ProfileScreen extends StatelessWidget {
             ],
           ),
         ),
-        ProfBox(),
+        ProfBox(
+          onTap: () {
+            BlocProvider.of<GetImageCubit>(context).getImage();
+          },
+        ),
         TiltleBox(title: MyStrings.order),
         TiltleBox(title: MyStrings.pendingReview),
         TiltleBox(title: MyStrings.faq),

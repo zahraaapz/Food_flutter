@@ -12,6 +12,7 @@ import 'package:food_flutter/screen/register/cubit/auth_cubit.dart';
 import 'package:food_flutter/screen/splash_screen.dart';
 import 'component/api_key.dart';
 import 'utils/sharedPre_mng.dart';
+import 'package:food_flutter/screen/profile/cubit/get_image_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,6 +43,9 @@ class MyApp extends StatelessWidget {
         }),
        BlocProvider(
         create: (context) => AuthCubit(account),
+       ) ,
+       BlocProvider(
+        create: (context) => GetImageCubit(),
        ) ,
       ],
       child: MaterialApp(

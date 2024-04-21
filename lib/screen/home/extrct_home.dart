@@ -96,7 +96,7 @@ class _ExtrctHomeState extends State<ExtrctHome> {
         child: Column(
           children: [
             (Dimens.large + 15).height,
-            ProfBox(),
+            ProfBox(onTap:(){},),
             TiltleBox(title: MyStrings.order),
             TiltleBox(title: MyStrings.pendingReview),
             TiltleBox(title: MyStrings.faq),
