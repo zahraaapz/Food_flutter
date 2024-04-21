@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
               index: selectBtmNav,
               children: [
                 ExtrctHome(select: select),
-                ProfileScreen(),
+                const ProfileScreen(),
                 const CartScreen(),
               ],
             ),

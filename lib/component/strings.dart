@@ -31,4 +31,16 @@ class MyStrings {
   static String change=  'change';
   static String myProfile= 'My profile';
   static String personalDetails= 'Personal details';
+   static List cate = [
+    'Pasta',
+    'Dessert',
+    'Vegan',
+    'Pork',
+    'Side',
+    'Starter',
+    'Chicken',
+    'Cocoa',
+    'Shake',
+    'Cocktail'
+  ];
 }

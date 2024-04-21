@@ -6,7 +6,7 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this.account) : super(AuthInitial()){
-     emit(SentEmail()); 
+  emit(SentEmail()); 
   }
   final Account account;
 
