@@ -9,10 +9,11 @@ import '../../widget/title_box.dart';
 
 class ProfileScreen extends StatelessWidget {
  const ProfileScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
-    return Scaffold(
+     return Scaffold(
       backgroundColor: MyColor.bgColor,
       appBar: CustomAppBar(childs: Text(MyStrings.myProfile)),
       body: Column(children: [

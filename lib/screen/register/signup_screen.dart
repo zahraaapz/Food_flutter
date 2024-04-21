@@ -42,15 +42,16 @@ class SignUpScreen extends StatelessWidget {
             Dimens.large.height,
             BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
-                if (state is NotSendEmail) {
+                if (state is AuthNotSuccess) {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(SnackBar(content: Text(state.e)));
                 }
-                if (state is SentEmail) {
+                if (state is AuthSuccess) {
                   Navigator.pushReplacementNamed(context, RouteName.homeScreen);
                 }
               },
               builder: (context, state) {
+               
                 return Center(
                   child: MainButton(
                     onTap: () async {

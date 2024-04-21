@@ -12,12 +12,11 @@ import 'package:food_flutter/screen/register/cubit/auth_cubit.dart';
 import 'package:food_flutter/screen/splash_screen.dart';
 import 'component/api_key.dart';
 import 'utils/sharedPre_mng.dart';
-import 'package:food_flutter/screen/profile/cubit/get_image_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Client client = Client();
-
+  await SharedPreferencesMannager().init();
   client
       .setEndpoint('https://cloud.appwrite.io/v1')
       .setProject(projectId)
@@ -25,7 +24,7 @@ void main() async {
 
   Account users = Account(client);
   runApp(MyApp(account: users));
-  await SharedPreferencesMannager().init();
+
 }
 
 class MyApp extends StatelessWidget {
@@ -44,17 +43,13 @@ class MyApp extends StatelessWidget {
        BlocProvider(
         create: (context) => AuthCubit(account),
        ) ,
-       BlocProvider(
-       create: (context) => GetImageCubit(),
-
-       ) 
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(fontFamily: 'sf'),
         home: BlocBuilder<AuthCubit, AuthState>(
           builder: (context, state) {
-            if (state is SentEmail) {
+            if (state is AuthSuccess) {
               return HomeScreen();
             } else {
               return const SplashScreen();
