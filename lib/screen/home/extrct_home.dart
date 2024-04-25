@@ -14,7 +14,7 @@ import 'package:food_flutter/widget/suggestList.dart';
 import 'package:food_flutter/widget/title_box.dart';
 import '../../component/color.dart';
 import '../../component/strings.dart';
-
+ProfBox b=ProfBox();
 // ignore: must_be_immutable
 class ExtrctHome extends StatefulWidget {
   ExtrctHome({
@@ -91,12 +91,14 @@ class _ExtrctHomeState extends State<ExtrctHome> {
 
   Drawer drawer() {
     return Drawer(
+        
         shape: const RoundedRectangleBorder(),
         backgroundColor: MyColor.bgSearchBarColor,
         child: Column(
+          key: PageStorageKey<String>('value'),
           children: [
             (Dimens.large + 15).height,
-            ProfBox(onTap:(){},),
+            b,
             TiltleBox(title: MyStrings.order),
             TiltleBox(title: MyStrings.pendingReview),
             TiltleBox(title: MyStrings.faq),

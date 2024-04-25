@@ -182,11 +182,18 @@ class _CartListState extends State<CartList> {
                   );
                 },
               )
-            : Center(
-                child: Text(
-                'List is Empty :(',
+            : Column(
+            mainAxisAlignment:MainAxisAlignment.center  ,
+              children: [
+                Image.asset('assets/image/5.png')
+                ,
+                Dimens.medium.height,
+                Text(
+                '  List is Empty',
                 style: MyStyle.whiteBtnText,
-              )),
+                              ),
+              ],
+            ),
       ),
       bottomNavigationBar: Visibility(
         visible: widget.list.isNotEmpty,

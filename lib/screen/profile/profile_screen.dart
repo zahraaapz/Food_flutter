@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_flutter/component/color.dart';
 import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
-import 'package:food_flutter/screen/profile/cubit/get_image_cubit.dart';
+import 'package:food_flutter/screen/home/extrct_home.dart';
 import 'package:food_flutter/widget/app_bar.dart';
 import 'package:food_flutter/widget/btn.dart';
 import 'package:food_flutter/widget/prof_box.dart';
@@ -35,11 +35,9 @@ class ProfileScreen extends StatelessWidget {
             ],
           ),
         ),
-        ProfBox(
-          onTap: () {
-            BlocProvider.of<GetImageCubit>(context).getImage();
-          },
-        ),
+       b
+          
+        ,
         TiltleBox(title: MyStrings.order),
         TiltleBox(title: MyStrings.pendingReview),
         TiltleBox(title: MyStrings.faq),
@@ -49,4 +47,5 @@ class ProfileScreen extends StatelessWidget {
           btn(context, title: MyStrings.update, onTap: () {}, size: size),
     );
   }
+
 }

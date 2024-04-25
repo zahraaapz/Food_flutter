@@ -1,15 +1,24 @@
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as path;
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_flutter/component/constant.dart';
 import 'package:food_flutter/component/text_style.dart';
-import 'package:food_flutter/screen/profile/cubit/get_image_cubit.dart';
 import 'package:food_flutter/utils/sharedPre_mng.dart';
+import 'package:image_picker/image_picker.dart';
 
-class ProfBox extends StatelessWidget {
-  ProfBox({super.key,this.onTap});
-  final onTap;
 
-  var file;
+class ProfBox extends StatefulWidget {
+  const ProfBox({super.key});
+
+  @override
+  State<ProfBox> createState() => _ProfBoxState();
+}
+
+class _ProfBoxState extends State<ProfBox> {
+
+ String ? duplicateFilePath;
+
   String? email =
       SharedPreferencesMannager().getString(SharedPreferencesConstant.email);
 
@@ -18,51 +27,86 @@ class ProfBox extends StatelessWidget {
 
   String? pass =
       SharedPreferencesMannager().getString(SharedPreferencesConstant.password);
+
+
+Future getAppDoc()async{
+  final duplicateFile = await getApplicationDocumentsDirectory();
+   duplicateFilePath = duplicateFile.path;
+
+}
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getAppDoc();
+  }
+
   @override
   Widget build(BuildContext context) {
+Image ?ima;
+var hasLocalImage=File('$duplicateFilePath/bg').existsSync();
+if (hasLocalImage) {
+  var bytes=File('$duplicateFilePath/bg').readAsBytesSync();
+  ima=Image.memory(bytes);
+}
     return Container(
       padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.all(8),
       width: double.infinity,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30), color: Colors.white),
-      child: BlocBuilder<GetImageCubit, GetImageState>(
-        builder: (contxt, state) {
-          if (state is GetImageSuccess) {
-            file = state.image;
-          }
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          InkWell(
+            onTap: ()async{
+             await getImage();
+},
+            child: CircleAvatar(
+              radius: 40,
+              backgroundImage:
+               ima == null
+        ? Image.asset('assets/image/1.png').image               
+        :ima.image,
+
+            ),
+          ),
+          Column(
             children: [
-              InkWell(
-                onTap: onTap,
-                child: CircleAvatar(
-                  radius: 40,
-                  backgroundImage: file == null
-                      ? Image.asset('assets/image/1.png').image
-                      : Image.file(file).image,
-                ),
+              Text(
+                'Email: ${email!}',
+                style: MyStyle.text.copyWith(fontSize: 11),
               ),
-              Column(
-                children: [
-                  Text(
-                    'Email: ${email!}',
-                    style: MyStyle.text.copyWith(fontSize: 11),
-                  ),
-                  Text(
-                    'Password: ${pass!}',
-                    style: MyStyle.caption,
-                  ),
-                  Text(
-                    'Username: ${userName!}',
-                    style: MyStyle.caption,
-                  ),
-                ],
-              )
+              Text(
+                'Password: ${pass!}',
+                style: MyStyle.caption,
+              ),
+              Text(
+                'Username: ${userName!}',
+                style: MyStyle.caption,
+              ),
             ],
-          );
-        },
+          )
+        ],
       ),
     );
   }
+
+Future getImage() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image == null) {
+    }
+
+    File imageFile = File(image!.path);
+   await imageFile.copy('$duplicateFilePath/bg');
+setState(() {
+  
+});
+
+  }
+
+
+
+
 }
