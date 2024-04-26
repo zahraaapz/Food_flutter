@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_flutter/component/color.dart';
 import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
-import 'package:food_flutter/screen/home/extrct_home.dart';
 import 'package:food_flutter/widget/app_bar.dart';
 import 'package:food_flutter/widget/btn.dart';
 import 'package:food_flutter/widget/prof_box.dart';
+import '../../component/color.dart';
 import '../../widget/title_box.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -35,7 +33,7 @@ class ProfileScreen extends StatelessWidget {
             ],
           ),
         ),
-       b
+      const ProfBox()
           
         ,
         TiltleBox(title: MyStrings.order),

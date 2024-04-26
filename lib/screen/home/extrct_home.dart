@@ -2,7 +2,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
@@ -16,7 +15,7 @@ import 'package:food_flutter/widget/suggestList.dart';
 import 'package:food_flutter/widget/title_box.dart';
 import '../../component/color.dart';
 import '../../component/strings.dart';
-ProfBox b=ProfBox();
+
 // ignore: must_be_immutable
 class ExtrctHome extends StatefulWidget {
   ExtrctHome({
@@ -103,7 +102,7 @@ class _ExtrctHomeState extends State<ExtrctHome> {
         child: Column(
           children: [
             (Dimens.large + 15).height,
-            b,
+           const ProfBox(),
             TiltleBox(title: MyStrings.order),
             TiltleBox(title: MyStrings.pendingReview),
             TiltleBox(title: MyStrings.faq),

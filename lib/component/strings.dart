@@ -5,6 +5,7 @@ class MyStrings {
   static String signUp = 'Sign up';
   static String emailAddress = 'Email address';
   static String password = 'Password';
+  static String newPassword ='New Password';
   static String items = 'Items';
   static String forgotPassword = 'Do you forgot password?';
   static String detail = 'Details';

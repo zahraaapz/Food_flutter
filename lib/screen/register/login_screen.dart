@@ -7,6 +7,7 @@ import 'package:food_flutter/component/txt_editor_conrl.dart';
 import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/screen/register/cubit/auth_cubit.dart';
 import 'package:food_flutter/widget/main_button.dart';
+import '../../widget/my_dialog.dart';
 import '../../widget/my_textFileld.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -32,9 +33,14 @@ class LoginScreen extends StatelessWidget {
                 obscureText: true,
                 controller: MyTextEditingController.password,
               ),
-              Text(
-                MyStrings.forgotPassword,
-                style: MyStyle.whiteBtnText,
+              GestureDetector(
+                onTap: () {
+                  myDialog(context);
+                },
+                child: Text(
+                  MyStrings.forgotPassword,
+                  style: MyStyle.whiteBtnText,
+                ),
               ),
               BlocConsumer<AuthCubit, AuthState>(listener: (context, state) {
                 if (state is AuthNotSuccess) {
@@ -66,4 +72,5 @@ class LoginScreen extends StatelessWidget {
               }),
             ]));
   }
+
 }

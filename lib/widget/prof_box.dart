@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:food_flutter/component/color.dart';
-import 'package:food_flutter/utils/logic.dart';
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/constant.dart';
 import 'package:food_flutter/component/text_style.dart';
+import 'package:food_flutter/utils/logic.dart';
 import 'package:food_flutter/utils/sharedPre_mng.dart';
 import 'package:image_picker/image_picker.dart';
 

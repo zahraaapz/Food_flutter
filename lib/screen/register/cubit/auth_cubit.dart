@@ -47,4 +47,18 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthNotSuccess(e.toString()));
     }
   }
+
+  updatePassword(pass,oldPass,email) async {
+    try {
+      emit(AuthLoading());
+      await account.updatePassword(password: pass,oldPassword:oldPass);
+            SharedPreferencesMannager()
+          .saveString(SharedPreferencesConstant.password,pass);
+      await account.get();
+      emit(AuthSuccess());
+      isLoggedIn = true;
+    } catch (e) {
+      emit(AuthNotSuccess(e.toString()));
+    }
+  }
 }
