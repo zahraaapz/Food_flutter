@@ -1,6 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart';
-import 'package:path/path.dart' as path;
+import 'package:food_flutter/component/color.dart';
+import 'package:food_flutter/utils/logic.dart';
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/constant.dart';
 import 'package:food_flutter/component/text_style.dart';
@@ -17,7 +18,30 @@ class ProfBox extends StatefulWidget {
 
 class _ProfBoxState extends State<ProfBox> {
 
- String ? duplicateFilePath;
+ listenForStream(){
+  imageChaned.stream.listen((data){
+    setState(() {
+      imageString=data;
+    });
+  });
+}
+
+
+@override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    imageChaned.close();
+  }
+
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    listenForStream();
+  }
+
 
   String? email =
       SharedPreferencesMannager().getString(SharedPreferencesConstant.email);
@@ -29,27 +53,10 @@ class _ProfBoxState extends State<ProfBox> {
       SharedPreferencesMannager().getString(SharedPreferencesConstant.password);
 
 
-Future getAppDoc()async{
-  final duplicateFile = await getApplicationDocumentsDirectory();
-   duplicateFilePath = duplicateFile.path;
 
-}
-
-@override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getAppDoc();
-  }
 
   @override
   Widget build(BuildContext context) {
-Image ?ima;
-var hasLocalImage=File('$duplicateFilePath/bg').existsSync();
-if (hasLocalImage) {
-  var bytes=File('$duplicateFilePath/bg').readAsBytesSync();
-  ima=Image.memory(bytes);
-}
     return Container(
       padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.all(8),
@@ -64,11 +71,12 @@ if (hasLocalImage) {
              await getImage();
 },
             child: CircleAvatar(
+              backgroundColor:MyColor.bgSearchBarColor ,
               radius: 40,
-              backgroundImage:
-               ima == null
-        ? Image.asset('assets/image/1.png').image               
-        :ima.image,
+              backgroundImage:imageString!=null&&imageString.isNotEmpty?
+              Image.memory(base64Decode(imageString)).image:
+              const ExactAssetImage('assets/image/4.png')
+              
 
             ),
           ),
@@ -92,16 +100,15 @@ if (hasLocalImage) {
       ),
     );
   }
-
+String imageString='';
 Future getImage() async {
-    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (image == null) {
-    }
-
-    File imageFile = File(image!.path);
-   await imageFile.copy('$duplicateFilePath/bg');
+   var ima = await ImagePicker().pickImage(source: ImageSource.gallery);
+   File image=File(ima!.path);
+  List<int>imaBytes=image.readAsBytesSync();
+  String base64Image=base64Encode(imaBytes);
+  imageChaned.add(base64Image);
 setState(() {
-  
+  imageString=base64Image;
 });
 
   }

@@ -8,7 +8,7 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this.account) : super(AuthInitial()) {
     // if (isLoggedIn) {
-       emit(AuthSuccess());
+    //  emit(AuthSuccess());
     // } else {
     //   emit(NotSendEmail('error'));
     // }
@@ -18,12 +18,15 @@ class AuthCubit extends Cubit<AuthState> {
 
   register(String email, String pass, String userName) async {
     try {
-      emit(AuthInitial());
+      emit(AuthLoading());
 
-      SharedPreferencesMannager().saveString(SharedPreferencesConstant.password, pass);
-      SharedPreferencesMannager().saveString(SharedPreferencesConstant.userName, userName);
-      SharedPreferencesMannager().saveString(SharedPreferencesConstant.email, email);
-      
+      SharedPreferencesMannager()
+          .saveString(SharedPreferencesConstant.password, pass);
+      SharedPreferencesMannager()
+          .saveString(SharedPreferencesConstant.userName, userName);
+      SharedPreferencesMannager()
+          .saveString(SharedPreferencesConstant.email, email);
+
       await account.create(
           email: email, password: pass, userId: ID.unique(), name: userName);
       await login(email, pass);
@@ -34,8 +37,14 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   login(email, pass) async {
-    await account.createEmailSession(email: email, password: pass);
-     await account.get();
-    isLoggedIn = true;
+    try {
+      emit(AuthLoading());
+      await account.createEmailSession(email: email, password: pass);
+      await account.get();
+      emit(AuthSuccess());
+      isLoggedIn = true;
+    } catch (e) {
+      emit(AuthNotSuccess(e.toString()));
+    }
   }
 }

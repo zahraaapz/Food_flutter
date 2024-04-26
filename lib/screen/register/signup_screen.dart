@@ -18,60 +18,59 @@ class SignUpScreen extends StatelessWidget {
     return SizedBox(
       width: size.width / 1.3,
       height: size.height / 1.5,
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Dimens.small.height,
-            MyTextFiled(
-              txt: MyStrings.emailAddress,
-              obscureText: false,
-              controller: MyTextEditingController.email,
-            ),
-            Dimens.small.height,
-            MyTextFiled(
-              txt: MyStrings.userName,
-              obscureText: false,
-              controller: MyTextEditingController.userName,
-            ),
-            Dimens.small.height,
-            MyTextFiled(
-              txt: MyStrings.password,
-              obscureText: true,
-              controller: MyTextEditingController.password,
-            ),
-            Dimens.large.height,
-            BlocConsumer<AuthCubit, AuthState>(
-              listener: (context, state) {
-                if (state is AuthNotSuccess) {
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(SnackBar(content: Text(state.e)));
-                }
-                if (state is AuthSuccess) {
-                  Navigator.pushReplacementNamed(context, RouteName.homeScreen);
-                }
-              },
-              builder: (context, state) {
-               
-                return Center(
-                  child: MainButton(
-                    onTap: () async {
-                      
-                      final email = MyTextEditingController.email.text.trim();
-                      final pass = MyTextEditingController.password.text.trim();
-                      final userName = MyTextEditingController.userName.text.trim();
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Dimens.small.height,
+        MyTextFiled(
+          txt: MyStrings.emailAddress,
+          obscureText: false,
+          controller: MyTextEditingController.email,
+        ),
+        Dimens.small.height,
+        MyTextFiled(
+          txt: MyStrings.userName,
+          obscureText: false,
+          controller: MyTextEditingController.userName,
+        ),
+        Dimens.small.height,
+        MyTextFiled(
+          txt: MyStrings.password,
+          obscureText: true,
+          controller: MyTextEditingController.password,
+        ),
+        Dimens.large.height,
+        BlocConsumer<AuthCubit, AuthState>(
+          listener: (context, state) {
+            if (state is AuthNotSuccess) {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(state.e)));
+            }
+            if (state is AuthSuccess) {
+              Navigator.pushReplacementNamed(context, RouteName.homeScreen);
+            }
+          },
+          builder: (context, state) {
+            if (state is AuthLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            return Center(
+              child: MainButton(
+                onTap: () async {
+                  final email = MyTextEditingController.email.text.trim();
+                  final pass = MyTextEditingController.password.text.trim();
+                  final userName = MyTextEditingController.userName.text.trim();
 
-                      await BlocProvider.of<AuthCubit>(context)
-                          .register(email, pass, userName);
-                    },
-                    size: const Size(400, 800),
-                    bgcolor: MyColor.bgButtonColor,
-                    txt: MyStrings.signUp,
-                    txtcolor: Colors.white,
-                  ),
-                );
-              },
-            ),
-          ]),
+                  await BlocProvider.of<AuthCubit>(context)
+                      .register(email, pass, userName);
+                },
+                size: const Size(400, 800),
+                bgcolor: MyColor.bgButtonColor,
+                txt: MyStrings.signUp,
+                txtcolor: Colors.white,
+              ),
+            );
+          },
+        ),
+      ]),
     );
   }
 }

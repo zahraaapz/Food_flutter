@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,8 +30,11 @@ class ExtrctHome extends StatefulWidget {
 }
 
 class _ExtrctHomeState extends State<ExtrctHome> {
+
+
   @override
   Widget build(BuildContext context) {
+    GlobalKey<ScaffoldState>_scaffoldKey=GlobalKey<ScaffoldState>();
     return BlocProvider(
       create: (context) {
         final homeBloc = HomeBloc(iHomeRepo);
@@ -37,6 +42,7 @@ class _ExtrctHomeState extends State<ExtrctHome> {
         return homeBloc;
       },
       child: Scaffold(
+        key: _scaffoldKey,
         resizeToAvoidBottomInset: false,
         drawerScrimColor: const Color.fromARGB(104, 0, 0, 0),
         drawer: drawer(),
@@ -95,7 +101,6 @@ class _ExtrctHomeState extends State<ExtrctHome> {
         shape: const RoundedRectangleBorder(),
         backgroundColor: MyColor.bgSearchBarColor,
         child: Column(
-          key: PageStorageKey<String>('value'),
           children: [
             (Dimens.large + 15).height,
             b,
