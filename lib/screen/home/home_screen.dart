@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/api_key.dart';
-import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/screen/home/extrct_home.dart';
 import 'package:food_flutter/screen/profile/profile_screen.dart';
+import 'package:food_flutter/widget/badge.dart';
 import '../../component/color.dart';
 import '../cart/cart_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                ValueListenableBuilder(
                  valueListenable:cartCount ,
                 builder: (context,value,child) {
-                return Badge(count:value);
+                return MyBadge(count:value);
                   },
                 )
              ],
@@ -100,31 +100,4 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class Badge extends StatelessWidget {
- final count;
 
-  const Badge({
-    super.key,
-    this.count
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Visibility(
-      visible: count>0,
-      child: Positioned(
-        right: 130,
-        top: 10,
-        child: Container(
-          height: 22,
-          width: 20,
-          decoration: const BoxDecoration(
-            color: MyColor.bgSplashScreenColor,
-            shape: BoxShape.circle
-          ),
-          child: Center(child: Text(count.toString(),style: MyStyle.orangeBtnText.copyWith(fontSize: 12),)),
-        ),
-      ),
-    );
-  }
-}

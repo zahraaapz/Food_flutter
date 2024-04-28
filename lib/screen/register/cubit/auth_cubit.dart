@@ -8,7 +8,7 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this.account) : super(AuthInitial()) {
     // if (isLoggedIn) {
-    //  emit(AuthSuccess());
+      emit(AuthSuccess());
     // } else {
     //   emit(NotSendEmail('error'));
     // }

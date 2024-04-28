@@ -9,11 +9,13 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final IHomeRepo homeRepo;
   HomeBloc(this.homeRepo) : super(HomeLoading()) {
-    on<HomeEvent>((event, emit) {
+    on<HomeEvent>((event, emit) async {
       if (event is HomeInit) {
         try {
           emit(HomeLoading());
-          emit(HomeLoaded(home: iHomeRepo.getHome()));
+          final home = iHomeRepo.getHome();
+          List list = await iHomeRepo.allProduct();
+          emit(HomeLoaded(list,home: home));
         } catch (e) {
           emit(HomeError());
         }

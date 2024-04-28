@@ -1,8 +1,8 @@
-// ignore_for_file: depend_on_referenced_packages
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/text_style.dart';
@@ -29,11 +29,9 @@ class ExtrctHome extends StatefulWidget {
 }
 
 class _ExtrctHomeState extends State<ExtrctHome> {
-
-
   @override
   Widget build(BuildContext context) {
-    GlobalKey<ScaffoldState>_scaffoldKey=GlobalKey<ScaffoldState>();
+    GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     return BlocProvider(
       create: (context) {
         final homeBloc = HomeBloc(iHomeRepo);
@@ -65,20 +63,36 @@ class _ExtrctHomeState extends State<ExtrctHome> {
                 Dimens.large.height,
                 Center(
                   child: Container(
-                    height: 50,
-                    width: 314,
-                    decoration: BoxDecoration(
-                        color: Colors.black12,
-                        borderRadius: BorderRadius.circular(30)),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        hintText: MyStrings.search,
-                        prefixIcon: const Icon(CupertinoIcons.search),
-                      ),
-                    ),
-                  ),
+                      height: 50,
+                      width: 314,
+                      decoration: BoxDecoration(
+                          color: Colors.black12,
+                          borderRadius: BorderRadius.circular(30)),
+                      child:  TypeAheadField(
+                        textFieldConfiguration: TextFieldConfiguration(
+                            decoration: InputDecoration(
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          hintText: MyStrings.search,
+                          prefixIcon: const Icon(CupertinoIcons.search),
+                        )),
+                        itemBuilder: (context, value) {
+                          return ListView.builder(
+                            itemBuilder: (context, index) => 
+                             Text(value[index].name.toString()),
+                            
+                          );
+                        },
+                        suggestionsCallback: (search) {
+                          return state.list
+                              .where((element) => element.name
+                                  .toLowerCase()
+                                  .contains(search.toLowerCase()))
+                              .toList();
+                        },
+                        onSuggestionSelected: (suggestion) {},
+                      )
+                                           ),
                 ),
                 (Dimens.large + 10).height,
                 cateList(),
@@ -96,20 +110,19 @@ class _ExtrctHomeState extends State<ExtrctHome> {
 
   Drawer drawer() {
     return Drawer(
-        
-        shape: const RoundedRectangleBorder(),
-        backgroundColor: MyColor.bgSearchBarColor,
-        child: Column(
-          children: [
-            (Dimens.large + 15).height,
-           const ProfBox(),
-            TiltleBox(title: MyStrings.order),
-            TiltleBox(title: MyStrings.pendingReview),
-            TiltleBox(title: MyStrings.faq),
-            TiltleBox(title: MyStrings.help),
-          ],
-        ),
-      );
+      shape: const RoundedRectangleBorder(),
+      backgroundColor: MyColor.bgSearchBarColor,
+      child: Column(
+        children: [
+          (Dimens.large + 15).height,
+          const ProfBox(),
+          TiltleBox(title: MyStrings.order),
+          TiltleBox(title: MyStrings.pendingReview),
+          TiltleBox(title: MyStrings.faq),
+          TiltleBox(title: MyStrings.help),
+        ],
+      ),
+    );
   }
 
   GestureDetector selectList(BuildContext context, HomeLoaded state) {

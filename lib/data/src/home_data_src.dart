@@ -50,4 +50,5 @@ class HomeRemoteDataSrc implements IHomeDataSrc {
         dessertList: mealList(ApiUrl().baseMeal + RouteVersion().dessert),
         cocktailList: drinkList(ApiUrl().baseDrink + RouteVersion().cocktail));
   }
+
 }
