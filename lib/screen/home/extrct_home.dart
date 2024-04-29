@@ -7,6 +7,7 @@ import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/main.dart';
+import 'package:food_flutter/screen/detail_product.dart';
 import 'package:food_flutter/screen/home/bloc/home_bloc.dart';
 import 'package:food_flutter/screen/main_screen.dart';
 import 'package:food_flutter/widget/app_bar.dart';
@@ -77,12 +78,10 @@ class _ExtrctHomeState extends State<ExtrctHome> {
                           prefixIcon: const Icon(CupertinoIcons.search),
                         )),
                         itemBuilder: (context, value) {
-                          return ListView.builder(
-                            itemBuilder: (context, index) => 
-                             Text(value[index].name.toString()),
-                            
-                          );
-                        },
+                          return  ListTile(title: 
+                          Text(value.name)); 
+                         
+                                            },
                         suggestionsCallback: (search) {
                           return state.list
                               .where((element) => element.name
@@ -90,7 +89,12 @@ class _ExtrctHomeState extends State<ExtrctHome> {
                                   .contains(search.toLowerCase()))
                               .toList();
                         },
-                        onSuggestionSelected: (suggestion) {},
+                        onSuggestionSelected: (suggestion) {
+                          final index=state.list.indexOf(suggestion);
+                          Navigator.push(context,MaterialPageRoute(builder:(context) => DetailProduct(product:
+                          state.list[index], 
+                          i:index),));
+                        },
                       )
                                            ),
                 ),
