@@ -25,6 +25,9 @@ class _MainScreenState extends State<MainScreen> {
           list = value;
         }));
   }
+  
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +47,6 @@ class _MainScreenState extends State<MainScreen> {
                   childAspectRatio: (screenWidth - 45) / (2 * 290),
                   mainAxisSpacing: 15,
                   crossAxisSpacing: 15,
-                  // Product Card has fixed height 290, screenWidth must substract the total horizontal padding of GridView
                 ),
                 itemCount: list.length,
                 itemBuilder: (context, i) {

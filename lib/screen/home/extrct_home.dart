@@ -11,6 +11,7 @@ import 'package:food_flutter/screen/detail_product.dart';
 import 'package:food_flutter/screen/home/bloc/home_bloc.dart';
 import 'package:food_flutter/screen/main_screen.dart';
 import 'package:food_flutter/widget/app_bar.dart';
+import 'package:food_flutter/widget/search_bar.dart';
 import 'package:food_flutter/widget/prof_box.dart';
 import 'package:food_flutter/widget/suggestList.dart';
 import 'package:food_flutter/widget/title_box.dart';
@@ -69,33 +70,7 @@ class _ExtrctHomeState extends State<ExtrctHome> {
                       decoration: BoxDecoration(
                           color: Colors.black12,
                           borderRadius: BorderRadius.circular(30)),
-                      child:  TypeAheadField(
-                        textFieldConfiguration: TextFieldConfiguration(
-                            decoration: InputDecoration(
-                          border: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          hintText: MyStrings.search,
-                          prefixIcon: const Icon(CupertinoIcons.search),
-                        )),
-                        itemBuilder: (context, value) {
-                          return  ListTile(title: 
-                          Text(value.name)); 
-                         
-                                            },
-                        suggestionsCallback: (search) {
-                          return state.list
-                              .where((element) => element.name
-                                  .toLowerCase()
-                                  .contains(search.toLowerCase()))
-                              .toList();
-                        },
-                        onSuggestionSelected: (suggestion) {
-                          final index=state.list.indexOf(suggestion);
-                          Navigator.push(context,MaterialPageRoute(builder:(context) => DetailProduct(product:
-                          state.list[index], 
-                          i:index),));
-                        },
-                      )
+                      child: mySearchBar(state,context)
                                            ),
                 ),
                 (Dimens.large + 10).height,
@@ -111,6 +86,8 @@ class _ExtrctHomeState extends State<ExtrctHome> {
       ),
     );
   }
+
+
 
   Drawer drawer() {
     return Drawer(
