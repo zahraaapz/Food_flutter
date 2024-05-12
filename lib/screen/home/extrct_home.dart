@@ -89,8 +89,9 @@ class _ExtrctHomeState extends State<ExtrctHome> {
 
 
 
-  Drawer drawer() {
+  drawer() {
     return Drawer(
+      
       shape: const RoundedRectangleBorder(),
       backgroundColor: MyColor.bgSearchBarColor,
       child: Column(

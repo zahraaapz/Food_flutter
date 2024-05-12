@@ -16,8 +16,8 @@ class MyBadge extends StatelessWidget {
     return Visibility(
       visible: count>0,
       child: Positioned(
-        right: 130,
-        top: 10,
+    bottom: 39,
+    left: 40,
         child: Container(
           height: 22,
           width: 20,

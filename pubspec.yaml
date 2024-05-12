@@ -45,6 +45,7 @@ dependencies:
   dart_appwrite: ^11.0.2
   rxdart: ^0.27.7
   flutter_typeahead: ^4.8.0
+  path_provider: ^2.1.3
 
 dev_dependencies:
   flutter_test:

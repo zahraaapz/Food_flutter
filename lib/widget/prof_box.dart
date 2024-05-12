@@ -1,14 +1,12 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:food_flutter/component/color.dart';
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/constant.dart';
 import 'package:food_flutter/component/text_style.dart';
-import 'package:food_flutter/utils/logic.dart';
 import 'package:food_flutter/utils/sharedPre_mng.dart';
 import 'package:image_picker/image_picker.dart';
-
-
+import 'package:path_provider/path_provider.dart';
+Image? ima;
 class ProfBox extends StatefulWidget {
   const ProfBox({super.key});
 
@@ -17,26 +15,20 @@ class ProfBox extends StatefulWidget {
 }
 
 class _ProfBoxState extends State<ProfBox> {
+  String? appDoc;
+  File? image;
 
- listenForStream(){
-  imageChaned.stream.listen((data){
-    setState(() {
-      imageString=data;
-    });
-  });
-}
+  getAppDicrectory() async {
+    final directory = await getApplicationDocumentsDirectory();
+    appDoc = directory.path;
+  }
 
-
-
-
-
-@override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    listenForStream();
+    getAppDicrectory();
   }
-
 
   String? email =
       SharedPreferencesMannager().getString(SharedPreferencesConstant.email);
@@ -47,11 +39,13 @@ class _ProfBoxState extends State<ProfBox> {
   String? pass =
       SharedPreferencesMannager().getString(SharedPreferencesConstant.password);
 
-
-
-
   @override
   Widget build(BuildContext context) {
+    var localImage = File('$appDoc/bg').existsSync();
+    if (localImage) {
+    var byte = File('$appDoc/bg').readAsBytesSync();
+    ima = Image.memory(byte);
+    }
     return Container(
       padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.all(8),
@@ -62,18 +56,18 @@ class _ProfBoxState extends State<ProfBox> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           InkWell(
-            onTap: ()async{
-             await getImage();
-},
+            onTap: () async {
+              await getImage();
+              setState(() {
+                
+              });
+            },
             child: CircleAvatar(
-              backgroundColor:MyColor.bgSearchBarColor ,
-              radius: 40,
-              backgroundImage:imageString!=null&&imageString.isNotEmpty?
-              Image.memory(base64Decode(imageString)).image:
-              const ExactAssetImage('assets/image/4.png')
-              
-
-            ),
+                backgroundColor: MyColor.bgSearchBarColor,
+                radius: 40,
+                backgroundImage: ima != null
+                    ? ima!.image
+                    : const ExactAssetImage('assets/image/5.png')),
           ),
           Column(
             children: [
@@ -95,20 +89,13 @@ class _ProfBoxState extends State<ProfBox> {
       ),
     );
   }
-String imageString='';
-Future getImage() async {
-   var ima = await ImagePicker().pickImage(source: ImageSource.gallery);
-   File image=File(ima!.path);
-  List<int>imaBytes=image.readAsBytesSync();
-  String base64Image=base64Encode(imaBytes);
-  imageChaned.add(base64Image);
-setState(() {
-  imageString=base64Image;
-});
 
+  Future getImage() async {
+    var ximage = await ImagePicker().pickImage(source: ImageSource.gallery);
+    image = File(ximage!.path);
+     await image!.copy('$appDoc/bg');
+    setState(() {
+
+    });
   }
-
-
-
-
 }

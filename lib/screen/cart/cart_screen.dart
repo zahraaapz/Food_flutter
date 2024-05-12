@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:food_flutter/component/color.dart';
@@ -91,30 +92,26 @@ class _CartListState extends State<CartList> {
                         motion: const ScrollMotion(),
                         children: [
                           SlidableAction(
-                           // padding: EdgeInsets.all(8),
                             onPressed: (ctx) {},
                             icon: CupertinoIcons.heart,
                             backgroundColor: MyColor.bgSplashScreenColor,
                           ),
-                           SlidableAction(
-                             onPressed: (ctx) {
-                            
-                                 setState(() {
-                                          widget.list
-                                              .remove(widget.list[index]);
-                                        });
-                                        BlocProvider.of<CartBloc>(context)
-                                            .add(CartEventDelete());
+                          SlidableAction(
+                            onPressed: (ctx) {
+                              setState(() {
+                                widget.list.remove(widget.list[index]);
+                              });
+                              BlocProvider.of<CartBloc>(context)
+                                  .add(CartEventDelete());
                             },
-                            icon:  CupertinoIcons.delete,
+                            icon: CupertinoIcons.delete,
                             backgroundColor: MyColor.bgSplashScreenColor,
                           ),
-                       
                         ]),
                     child: Container(
                       height: 90,
-                      margin:
-                          const EdgeInsets.only(left: 10, top: 10, right: 10),
+                      margin: const EdgeInsets.only(
+                          left: 15, top: 10, right: 15, bottom: 10),
                       padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -183,17 +180,16 @@ class _CartListState extends State<CartList> {
                 },
               )
             : Column(
-            mainAxisAlignment:MainAxisAlignment.center  ,
-              children: [
-                Image.asset('assets/image/5.png')
-                ,
-                Dimens.medium.height,
-                Text(
-                '  List is Empty',
-                style: MyStyle.whiteBtnText,
-                              ),
-              ],
-            ),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('assets/image/5.png'),
+                  Dimens.medium.height,
+                  Text(
+                    '  List is Empty',
+                    style: MyStyle.whiteBtnText,
+                  ),
+                ],
+              ),
       ),
       bottomNavigationBar: Visibility(
         visible: widget.list.isNotEmpty,
