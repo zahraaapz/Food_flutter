@@ -6,7 +6,7 @@ import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/utils/sharedPre_mng.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
-Image? ima;
+
 class ProfBox extends StatefulWidget {
   const ProfBox({super.key});
 
@@ -41,6 +41,7 @@ class _ProfBoxState extends State<ProfBox> {
 
   @override
   Widget build(BuildContext context) {
+    Image? ima;
     var localImage = File('$appDoc/bg').existsSync();
     if (localImage) {
     var byte = File('$appDoc/bg').readAsBytesSync();
@@ -94,8 +95,7 @@ class _ProfBoxState extends State<ProfBox> {
     var ximage = await ImagePicker().pickImage(source: ImageSource.gallery);
     image = File(ximage!.path);
      await image!.copy('$appDoc/bg');
-    setState(() {
+     setState((){});
 
-    });
   }
 }

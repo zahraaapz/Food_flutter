@@ -18,7 +18,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         width: size.width / 1.3,
-        height: size.height / 2,
+        height: size.height / 2.4,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
