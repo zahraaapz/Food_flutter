@@ -85,16 +85,15 @@ class _DetailProductState extends State<DetailProduct> {
                   BlocProvider.of<CartBloc>(context).add(CartEventInit());
 
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      backgroundColor: Colors.grey.withOpacity(0.2),
-                      dismissDirection: DismissDirection.down,
-                      duration: Duration(seconds: 3),
+                      backgroundColor: MyColor.bgSplashScreenColor.withOpacity(0.8),
+                      duration: Duration(milliseconds: 700),
                       behavior: SnackBarBehavior.floating,
                       elevation:0.5,
-                     margin: const EdgeInsets.only(bottom: 670,left: 8,right: 8),
+                     margin: const EdgeInsets.only(bottom: 670,left: 18,right: 18),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)),
                       content:  SizedBox(
-                          height: 50, child: Text('Added to Cart',style:MyStyle.text))));
+                          height: 40, child: Text('Added to Cart',style:MyStyle.orangeBtnText,textAlign: TextAlign.justify,))));
                 });
               },
               size: size,

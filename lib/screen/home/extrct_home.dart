@@ -1,13 +1,10 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/main.dart';
-import 'package:food_flutter/screen/detail_product.dart';
 import 'package:food_flutter/screen/home/bloc/home_bloc.dart';
 import 'package:food_flutter/screen/main_screen.dart';
 import 'package:food_flutter/widget/app_bar.dart';
@@ -97,7 +94,7 @@ class _ExtrctHomeState extends State<ExtrctHome> {
       child: Column(
         children: [
           (Dimens.large + 15).height,
-          const ProfBox(),
+          ProfBox(),
           TiltleBox(title: MyStrings.order),
           TiltleBox(title: MyStrings.pendingReview),
           TiltleBox(title: MyStrings.faq),
