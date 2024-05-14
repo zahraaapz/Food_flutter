@@ -6,7 +6,9 @@ import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/utils/sharedPre_mng.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+
 Image? ima;
+
 class ProfBox extends StatefulWidget {
   const ProfBox({super.key});
 
@@ -17,7 +19,6 @@ class ProfBox extends StatefulWidget {
 class _ProfBoxState extends State<ProfBox> {
   String? appDoc;
 
-
   getAppDicrectory() async {
     final directory = await getApplicationDocumentsDirectory();
     appDoc = directory.path;
@@ -27,8 +28,10 @@ class _ProfBoxState extends State<ProfBox> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getAppDicrectory().then((v){setState(() {});});
-   }
+    getAppDicrectory().then((v) {
+      setState(() {});
+    });
+  }
 
   String? email =
       SharedPreferencesMannager().getString(SharedPreferencesConstant.email);
@@ -39,14 +42,12 @@ class _ProfBoxState extends State<ProfBox> {
   String? pass =
       SharedPreferencesMannager().getString(SharedPreferencesConstant.password);
 
-      
   @override
   Widget build(BuildContext context) {
-  
- var localImage = File('$appDoc/bg').existsSync();
+    var localImage = File('$appDoc/bg').existsSync();
     if (localImage) {
-    var byte = File('$appDoc/bg').readAsBytesSync();
-    ima = Image.memory(byte); 
+      var byte = File('$appDoc/bg').readAsBytesSync();
+      ima = Image.memory(byte);
     }
     return Container(
       padding: const EdgeInsets.all(8),
@@ -58,10 +59,7 @@ class _ProfBoxState extends State<ProfBox> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           InkWell(
-            onTap: () async {
-              await getImage();
-             
-            },
+            onTap:()=>getImage(),
             child: CircleAvatar(
                 backgroundColor: MyColor.bgSearchBarColor,
                 radius: 40,
@@ -92,9 +90,9 @@ class _ProfBoxState extends State<ProfBox> {
 
   Future getImage() async {
     var ximage = await ImagePicker().pickImage(source: ImageSource.gallery);
-    File image;  image = File(ximage!.path);
-     await image.copy('$appDoc/bg').then((value) => setState((){}));
-   
+    File image;
+    image = File(ximage!.path);
+    await image.copy('$appDoc/bg').then((value) {setState(() {});});
 
   }
 }
