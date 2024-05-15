@@ -88,7 +88,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                       'assets/image/destination.png',
                       scale: 9,
                     ),
-                    SizedBox(width: 230,child: Text(address,style: MyStyle.text,)),
+                    SizedBox(width:240,child:Text(address,style: MyStyle.text,)),
                   ],
                 ),
                 MainButton(
