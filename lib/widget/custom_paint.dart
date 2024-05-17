@@ -1,15 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_flutter/component/color.dart';
 
-List<IconData> icons = const [
-      CupertinoIcons.house_fill,
-      CupertinoIcons.person_fill,
-      CupertinoIcons.shopping_cart,
-      CupertinoIcons.clock_fill
-    ];
 
-List name=['Home','Profile','Cart','History'];
 
 class BtnNotch extends CustomPainter{
   @override

@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class SharedPreferencesConstant{
   SharedPreferencesConstant._();
 
@@ -7,3 +9,14 @@ class SharedPreferencesConstant{
   static String password='password';
   static String image='ima';
 }
+
+
+
+List<IconData> icons = const [
+      CupertinoIcons.house_fill,
+      CupertinoIcons.person_fill,
+      CupertinoIcons.shopping_cart,
+      CupertinoIcons.heart
+    ];
+
+List name=['Home','Profile','Cart','Wishlist'];

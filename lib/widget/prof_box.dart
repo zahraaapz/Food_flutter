@@ -65,7 +65,7 @@ class _ProfBoxState extends State<ProfBox> {
                 radius: 40,
                 backgroundImage: ima != null
                     ? ima!.image
-                    : const ExactAssetImage('assets/image/5.png')),
+                    : const ExactAssetImage('assets/image/4.png')),
           ),
           Column(
             children: [

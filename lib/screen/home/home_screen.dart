@@ -5,6 +5,7 @@ import 'package:food_flutter/component/api_key.dart';
 import 'package:food_flutter/screen/home/extrct_home.dart';
 import 'package:food_flutter/screen/profile/profile_screen.dart';
 import '../../component/color.dart';
+import '../../component/constant.dart';
 import '../../component/text_style.dart';
 import '../../widget/badge.dart';
 import '../../widget/custom_paint.dart';
