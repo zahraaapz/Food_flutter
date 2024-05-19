@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 ExtrctHome(select: select),
              
-                const ProfileScreen(),
+                 ProfileScreen(),
 
                 const CartScreen(),
                  const CartScreen(),

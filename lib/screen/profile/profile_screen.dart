@@ -6,15 +6,9 @@ import 'package:food_flutter/widget/btn.dart';
 import 'package:food_flutter/widget/prof_box.dart';
 import '../../component/color.dart';
 import '../../widget/title_box.dart';
-Image? ima;
-class ProfileScreen extends StatefulWidget {
+
+class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
-
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {

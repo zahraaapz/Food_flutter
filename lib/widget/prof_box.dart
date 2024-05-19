@@ -30,6 +30,7 @@ class _ProfBoxState extends State<ProfBox> {
     super.initState();
     getAppDicrectory().then((v) {
       setState(() {});
+   
     });
   }
 
@@ -90,8 +91,9 @@ class _ProfBoxState extends State<ProfBox> {
 
   Future getImage() async {
     var ximage = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if(ximage==null){return;}
     File image;
-    image = File(ximage!.path);
+    image = File(ximage.path);
     await image.copy('$appDoc/bg').then((value) {setState(() {});});
 
   }
