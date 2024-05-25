@@ -93,7 +93,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                 ),
                 MainButton(
                     onTap:(){
-                      Navigator.pushNamed(context,RouteName.homeScreen);
+                      Navigator.pushReplacementNamed(context,RouteName.homeScreen);
                     },
                     size: const Size(400, 800),
                     txtcolor: Colors.white,
