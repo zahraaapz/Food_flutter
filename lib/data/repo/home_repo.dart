@@ -25,18 +25,5 @@ class HomeRepository implements IHomeRepo {
   }
   
   @override
- Future <List> allProduct()async {
-    List list=[];
-    await getHome().chickenList!.then((value) => list.addAll(value));
-    await getHome().cocktailList!.then((value) => list.addAll(value));
-    await getHome().cocoaList!.then((value) => list.addAll(value));
-    await getHome().dessertList!.then((value) => list.addAll(value));
-    await getHome().porkList!.then((value) => list.addAll(value));
-    await getHome().sideList!.then((value) => list.addAll(value));
-    await getHome().pastaList!.then((value) => list.addAll(value));
-    await getHome().shakeList!.then((value) => list.addAll(value));
-    await getHome().staterist!.then((value) => list.addAll(value));
-    await getHome().veganList!.then((value) => list.addAll(value));
-  return list;
-  }
+ Future <List> allProduct()async =>iHomeDataSrc.allProduct();
 }

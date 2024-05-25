@@ -8,8 +8,10 @@ import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
+import 'package:food_flutter/data/model/wish.dart';
 import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/screen/cart/bloc/cart_bloc.dart';
+import 'package:food_flutter/screen/wish_screen.dart';
 import 'package:food_flutter/widget/app_bar.dart';
 import 'package:food_flutter/widget/btn.dart';
 import 'package:food_flutter/widget/frame_image.dart';
@@ -92,7 +94,12 @@ class _CartListState extends State<CartList> {
                         motion: const ScrollMotion(),
                         children: [
                           SlidableAction(
-                            onPressed: (ctx) {},
+                            onPressed: (ctx) {
+                             
+                          myBox.add(Wish(name:widget.list[index].name,id: widget.list[index].id,imgUrl: widget.list[index].imgUrl));
+                           
+                           print(myBox.values.toList().toString());
+                            },
                             icon: CupertinoIcons.heart,
                             backgroundColor: MyColor.bgSplashScreenColor,
                           ),

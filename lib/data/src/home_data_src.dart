@@ -8,6 +8,8 @@ abstract class IHomeDataSrc {
   Future<List<Meal>> mealList(String url);
   Future<List<Drink>> drinkList(String url);
   Home getHome();
+  Future <List> allProduct();
+
 }
 
 class HomeRemoteDataSrc implements IHomeDataSrc {
@@ -49,6 +51,22 @@ class HomeRemoteDataSrc implements IHomeDataSrc {
         shakeList: drinkList(ApiUrl().baseDrink + RouteVersion().shake),
         dessertList: mealList(ApiUrl().baseMeal + RouteVersion().dessert),
         cocktailList: drinkList(ApiUrl().baseDrink + RouteVersion().cocktail));
+  }
+
+    @override
+ Future <List> allProduct()async {
+    List list=[];
+    await getHome().chickenList!.then((value) => list.addAll(value));
+    await getHome().cocktailList!.then((value) => list.addAll(value));
+    await getHome().cocoaList!.then((value) => list.addAll(value));
+    await getHome().dessertList!.then((value) => list.addAll(value));
+    await getHome().porkList!.then((value) => list.addAll(value));
+    await getHome().sideList!.then((value) => list.addAll(value));
+    await getHome().pastaList!.then((value) => list.addAll(value));
+    await getHome().shakeList!.then((value) => list.addAll(value));
+    await getHome().staterist!.then((value) => list.addAll(value));
+    await getHome().veganList!.then((value) => list.addAll(value));
+  return list;
   }
 
 }

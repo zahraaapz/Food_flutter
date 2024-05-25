@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_flutter/component/api_key.dart';
 import 'package:food_flutter/screen/home/extrct_home.dart';
+import 'package:food_flutter/screen/wish_screen.dart';
 import 'package:food_flutter/screen/profile/profile_screen.dart';
 import '../../component/color.dart';
 import '../../component/constant.dart';
@@ -44,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                  ProfileScreen(),
 
                 const CartScreen(),
-                 const CartScreen(),
+                const WishListScreen(),
               ],
             ),
           ),

@@ -10,7 +10,11 @@ import 'package:food_flutter/screen/cart/bloc/cart_bloc.dart';
 import 'package:food_flutter/screen/home/home_screen.dart';
 import 'package:food_flutter/screen/register/cubit/auth_cubit.dart';
 import 'package:food_flutter/screen/splash_screen.dart';
+import 'package:food_flutter/screen/wish_screen.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'component/api_key.dart';
+import 'data/model/wish.dart';
 import 'utils/sharedPre_mng.dart';
 
 void main() async {
@@ -23,6 +27,9 @@ void main() async {
       .setSelfSigned(status: true);
 
   Account users = Account(client);
+    await getApplicationDocumentsDirectory().then((value) => Hive.init(value.path));
+    Hive.registerAdapter(WishAdapter());
+    await Hive.openBox<Wish>(box);
   runApp(MyApp(account: users));
 
 }
