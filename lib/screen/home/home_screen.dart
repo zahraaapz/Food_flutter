@@ -5,6 +5,7 @@ import 'package:food_flutter/component/api_key.dart';
 import 'package:food_flutter/screen/home/extrct_home.dart';
 import 'package:food_flutter/screen/wish_screen.dart';
 import 'package:food_flutter/screen/profile/profile_screen.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import '../../component/color.dart';
 import '../../component/constant.dart';
 import '../../component/text_style.dart';
@@ -124,6 +125,13 @@ iconsBtn(int i){
                  valueListenable:cartCount ,
                 builder: (context,value,child) {
                 return MyBadge(count:value);
+                  },
+                ),
+          if(i==3)
+           ValueListenableBuilder(
+                 valueListenable:myBox.listenable() ,
+                builder: (context,value,child) {
+                return MyBadge(count:value.values.toList().length);
                   },
                 )
         ],

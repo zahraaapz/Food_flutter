@@ -43,7 +43,7 @@ class _ExtrctHomeState extends State<ExtrctHome> {
         drawerScrimColor: const Color.fromARGB(104, 0, 0, 0),
         drawer: drawer(),
         backgroundColor: MyColor.bgColor,
-        appBar: const CustomAppBar(childs: SizedBox.shrink()),
+        appBar: const CustomAppBar(child: SizedBox.shrink()),
         body: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
           if (state is HomeLoading) {
             return const Center(child: CircularProgressIndicator());

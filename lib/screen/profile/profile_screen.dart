@@ -16,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
     var size = MediaQuery.sizeOf(context);
     return Scaffold(
       backgroundColor: MyColor.bgColor,
-      appBar: CustomAppBar(childs: Text(MyStrings.myProfile)),
+      appBar: CustomAppBar(child: Text(MyStrings.myProfile)),
       body: Column(children: [
         Padding(
           padding: const EdgeInsets.only(left: 13, right: 12, top: 5),

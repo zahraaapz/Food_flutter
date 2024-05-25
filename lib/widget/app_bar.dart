@@ -6,27 +6,24 @@ import '../component/color.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSize {
   const CustomAppBar(
       {super.key,
-      required this.childs,
+      required this.child,
       this.systemOverlayStyle = const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
           systemNavigationBarColor: MyColor.bgColor,
           statusBarColor: MyColor.bgColor)});
-  final childs;
+  final Widget   child;
   final systemOverlayStyle;
   @override
   Widget build(BuildContext context) {
     return AppBar(
       systemOverlayStyle: systemOverlayStyle,
-      title: childs,
+      title: child,
       backgroundColor: MyColor.bgColor,
     );
   }
+  
 
-  @override
-  // TODO: implement child
-  Widget get child => childs;
 
-  @override
-  // TODO: implement preferredSize
+ @override
   Size get preferredSize => const Size(400, 50);
 }

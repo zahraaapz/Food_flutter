@@ -28,7 +28,7 @@ class _DetailProductState extends State<DetailProduct> {
     var size = MediaQuery.sizeOf(context);
     return Scaffold(
       backgroundColor: MyColor.bgColor,
-      appBar: CustomAppBar(childs: Text(MyStrings.detail)),
+      appBar: CustomAppBar(child: Text(MyStrings.detail)),
       body: SizedBox(
         width: 420,
         child: Column(

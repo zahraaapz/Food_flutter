@@ -28,6 +28,7 @@ class MyStrings {
   static String order= 'Order';
   static String pendingReview= 'Pending reviews';
   static String faq= 'Faq';
+  static String wishlist= 'Wishlist';
   static String help= 'Help';
   static String change=  'change';
   static String myProfile= 'My profile';

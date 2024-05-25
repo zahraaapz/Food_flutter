@@ -22,7 +22,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(childs: Text(MyStrings.cart)),
+      appBar: CustomAppBar(child: Text(MyStrings.cart)),
       body: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
           if (state is CartLoading) {

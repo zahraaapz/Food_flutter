@@ -31,7 +31,7 @@ class _MainScreenState extends State<MainScreen> {
     final screenWidth = MediaQuery.of(context).size;
     return Scaffold(
         appBar: CustomAppBar(
-          childs: Text(MyStrings.items),
+          child: Text(MyStrings.items),
         ),
         backgroundColor: MyColor.bgColor,
         body: list.isNotEmpty

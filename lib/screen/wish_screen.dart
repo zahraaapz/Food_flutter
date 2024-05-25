@@ -4,8 +4,10 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:food_flutter/component/color.dart';
 import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
+import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/data/model/wish.dart';
+import 'package:food_flutter/widget/app_bar.dart';
 import 'package:food_flutter/widget/frame_image.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -23,22 +25,16 @@ class WishListScreen extends StatefulWidget {
 class _WishListScreenState extends State<WishListScreen> {
 
 
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    
-  }
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     return Scaffold(
       backgroundColor: MyColor.bgColor,
+      appBar: CustomAppBar(child: Text(MyStrings.wishlist)),
       body: SizedBox(
         height: 700,
         width: 410,
-        child: myBox.isNotEmpty
+        child: myBox.values.isNotEmpty
             ? ValueListenableBuilder(
               valueListenable: myBox.listenable(),
               builder: ( context, value, child) { 
@@ -60,9 +56,10 @@ class _WishListScreenState extends State<WishListScreen> {
                             ),
                             SlidableAction(
                               onPressed: (ctx) {
-                                  
-                                    list.remove(list[index]);
-                                    myBox.deleteAt(index);
+                                  setState(() {
+                                   myBox.deleteAt(index);
+
+                                  });
                               
                               },
                               icon: CupertinoIcons.delete,
