@@ -11,143 +11,138 @@ import 'package:food_flutter/widget/app_bar.dart';
 import 'package:food_flutter/widget/frame_image.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-String box='MyBox';
-final myBox=Hive.box<Wish>(box);
+String box = 'MyBox';
+final myBox = Hive.box<Wish>(box);
 
 class WishListScreen extends StatefulWidget {
-  const WishListScreen({super.key,});
-
+  const WishListScreen({
+    super.key,
+  });
 
   @override
   State<WishListScreen> createState() => _WishListScreenState();
 }
 
 class _WishListScreenState extends State<WishListScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     return Scaffold(
-      backgroundColor: MyColor.bgColor,
-      appBar: CustomAppBar(child: Text(MyStrings.wishlist)),
-      body: SizedBox(
-        height: 700,
-        width: 410,
-        child: myBox.values.isNotEmpty
-            ? ValueListenableBuilder(
-              valueListenable: myBox.listenable(),
-              builder: ( context, value, child) { 
-                final list=value.values.toList();
-              return ListView.builder(
-                  itemCount: list.length,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return Slidable(
-                      key: Key('$index'),
-                      startActionPane: ActionPane(
-                          extentRatio: 0.34,
-                          motion: const ScrollMotion(),
-                          children: [
-                            SlidableAction(
-                              onPressed: (ctx) {},
-                              icon: CupertinoIcons.heart,
-                              backgroundColor: MyColor.bgSplashScreenColor,
-                            ),
-                            SlidableAction(
-                              onPressed: (ctx) {
-                                  setState(() {
-                                   myBox.deleteAt(index);
-
-                                  });
-                              
-                              },
-                              icon: CupertinoIcons.delete,
-                              backgroundColor: MyColor.bgSplashScreenColor,
-                            ),
-                          ]),
-                      child: Container(
-                        height: 90,
-                        margin: const EdgeInsets.only(
-                            left: 15, top: 10, right: 15, bottom: 10),
-                        padding: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30)),
-                        child: Row(
-                          children: [
-                            FrameImage(
-                              image: list[index],
-                              size: 70,
-                            ),
-                            Dimens.large.width,
-                            SizedBox(
-                              width: 120,
-                              child: Text(
-                                '${list[index].name}\n${list[index].id}',
-                              ),
-                            ),
-                            (Dimens.large * 1.5).width,
-                            Container(
-                              width: 110,
-                              height: 30,
+        backgroundColor: MyColor.bgColor,
+        appBar: CustomAppBar(child: Text(MyStrings.wishlist)),
+        body: ValueListenableBuilder(
+            valueListenable: myBox.listenable(),
+            builder: (context, value, child) {
+              final list = value.values.toList();
+              return SizedBox(
+                height: 700,
+                width: 410,
+                child: list.isNotEmpty
+                    ? ListView.builder(
+                        itemCount: list.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return Slidable(
+                            key: Key('$index'),
+                            startActionPane: ActionPane(
+                                extentRatio: 0.34,
+                                motion: const ScrollMotion(),
+                                children: [
+                                  SlidableAction(
+                                    onPressed: (ctx) {},
+                                    icon: CupertinoIcons.heart_fill,
+                                    backgroundColor:
+                                        MyColor.bgSplashScreenColor,
+                                  ),
+                                  SlidableAction(
+                                    onPressed: (ctx) {
+                                      setState(() {
+                                        myBox.deleteAt(index);
+                                      });
+                                    },
+                                    icon: CupertinoIcons.delete,
+                                    backgroundColor:
+                                        MyColor.bgSplashScreenColor,
+                                  ),
+                                ]),
+                            child: Container(
+                              height: 90,
+                              margin: const EdgeInsets.only(
+                                  left: 15, top: 10, right: 15, bottom: 10),
+                              padding: const EdgeInsets.all(5),
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: MyColor.bgSplashScreenColor),
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(30)),
                               child: Row(
                                 children: [
-                                  IconButton(
-                                      onPressed: () {
-                                        // setState(() {
-                                        //   qnty[index]++;
-                                        // });
-                                      
-                                      },
-                                      icon: const Icon(
-                                        CupertinoIcons.plus,
-                                        size: 12,
-                                        color: Colors.white,
-                                      )),
-                                  Text(
-                                    '1',
-                                    style: MyStyle.orangeBtnText
-                                        .copyWith(fontSize: 10),
+                                  FrameImage(
+                                    image: list[index],
+                                    size: 70,
                                   ),
-                                  IconButton(
-                                      onPressed: () {
-                                        // setState(() {
-                                        //   qnty[index]--;
-                                        // });
-                                       
-                                      },
-                                      icon: const Icon(
-                                        CupertinoIcons.minus,
-                                        size: 12,
-                                        color: Colors.white,
-                                      )),
+                                  Dimens.large.width,
+                                  SizedBox(
+                                    width: 120,
+                                    child: Text(
+                                      '${list[index].name}\n${list[index].id}',
+                                    ),
+                                  ),
+                                  (Dimens.large * 1.5).width,
+                                  Container(
+                                    width: 110,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        color: MyColor.bgSplashScreenColor),
+                                    child: Row(
+                                      children: [
+                                        IconButton(
+                                            onPressed: () {
+                                              // setState(() {
+                                              //   qnty[index]++;
+                                              // });
+                                            },
+                                            icon: const Icon(
+                                              CupertinoIcons.plus,
+                                              size: 12,
+                                              color: Colors.white,
+                                            )),
+                                        Text(
+                                          '1',
+                                          style: MyStyle.orangeBtnText
+                                              .copyWith(fontSize: 10),
+                                        ),
+                                        IconButton(
+                                            onPressed: () {
+                                              // setState(() {
+                                              //   qnty[index]--;
+                                              // });
+                                            },
+                                            icon: const Icon(
+                                              CupertinoIcons.minus,
+                                              size: 12,
+                                              color: Colors.white,
+                                            )),
+                                      ],
+                                    ),
+                                  )
                                 ],
                               ),
-                            )
-                          ],
-                        ),
+                            ),
+                          );
+                        },
+                      )
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/image/5.png'),
+                          Dimens.medium.height,
+                          Text(
+                            '  List is Empty',
+                            style: MyStyle.whiteBtnText,
+                          ),
+                        ],
                       ),
-                    );
-                  },
-                );}
-            )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset('assets/image/5.png'),
-                  Dimens.medium.height,
-                  Text(
-                    '  List is Empty',
-                    style: MyStyle.whiteBtnText,
-                  ),
-                ],
-              ),
-      ),
-
-    );
+              );
+            }));
   }
 }

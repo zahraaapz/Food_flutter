@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
+import 'package:food_flutter/data/model/wish.dart';
 import 'package:food_flutter/screen/cart/bloc/cart_bloc.dart';
+import 'package:food_flutter/screen/wish_screen.dart';
 import 'package:food_flutter/widget/main_button.dart';
 import '../component/api_key.dart';
 import '../component/color.dart';
@@ -23,6 +24,8 @@ class DetailProduct extends StatefulWidget {
 }
 
 class _DetailProductState extends State<DetailProduct> {
+  bool isFav = false;
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
@@ -77,29 +80,63 @@ class _DetailProductState extends State<DetailProduct> {
                 ],
               ),
             ),
-            MainButton(
-              onTap: () {
-                setState(() {
-                  cart.add(widget.product);
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        isFav =! isFav;
+                      });
+                      myBox.add(Wish(
+                          name: widget.product.name,
+                          id: widget.product.id,
+                          imgUrl: widget.product.imgUrl));
+                    },
+                    icon: isFav
+                        ? const Icon(
+                            CupertinoIcons.heart_fill,
+                            size: 30,
+                            color: MyColor.bgSplashScreenColor,
+                          )
+                        : const Icon(
+                            CupertinoIcons.heart,
+                             size: 30,
+                            color: MyColor.bgSplashScreenColor,
+                          )),
+                MainButton(
+                  onTap: () {
+                    setState(() {
+                      cart.add(widget.product);
 
-                  BlocProvider.of<CartBloc>(context).add(CartEventInit());
+                      BlocProvider.of<CartBloc>(context).add(CartEventInit());
 
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      backgroundColor: MyColor.bgSplashScreenColor.withOpacity(0.8),
-                      duration: Duration(milliseconds: 700),
-                      behavior: SnackBarBehavior.floating,
-                      elevation:0.5,
-                     margin: const EdgeInsets.only(bottom: 670,left: 18,right: 18),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                      content:  SizedBox(
-                          height: 40, child: Text('Added to Cart',style:MyStyle.orangeBtnText,textAlign: TextAlign.justify,))));
-                });
-              },
-              size: size,
-              txtcolor: Colors.white,
-              txt: MyStrings.addtoCart,
-              bgcolor: MyColor.bgButtonColor,
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          backgroundColor:
+                              MyColor.bgSplashScreenColor.withOpacity(0.8),
+                          duration: const Duration(milliseconds: 700),
+                          behavior: SnackBarBehavior.floating,
+                          elevation: 0.5,
+                          margin: const EdgeInsets.only(
+                              bottom: 670, left: 18, right: 18),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)),
+                          content: SizedBox(
+                              height: 40,
+                              child: Text(
+                                'Added to Cart',
+                                style: MyStyle.orangeBtnText,
+                                textAlign: TextAlign.justify,
+                              ))));
+                    });
+                  },
+                  size: size,
+                  txtcolor: Colors.white,
+                  txt: MyStrings.addtoCart,
+                  bgcolor: MyColor.bgButtonColor,
+                ),
+              ],
             ),
           ],
         ),

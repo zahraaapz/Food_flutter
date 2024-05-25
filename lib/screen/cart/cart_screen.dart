@@ -13,7 +13,7 @@ import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/screen/cart/bloc/cart_bloc.dart';
 import 'package:food_flutter/screen/wish_screen.dart';
 import 'package:food_flutter/widget/app_bar.dart';
-import 'package:food_flutter/widget/btn.dart';
+import 'package:food_flutter/widget/_special_btn.dart';
 import 'package:food_flutter/widget/frame_image.dart';
 
 class CartScreen extends StatelessWidget {
@@ -95,10 +95,12 @@ class _CartListState extends State<CartList> {
                         children: [
                           SlidableAction(
                             onPressed: (ctx) {
-                             
-                          myBox.add(Wish(name:widget.list[index].name,id: widget.list[index].id,imgUrl: widget.list[index].imgUrl));
-                           
-                           print(myBox.values.toList().toString());
+                              myBox.add(Wish(
+                                  name: widget.list[index].name,
+                                  id: widget.list[index].id,
+                                  imgUrl: widget.list[index].imgUrl));
+
+                              print(myBox.values.toList().toString());
                             },
                             icon: CupertinoIcons.heart,
                             backgroundColor: MyColor.bgSplashScreenColor,
@@ -200,7 +202,7 @@ class _CartListState extends State<CartList> {
       ),
       bottomNavigationBar: Visibility(
         visible: widget.list.isNotEmpty,
-        child: btn(context, title: MyStrings.completeOrder, onTap: () {
+        child: specialBtn(context, title: MyStrings.completeOrder, onTap: () {
           Navigator.pushNamed(context, RouteName.destination);
         }, size: size),
       ),
