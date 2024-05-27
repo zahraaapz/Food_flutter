@@ -5,7 +5,7 @@ import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
-import 'package:food_flutter/data/model/wish.dart';
+import 'package:food_flutter/data/model/product.dart';
 import 'package:food_flutter/screen/cart/bloc/cart_bloc.dart';
 import 'package:food_flutter/screen/wish_screen.dart';
 import 'package:food_flutter/widget/main_button.dart';
@@ -23,11 +23,32 @@ class DetailProduct extends StatefulWidget {
   State<DetailProduct> createState() => _DetailProductState();
 }
 
+
 class _DetailProductState extends State<DetailProduct> {
-  bool isFav = false;
+late  Product pro;
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+final g=myBox.values.where((element) =>widget.product.id==element.id).toList();
+//final index=myBox.values.toList().indexOf(widget.product);
+
+if (g.isNotEmpty) {
+     pro=Product(id: 'id', imgUrl: 'imgUrl', name: 'name', isFav:g[0].isFav);
+      print(g[0].isFav);
+}else{
+     pro=Product(id: 'id', imgUrl: 'imgUrl', name: 'name', isFav:false);
+
+}
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
+
+
     var size = MediaQuery.sizeOf(context);
     return Scaffold(
       backgroundColor: MyColor.bgColor,
@@ -83,18 +104,26 @@ class _DetailProductState extends State<DetailProduct> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                
                 IconButton(
                     onPressed: () {
                       setState(() {
-                        isFav =! isFav;
+                        pro.isFav = !(pro.isFav);
+                        
                       });
-                      myBox.add(Wish(
-                          name: widget.product.name,
-                          id: widget.product.id,
-                          imgUrl: widget.product.imgUrl));
+
+                     pro.id = widget.product.id;
+                      pro.imgUrl = widget.product.imgUrl;
+                      pro.name = widget.product.name;
+                      
+                      if(pro.isInBox) {
+                         pro.save();
+                      } else {
+                       
+                        myBox.add(pro);
+
+                      }
                     },
-                    icon: isFav
+                    icon:pro.isFav
                         ? const Icon(
                             CupertinoIcons.heart_fill,
                             size: 30,
@@ -102,14 +131,14 @@ class _DetailProductState extends State<DetailProduct> {
                           )
                         : const Icon(
                             CupertinoIcons.heart,
-                             size: 30,
+                            size: 30,
                             color: MyColor.bgSplashScreenColor,
                           )),
                 MainButton(
                   onTap: () {
                     setState(() {
                       cart.add(widget.product);
-
+  });
                       BlocProvider.of<CartBloc>(context).add(CartEventInit());
 
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -129,7 +158,7 @@ class _DetailProductState extends State<DetailProduct> {
                                 style: MyStyle.orangeBtnText,
                                 textAlign: TextAlign.justify,
                               ))));
-                    });
+                  
                   },
                   size: size,
                   txtcolor: Colors.white,

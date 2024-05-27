@@ -14,7 +14,7 @@ import 'package:food_flutter/screen/wish_screen.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'component/api_key.dart';
-import 'data/model/wish.dart';
+import 'data/model/product.dart';
 import 'utils/sharedPre_mng.dart';
 
 void main() async {
@@ -28,8 +28,8 @@ void main() async {
 
   Account users = Account(client);
     await getApplicationDocumentsDirectory().then((value) => Hive.init(value.path));
-    Hive.registerAdapter(WishAdapter());
-    await Hive.openBox<Wish>(box);
+    Hive.registerAdapter(ProductAdapter());
+    await Hive.openBox<Product>(box);
   runApp(MyApp(account: users));
 
 }

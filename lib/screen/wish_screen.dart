@@ -6,13 +6,13 @@ import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
-import 'package:food_flutter/data/model/wish.dart';
+import 'package:food_flutter/data/model/product.dart';
 import 'package:food_flutter/widget/app_bar.dart';
 import 'package:food_flutter/widget/frame_image.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-String box = 'MyBox';
-final myBox = Hive.box<Wish>(box);
+String box = 'MyBoxx';
+final myBox = Hive.box<Product>(box);
 
 class WishListScreen extends StatefulWidget {
   const WishListScreen({

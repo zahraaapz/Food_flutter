@@ -8,7 +8,7 @@ import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
-import 'package:food_flutter/data/model/wish.dart';
+import 'package:food_flutter/data/model/product.dart';
 import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/screen/cart/bloc/cart_bloc.dart';
 import 'package:food_flutter/screen/wish_screen.dart';
@@ -95,10 +95,11 @@ class _CartListState extends State<CartList> {
                         children: [
                           SlidableAction(
                             onPressed: (ctx) {
-                              myBox.add(Wish(
+                              myBox.add(Product(
                                   name: widget.list[index].name,
                                   id: widget.list[index].id,
-                                  imgUrl: widget.list[index].imgUrl));
+                                  imgUrl: widget.list[index].imgUrl,
+                                  isFav:false));
 
                               print(myBox.values.toList().toString());
                             },
