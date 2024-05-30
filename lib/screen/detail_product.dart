@@ -23,32 +23,18 @@ class DetailProduct extends StatefulWidget {
   State<DetailProduct> createState() => _DetailProductState();
 }
 
-
 class _DetailProductState extends State<DetailProduct> {
-late  Product pro;
-
-@override
+  List<Product> g = [];
+  @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-final g=myBox.values.where((element) =>widget.product.id==element.id).toList();
-//final index=myBox.values.toList().indexOf(widget.product);
-
-if (g.isNotEmpty) {
-     pro=Product(id: 'id', imgUrl: 'imgUrl', name: 'name', isFav:g[0].isFav);
-      print(g[0].isFav);
-}else{
-     pro=Product(id: 'id', imgUrl: 'imgUrl', name: 'name', isFav:false);
-
-}
-
+    g = myBox.values
+        .where((element) => widget.product.id == element.id)
+        .toList();
   }
-
 
   @override
   Widget build(BuildContext context) {
-
-
     var size = MediaQuery.sizeOf(context);
     return Scaffold(
       backgroundColor: MyColor.bgColor,
@@ -106,24 +92,44 @@ if (g.isNotEmpty) {
               children: [
                 IconButton(
                     onPressed: () {
-                      setState(() {
-                        pro.isFav = !(pro.isFav);
-                        
+
+                    
+
+
+                      if (g.isEmpty) {
+                         Product product = Product(
+                          id: widget.product.id,
+                          name: widget.product.name,
+                          imgUrl: widget.product.imgUrl,
+                          isFav:true);
+                        myBox.add(product);
+                         setState(() {
+                        g = [product];
                       });
+                      }
 
-                     pro.id = widget.product.id;
-                      pro.imgUrl = widget.product.imgUrl;
-                      pro.name = widget.product.name;
-                      
-                      if(pro.isInBox) {
-                         pro.save();
-                      } else {
-                       
-                        myBox.add(pro);
+                     
+                      if (myBox.isNotEmpty) {
+                        for (var e in myBox.values) {
+                          if (e.id  == widget.product.id) {
+                            setState(() {
+                               e.isFav = !e.isFav;
+                            });
 
+                            if (!e.isFav) {
+                             if(myBox.values.contains(g.first)) {
+                               final index = myBox.values.toList().indexOf(g.first);
+                               myBox.deleteAt(index);
+                                print(myBox.values);
+                              setState(() {
+                                g = [];
+                              });}
+                            }
+                          }
+                        }
                       }
                     },
-                    icon:pro.isFav
+                    icon: g.isNotEmpty
                         ? const Icon(
                             CupertinoIcons.heart_fill,
                             size: 30,
@@ -136,29 +142,27 @@ if (g.isNotEmpty) {
                           )),
                 MainButton(
                   onTap: () {
-                    setState(() {
-                      cart.add(widget.product);
-  });
-                      BlocProvider.of<CartBloc>(context).add(CartEventInit());
+                    cart.add(widget.product);
 
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          backgroundColor:
-                              MyColor.bgSplashScreenColor.withOpacity(0.8),
-                          duration: const Duration(milliseconds: 700),
-                          behavior: SnackBarBehavior.floating,
-                          elevation: 0.5,
-                          margin: const EdgeInsets.only(
-                              bottom: 670, left: 18, right: 18),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30)),
-                          content: SizedBox(
-                              height: 40,
-                              child: Text(
-                                'Added to Cart',
-                                style: MyStyle.orangeBtnText,
-                                textAlign: TextAlign.justify,
-                              ))));
-                  
+                    BlocProvider.of<CartBloc>(context).add(CartEventInit());
+
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        backgroundColor:
+                            MyColor.bgSplashScreenColor.withOpacity(0.8),
+                        duration: const Duration(milliseconds: 700),
+                        behavior: SnackBarBehavior.floating,
+                        elevation: 0.5,
+                        margin: const EdgeInsets.only(
+                            bottom: 670, left: 18, right: 18),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        content: SizedBox(
+                            height: 40,
+                            child: Text(
+                              'Added to Cart',
+                              style: MyStyle.orangeBtnText,
+                              textAlign: TextAlign.justify,
+                            ))));
                   },
                   size: size,
                   txtcolor: Colors.white,

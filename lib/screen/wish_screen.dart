@@ -49,16 +49,10 @@ class _WishListScreenState extends State<WishListScreen> {
                                 motion: const ScrollMotion(),
                                 children: [
                                   SlidableAction(
-                                    onPressed: (ctx) {},
-                                    icon: CupertinoIcons.heart_fill,
-                                    backgroundColor:
-                                        MyColor.bgSplashScreenColor,
-                                  ),
-                                  SlidableAction(
                                     onPressed: (ctx) {
-                                      setState(() {
-                                        myBox.deleteAt(index);
-                                      });
+                                    
+                                        value.deleteAt(index);
+                                     
                                     },
                                     icon: CupertinoIcons.delete,
                                     backgroundColor:
