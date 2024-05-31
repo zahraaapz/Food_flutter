@@ -91,39 +91,38 @@ class _DetailProductState extends State<DetailProduct> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
-                    onPressed: () {
-
-                    
-
-
+                    onPressed: (){
                       if (g.isEmpty) {
-                         Product product = Product(
-                          id: widget.product.id,
-                          name: widget.product.name,
-                          imgUrl: widget.product.imgUrl,
-                          isFav:true);
+                        Product product = Product(
+                            id: widget.product.id,
+                            name: widget.product.name,
+                            imgUrl: widget.product.imgUrl,
+                            isFav: false);
+
                         myBox.add(product);
-                         setState(() {
-                        g = [product];
-                      });
+                        setState(() {
+                          g = [product];
+                          print(g);
+                        });
                       }
 
-                     
-                      if (myBox.isNotEmpty) {
+                      if (g.isNotEmpty) {
                         for (var e in myBox.values) {
-                          if (e.id  == widget.product.id) {
+                          if (e.id == widget.product.id) {
                             setState(() {
-                               e.isFav = !e.isFav;
+                              e.isFav = !e.isFav;
                             });
 
                             if (!e.isFav) {
-                             if(myBox.values.contains(g.first)) {
-                               final index = myBox.values.toList().indexOf(g.first);
-                               myBox.deleteAt(index);
+                              if (myBox.values.contains(g.first)) {
+                                final index =
+                                    myBox.values.toList().indexOf(g.first);
+                                myBox.deleteAt(index);
                                 print(myBox.values);
-                              setState(() {
-                                g = [];
-                              });}
+                                setState(() {
+                                  g = [];
+                                });
+                              }
                             }
                           }
                         }
