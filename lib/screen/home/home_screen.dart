@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_flutter/component/api_key.dart';
 import 'package:food_flutter/screen/home/extrct_home.dart';
-import 'package:food_flutter/screen/wish_screen.dart';
+import 'package:food_flutter/screen/wish/wish_screen.dart';
 import 'package:food_flutter/screen/profile/profile_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../component/color.dart';

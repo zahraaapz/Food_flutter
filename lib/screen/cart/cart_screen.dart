@@ -11,10 +11,12 @@ import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/data/model/product.dart';
 import 'package:food_flutter/route/name.dart';
 import 'package:food_flutter/screen/cart/bloc/cart_bloc.dart';
-import 'package:food_flutter/screen/wish_screen.dart';
 import 'package:food_flutter/widget/app_bar.dart';
 import 'package:food_flutter/widget/_special_btn.dart';
 import 'package:food_flutter/widget/frame_image.dart';
+
+import '../../component/api_key.dart';
+
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -101,7 +103,6 @@ class _CartListState extends State<CartList> {
                                   imgUrl: widget.list[index].imgUrl,
                                   isFav:false));
 
-                              print(myBox.values.toList().toString());
                             },
                             icon: CupertinoIcons.heart,
                             backgroundColor: MyColor.bgSplashScreenColor,

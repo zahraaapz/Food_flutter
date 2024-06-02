@@ -7,7 +7,6 @@ import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
 import 'package:food_flutter/data/model/product.dart';
 import 'package:food_flutter/screen/cart/bloc/cart_bloc.dart';
-import 'package:food_flutter/screen/wish_screen.dart';
 import 'package:food_flutter/widget/main_button.dart';
 import '../component/api_key.dart';
 import '../component/color.dart';
@@ -24,11 +23,11 @@ class DetailProduct extends StatefulWidget {
 }
 
 class _DetailProductState extends State<DetailProduct> {
-  List<Product> g = [];
+  List<Product> wishProduct = [];
   @override
   void initState() {
     super.initState();
-    g = myBox.values
+    wishProduct = myBox.values
         .where((element) => widget.product.id == element.id)
         .toList();
   }
@@ -92,21 +91,20 @@ class _DetailProductState extends State<DetailProduct> {
               children: [
                 IconButton(
                     onPressed: (){
-                      if (g.isEmpty) {
-                        Product product = Product(
+                      if (wishProduct.isEmpty) {
+                        Product productFav = Product(
                             id: widget.product.id,
                             name: widget.product.name,
                             imgUrl: widget.product.imgUrl,
                             isFav: false);
 
-                        myBox.add(product);
+                        myBox.add(productFav);
                         setState(() {
-                          g = [product];
-                          print(g);
+                          wishProduct = [productFav];
                         });
                       }
 
-                      if (g.isNotEmpty) {
+                      if (wishProduct.isNotEmpty) {
                         for (var e in myBox.values) {
                           if (e.id == widget.product.id) {
                             setState(() {
@@ -114,13 +112,12 @@ class _DetailProductState extends State<DetailProduct> {
                             });
 
                             if (!e.isFav) {
-                              if (myBox.values.contains(g.first)) {
+                              if (myBox.values.contains(wishProduct.first)) {
                                 final index =
-                                    myBox.values.toList().indexOf(g.first);
+                                    myBox.values.toList().indexOf(wishProduct.first);
                                 myBox.deleteAt(index);
-                                print(myBox.values);
                                 setState(() {
-                                  g = [];
+                                  wishProduct = [];
                                 });
                               }
                             }
@@ -128,7 +125,7 @@ class _DetailProductState extends State<DetailProduct> {
                         }
                       }
                     },
-                    icon: g.isNotEmpty
+                    icon: wishProduct.isNotEmpty
                         ? const Icon(
                             CupertinoIcons.heart_fill,
                             size: 30,

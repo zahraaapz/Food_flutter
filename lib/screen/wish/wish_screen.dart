@@ -6,13 +6,13 @@ import 'package:food_flutter/component/dim.dart';
 import 'package:food_flutter/component/extention.dart';
 import 'package:food_flutter/component/strings.dart';
 import 'package:food_flutter/component/text_style.dart';
-import 'package:food_flutter/data/model/product.dart';
 import 'package:food_flutter/widget/app_bar.dart';
 import 'package:food_flutter/widget/frame_image.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-String box = 'MyBoxx';
-final myBox = Hive.box<Product>(box);
+import '../../component/api_key.dart';
+
+
 
 class WishListScreen extends StatefulWidget {
   const WishListScreen({
@@ -26,7 +26,6 @@ class WishListScreen extends StatefulWidget {
 class _WishListScreenState extends State<WishListScreen> {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
     return Scaffold(
         backgroundColor: MyColor.bgColor,
         appBar: CustomAppBar(child: Text(MyStrings.wishlist)),
