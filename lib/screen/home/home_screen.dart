@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:food_flutter/component/api_key.dart';
 import 'package:food_flutter/screen/home/extrct_home.dart';
 import 'package:food_flutter/screen/wish/wish_screen.dart';
@@ -122,14 +123,14 @@ iconsBtn(int i){
           ),
           if(i==2)
            ValueListenableBuilder(
-                 valueListenable:cartCount ,
+                 valueListenable:myCartBox.listenable() ,
                 builder: (context,value,child) {
-                return MyBadge(count:value);
+                return MyBadge(count:value.values.toList().length);
                   },
                 ),
           if(i==3)
            ValueListenableBuilder(
-                 valueListenable:myBox.listenable() ,
+                 valueListenable:myWishBox.listenable() ,
                 builder: (context,value,child) {
                 return MyBadge(count:value.values.toList().length);
                   },

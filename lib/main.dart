@@ -14,6 +14,7 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'component/api_key.dart';
 import 'data/model/product.dart';
+import 'screen/cart/cart_screen.dart';
 import 'utils/sharedPre_mng.dart';
 
 void main() async {
@@ -29,6 +30,7 @@ void main() async {
     await getApplicationDocumentsDirectory().then((value) => Hive.init(value.path));
     Hive.registerAdapter(ProductAdapter());
     await Hive.openBox<Product>(box);
+    await Hive.openBox<Product>(cartBox);
   runApp(MyApp(account: users));
 
 }

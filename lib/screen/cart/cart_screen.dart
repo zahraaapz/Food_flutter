@@ -14,9 +14,10 @@ import 'package:food_flutter/screen/cart/bloc/cart_bloc.dart';
 import 'package:food_flutter/widget/app_bar.dart';
 import 'package:food_flutter/widget/_special_btn.dart';
 import 'package:food_flutter/widget/frame_image.dart';
-
+import 'package:hive_flutter/hive_flutter.dart';
 import '../../component/api_key.dart';
 
+const String cartBox = 'cart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -30,28 +31,15 @@ class CartScreen extends StatelessWidget {
           if (state is CartLoading) {
             return const Center(child: CircularProgressIndicator());
           }
-          if (state is CartLoaded) {
-            return CartList(list: state.cart);
-          } else if (state is CartDeleteItem) {
-            return CartList(list: state.cart);
-          } else if (state is CartAddItem) {
-            if (state.cart.isNotEmpty) {
-              return CartList(list: state.cart);
-            } else {
-              return Center(
-                  child: Text(
-                'Error',
-                style: MyStyle.whiteBtnText,
-              ));
-            }
-          } else if (state is CartRemoveItem) {
-            return CartList(list: state.cart);
-          } else {
-            return Center(
+          if (state is CartLoadError) {
+             return Center(
                 child: Text(
               'Error',
               style: MyStyle.whiteBtnText,
             ));
+           
+          } else {
+            return CartList();
           }
         },
       ),
@@ -60,8 +48,8 @@ class CartScreen extends StatelessWidget {
 }
 
 class CartList extends StatefulWidget {
-  const CartList({super.key, this.list});
-  final list;
+  const CartList({super.key,});
+
 
   @override
   State<CartList> createState() => _CartListState();
@@ -71,9 +59,8 @@ class _CartListState extends State<CartList> {
   late List qnty;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    qnty = List.generate(widget.list.length, (index) => 1);
+    qnty = List.generate(myCartBox.length, (index) => 1);
   }
 
   @override
@@ -84,111 +71,117 @@ class _CartListState extends State<CartList> {
       body: SizedBox(
         height: 700,
         width: 410,
-        child: widget.list.isNotEmpty
-            ? ListView.builder(
-                itemCount: widget.list.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return Slidable(
-                    key: Key('$index'),
-                    startActionPane: ActionPane(
-                        extentRatio: 0.34,
-                        motion: const ScrollMotion(),
-                        children: [
-                          SlidableAction(
-                            onPressed: (ctx) {
-                              myBox.add(Product(
-                                  name: widget.list[index].name,
-                                  id: widget.list[index].id,
-                                  imgUrl: widget.list[index].imgUrl,
-                                  isFav:false));
+        child: myCartBox.isNotEmpty
+            ? ValueListenableBuilder(
+                valueListenable: myCartBox.listenable(),
+                builder:
+                    (BuildContext context, Box<Product> box, Widget? child) =>
+                        ListView.builder(
+                  itemCount: box.values.toList().length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                 final   list=box.values.toList();
+                    return Slidable(
+                      key: Key('$index'),
+                      startActionPane: ActionPane(
+                          extentRatio: 0.34,
+                          motion: const ScrollMotion(),
+                          children: [
+                            SlidableAction(
+                              onPressed: (ctx) {
+                                myWishBox.add(Product(
+                                    name: list[index].name,
+                                    id: list[index].id,
+                                    imgUrl: list[index].imgUrl,
+                                    isFav: false));
+                              },
+                              icon: CupertinoIcons.heart,
+                              backgroundColor: MyColor.bgSplashScreenColor,
+                            ),
+                            SlidableAction(
+                              onPressed: (ctx) {
+                                setState(() {
+                                 myCartBox.deleteAt(index);
 
-                            },
-                            icon: CupertinoIcons.heart,
-                            backgroundColor: MyColor.bgSplashScreenColor,
-                          ),
-                          SlidableAction(
-                            onPressed: (ctx) {
-                              setState(() {
-                                widget.list.remove(widget.list[index]);
-                              });
-                              BlocProvider.of<CartBloc>(context)
-                                  .add(CartEventDelete());
-                            },
-                            icon: CupertinoIcons.delete,
-                            backgroundColor: MyColor.bgSplashScreenColor,
-                          ),
-                        ]),
-                    child: Container(
-                      height: 90,
-                      margin: const EdgeInsets.only(
-                          left: 15, top: 10, right: 15, bottom: 10),
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(30)),
-                      child: Row(
-                        children: [
-                          FrameImage(
-                            image: widget.list[index],
-                            size: 70,
-                          ),
-                          Dimens.large.width,
-                          SizedBox(
-                            width: 120,
-                            child: Text(
-                              widget.list[index].name +
-                                  '\n${widget.list[index].id}',
+                                });
+                                BlocProvider.of<CartBloc>(context)
+                                    .add(CartEventDelete());
+                              },
+                              icon: CupertinoIcons.delete,
+                              backgroundColor: MyColor.bgSplashScreenColor,
                             ),
-                          ),
-                          (Dimens.large * 1.5).width,
-                          Container(
-                            width: 110,
-                            height: 30,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: MyColor.bgSplashScreenColor),
-                            child: Row(
-                              children: [
-                                IconButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        qnty[index]++;
-                                      });
-                                      BlocProvider.of<CartBloc>(context)
-                                          .add(CartEventAdd());
-                                    },
-                                    icon: const Icon(
-                                      CupertinoIcons.plus,
-                                      size: 12,
-                                      color: Colors.white,
-                                    )),
-                                Text(
-                                  qnty[index].toString(),
-                                  style: MyStyle.orangeBtnText
-                                      .copyWith(fontSize: 10),
-                                ),
-                                IconButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        qnty[index]--;
-                                      });
-                                      BlocProvider.of<CartBloc>(context)
-                                          .add(CartEventRemove());
-                                    },
-                                    icon: const Icon(
-                                      CupertinoIcons.minus,
-                                      size: 12,
-                                      color: Colors.white,
-                                    )),
-                              ],
+                          ]),
+                      child: Container(
+                        height: 90,
+                        margin: const EdgeInsets.only(
+                            left: 15, top: 10, right: 15, bottom: 10),
+                        padding: const EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(30)),
+                        child: Row(
+                          children: [
+                            FrameImage(
+                              image: list[index],
+                              size: 70,
                             ),
-                          )
-                        ],
+                            Dimens.large.width,
+                            SizedBox(
+                              width: 120,
+                              child: Text(
+                                list[index].name +
+                                    '\n${list[index].id}',
+                              ),
+                            ),
+                            (Dimens.large * 1.5).width,
+                            Container(
+                              width: 110,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: MyColor.bgSplashScreenColor),
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          qnty[index]++;
+                                        });
+                                        BlocProvider.of<CartBloc>(context)
+                                            .add(CartEventAdd());
+                                      },
+                                      icon: const Icon(
+                                        CupertinoIcons.plus,
+                                        size: 12,
+                                        color: Colors.white,
+                                      )),
+                                  Text(
+                                    qnty[index].toString(),
+                                    style: MyStyle.orangeBtnText
+                                        .copyWith(fontSize: 10),
+                                  ),
+                                  IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          qnty[index]--;
+                                        });
+                                        BlocProvider.of<CartBloc>(context)
+                                            .add(CartEventRemove());
+                                      },
+                                      icon: const Icon(
+                                        CupertinoIcons.minus,
+                                        size: 12,
+                                        color: Colors.white,
+                                      )),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               )
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -203,7 +196,7 @@ class _CartListState extends State<CartList> {
               ),
       ),
       bottomNavigationBar: Visibility(
-        visible: widget.list.isNotEmpty,
+        visible: myCartBox.isNotEmpty,
         child: specialBtn(context, title: MyStrings.completeOrder, onTap: () {
           Navigator.pushNamed(context, RouteName.destination);
         }, size: size),

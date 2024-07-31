@@ -23,8 +23,8 @@ final txtcolor;
         width: size!.width / 1.4,
         child: ElevatedButton(
             style: ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(bgcolor),
-                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                backgroundColor: MaterialStatePropertyAll(bgcolor),
+                shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)))),
             onPressed: onTap,
             child: Text(

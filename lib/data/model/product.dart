@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 part 'product.g.dart';
 
 @HiveType(typeId: 0)
-class Product extends HiveObject{
+class Product {
 
 @HiveField(0)
 String imgUrl;

@@ -27,7 +27,7 @@ class _DetailProductState extends State<DetailProduct> {
   @override
   void initState() {
     super.initState();
-    wishProduct = myBox.values
+    wishProduct = myWishBox.values
         .where((element) => widget.product.id == element.id)
         .toList();
   }
@@ -98,24 +98,24 @@ class _DetailProductState extends State<DetailProduct> {
                             imgUrl: widget.product.imgUrl,
                             isFav: false);
 
-                        myBox.add(productFav);
+                        myWishBox.add(productFav);
                         setState(() {
                           wishProduct = [productFav];
                         });
                       }
 
                       if (wishProduct.isNotEmpty) {
-                        for (var e in myBox.values) {
+                        for (var e in myWishBox.values) {
                           if (e.id == widget.product.id) {
                             setState(() {
                               e.isFav = !e.isFav;
                             });
 
                             if (!e.isFav) {
-                              if (myBox.values.contains(wishProduct.first)) {
+                              if (myWishBox.values.contains(wishProduct.first)) {
                                 final index =
-                                    myBox.values.toList().indexOf(wishProduct.first);
-                                myBox.deleteAt(index);
+                                    myWishBox.values.toList().indexOf(wishProduct.first);
+                                myWishBox.deleteAt(index);
                                 setState(() {
                                   wishProduct = [];
                                 });
@@ -138,7 +138,14 @@ class _DetailProductState extends State<DetailProduct> {
                           )),
                 MainButton(
                   onTap: () {
-                    cart.add(widget.product);
+                    if (myCartBox.isNotEmpty) {
+                        for (var e in myCartBox.values) {
+                          if (e.id != widget.product.id) {
+                           myCartBox.add(Product(id: widget.product.id, imgUrl: widget.product.imgUrl,
+                            name:widget.product.name, isFav: false));
+                          }
+                        }
+                      }
 
                     BlocProvider.of<CartBloc>(context).add(CartEventInit());
 

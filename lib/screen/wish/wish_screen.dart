@@ -30,7 +30,7 @@ class _WishListScreenState extends State<WishListScreen> {
         backgroundColor: MyColor.bgColor,
         appBar: CustomAppBar(child: Text(MyStrings.wishlist)),
         body: ValueListenableBuilder(
-            valueListenable: myBox.listenable(),
+            valueListenable: myWishBox.listenable(),
             builder: (context, value, child) {
               final list = value.values.toList();
               return SizedBox(
@@ -50,7 +50,7 @@ class _WishListScreenState extends State<WishListScreen> {
                                   SlidableAction(
                                     onPressed: (ctx) {
                                     
-                                        value.deleteAt(index);
+                                        myWishBox.deleteAt(index);
                                      
                                     },
                                     icon: CupertinoIcons.delete,
