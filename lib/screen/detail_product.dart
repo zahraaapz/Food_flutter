@@ -146,6 +146,16 @@ class _DetailProductState extends State<DetailProduct> {
                           }
                         }
                       }
+                        if (myCartBox.isEmpty) {
+                      
+
+                        myCartBox.add(Product(
+                            id: widget.product.id,
+                            name: widget.product.name,
+                            imgUrl: widget.product.imgUrl,
+                            isFav: false));
+                      
+                      }
 
                     BlocProvider.of<CartBloc>(context).add(CartEventInit());
 

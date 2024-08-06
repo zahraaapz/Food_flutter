@@ -17,7 +17,6 @@ import 'package:food_flutter/widget/frame_image.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../component/api_key.dart';
 
-const String cartBox = 'cart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});

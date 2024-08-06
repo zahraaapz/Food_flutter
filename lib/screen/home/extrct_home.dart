@@ -59,7 +59,7 @@ class _ExtrctHomeState extends State<ExtrctHome> {
                     style: MyStyle.text.copyWith(fontSize: 40),
                   ),
                 ),
-                Dimens.large.height,
+                (Dimens.large+10).height,
                 Center(
                   child: Container(
                       height: 50,
@@ -67,11 +67,12 @@ class _ExtrctHomeState extends State<ExtrctHome> {
                       decoration: BoxDecoration(
                           color: Colors.black12,
                           borderRadius: BorderRadius.circular(30)),
-                      child: mySearchBar(state,context)
-                                           ),
+                      child: mySearchBar(state, context)),
                 ),
-                (Dimens.large + 10).height,
+                (Dimens.large + 20).height,
                 cateList(),
+               (Dimens.small).height,
+
                 selectList(context, state),
                 selectSuggestList(state),
               ],
@@ -84,17 +85,14 @@ class _ExtrctHomeState extends State<ExtrctHome> {
     );
   }
 
-
-
   drawer() {
     return Drawer(
-      
       shape: const RoundedRectangleBorder(),
       backgroundColor: MyColor.bgSearchBarColor,
       child: Column(
         children: [
           (Dimens.large + 15).height,
-        const  ProfBox(),
+          const ProfBox(),
           TiltleBox(title: MyStrings.order),
           TiltleBox(title: MyStrings.pendingReview),
           TiltleBox(title: MyStrings.faq),
@@ -184,13 +182,15 @@ class _ExtrctHomeState extends State<ExtrctHome> {
       height: 30,
       width: double.infinity,
       child: ListView.builder(
+        key:const PageStorageKey('key'),
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
         itemCount: MyStrings.cate.length,
         itemBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.only(right: 18.0, left: 8),
+          padding: const EdgeInsets.only(right: 8.0, left: 18),
           child: GestureDetector(
             onTap: () {
+
               setState(() {
                 widget.select = index;
               });
@@ -198,7 +198,7 @@ class _ExtrctHomeState extends State<ExtrctHome> {
             child: Text(
               MyStrings.cate[index],
               style:
-                  index != widget.select ? MyStyle.text : MyStyle.whiteBtnText,
+                  index != widget.select ? MyStyle.text.copyWith(fontSize:17) : MyStyle.whiteBtnText.copyWith(fontSize:18),
             ),
           ),
         ),

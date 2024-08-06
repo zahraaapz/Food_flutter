@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_flutter/widget/frame_image.dart';
 
+import '../component/text_style.dart';
 import '../screen/detail_product.dart';
 
 class StackForLists extends StatelessWidget {
@@ -39,6 +40,7 @@ class StackForLists extends StatelessWidget {
           child: Center(
               child: Text(
             list[i].name,
+            style: MyStyle.text,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           )),
